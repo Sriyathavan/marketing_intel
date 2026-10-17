@@ -130,7 +130,7 @@ export interface Opportunity {
   id: string; rank: number; title: string; thesis: string;
   interest: Interest; trendIds: string[]; segmentId: SegmentId;
   offerType: OfferType; windowStart: ISODate; windowEnd: ISODate;
-  reachable: number; estRevenueUsd: number;
+  reachable: number;
   evidence: Evidence[];
   score: ScoreBreakdown;
 }
@@ -161,6 +161,6 @@ export interface CampaignPlan {
 }
 
 // ---------- API ----------
-export interface PlanRequest { opportunityIds: string[]; planStart?: ISODate; forceCache?: boolean }
+export interface PlanRequest { opportunityIds: string[]; planStart?: ISODate }
 export interface PlanResponse { plan: CampaignPlan }
 export interface PlanError { error: string; code: 'bad_request'|'claude_failed'|'invalid_output'; }

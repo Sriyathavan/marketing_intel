@@ -82,7 +82,7 @@ export function buildOpportunities(): Opportunity[] {
           thesis: `${label} search interest is up ${r1(input.yoyPct)}% year over year and ${Math.round(input.affinityShare * 100)}% of eligible ${profile.name} members show affinity; a ${offerType.replace(/_/g, ' ')} approach fits this segment across the plan window.`,
           interest, trendIds: keywords.map((k) => k.id), segmentId: segId, offerType,
           windowStart: ctx.planStart, windowEnd: ctx.planEnd,
-          reachable: input.reachable, estRevenueUsd: Math.round(input.reachable * input.meanAov * 0.04),
+          reachable: input.reachable,
           evidence: makeEvidence(interest, profile, keywords, ctx, input.affinityShare, input.avgSeasonIdx, input.recentSlopePct, input.yoyPct),
           score,
         },

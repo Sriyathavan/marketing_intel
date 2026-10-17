@@ -19,7 +19,7 @@ describe('buildOpportunities', () => {
     for (let i = 1; i < opps.length; i++) expect(opps[i - 1].score.total).toBeGreaterThanOrEqual(opps[i].score.total);
     expect(new Set(opps.map((o) => o.id)).size).toBe(5);
   });
-  it('ids, window, revenue and evidence are well formed', () => {
+  it('ids, window and evidence are well formed', () => {
     for (const o of opps) {
       expect(o.id).toBe(`opp_${o.interest}__${o.segmentId}`);
       expect(o.windowStart).toBe('2026-11-02'); expect(o.windowEnd).toBe('2027-01-30');

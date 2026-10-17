@@ -51,10 +51,9 @@ describe('planStore', () => {
     const r = planReducer(s, { type: 'setSequenceStatus', sequenceId: 'seq_a', status: 'proposed' });
     expect(approvedCount(r.plan)).toBe(0);
   });
-  it('select and reset', () => {
+  it('select', () => {
     const s = planReducer(ready(), { type: 'select', selection: { sequenceId: 'seq_a', emailId: 'em_seq_a_1' } });
     expect(s.selected?.emailId).toBe('em_seq_a_1');
-    expect(planReducer(s, { type: 'reset' })).toEqual({ status: 'idle' });
   });
   it('error keeps existing plan', () => {
     expect(planReducer(ready(), { type: 'error', message: 'x' }).status).toBe('ready');

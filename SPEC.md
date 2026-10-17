@@ -33,7 +33,7 @@ Exports: `segmentOf`, `isSuppressed` (any SENSITIVE_EVENTS), eligible = emailOpt
 3. Sort total desc, trendMomentum desc, id asc.
 4. Top 5, max 2 per segment and 2 per interest, greedy; rank 1..5.
 5. offerType by segment: lapsed promo_discount; new content_story; premium early_access; family bundle; deal promo_discount; mindful new_trip_launch if launch of that interest exists else content_story.
-6. Window = full 90 days. `estRevenueUsd` = reachable*meanAov*0.04.
+6. Window = full 90 days.
 7. 5-8 evidence items each, deterministic labels: yoy, 3-month slope, top rising query, affinity share, eligible count, click rate, season index, nearest holiday/launch, suppressed count.
 8. title/thesis from string templates (no LLM).
 
@@ -51,18 +51,18 @@ Inputs (eligible members): yoyPct = mean over keywords; recentSlopePct = mean of
 Output: factor score round1; contribution round1(weight*score); total round1(sum(weight*raw)); explanation template string with key inputs; factors in rubric order.
 
 ## /api/plan (`app/api/plan/route.ts`, nodejs, POST) (Package B)
-Request `PlanRequest`: 3-5 known opportunityIds else 400 `bad_request`. `forceCache` skips Claude.
-Flow: load opps/profiles/context server-side; aggregates only to model. If forceCache or no ANTHROPIC_API_KEY -> cache. Else `new Anthropic()`, model `claude-sonnet-5-5`, max_tokens 8000, forced tool `submit_plan` (JSON schema from zod), 300s timeout. Payload: planStart/End, blackouts, holidays, launches, per opportunity: opportunity + segment profile (fatigueCapPerWeek, modalSendDay/Hour, dominantTone, suppressed count) + evidence with ids.
+Request `PlanRequest`: a non-empty list of known opportunityIds else 400 `bad_request`.
+Flow: load opps/profiles/context server-side; aggregates only to model. If no ANTHROPIC_API_KEY -> cache. Else `new Anthropic()`, model `claude-sonnet-5-5`, max_tokens 16000, tool `submit_plan` (tool_choice auto) (JSON schema from zod), 300s timeout. Payload: planStart/End, blackouts, holidays, launches, per opportunity: opportunity + segment profile (fatigueCapPerWeek, modalSendDay/Hour, dominantTone, suppressed count) + evidence with ids.
 Schema `ModelPlan` (`lib/planSchema.ts`): sequences[] one per opportunity {opportunityId,name,goal,cadence,rationale,evidenceIds}, each 4-6 emails {step,sendDate,sendTimeLocal,subject<=70,preheader<=110,creativeDirection,cta{label,target},offerType,rationale,evidenceIds>=1}.
 Post-process (`lib/guardrails.ts`): zod parse (retry once with errors, then cache); drop unknown evidenceIds (fallback to top evidence + warning); clamp sendDate into window, off blackouts (snap forward); enforce fatigueCapPerWeek emails/week/segment (move excess, warn); regex check; set suppressionNote; assign ids, status proposed, editedByUser false, source claude, model claude-sonnet-5-5.
 Cache fallback: `data/cached-plan.json` (valid CampaignPlan for top-5), filter to requested ids (none match -> all with warning), source cache, model null, warning "Claude unavailable: showing cached plan". 500 `claude_failed` only if cache unreadable.
 
 ## UI (Package C)
 Single page `app/page.tsx` (server component loads opps + profiles -> client `PlanApp`). Three columns: left opportunities (~340px), center 90-day calendar, right slide-over detail (~420px). CSS variable tokens; follow Design.md: calendar view shows emails; click a sequence for details then rationale.
-- OpportunityList/ScoreBreakdown: cards with rank, title, thesis, segment chip, reachable, est revenue, score badge + 5-segment stacked contribution bar, expandable breakdown table with explanation + raw inputs, EvidenceChip popovers (label, value, source). Checkboxes (all 5 default); "Generate 90-day plan" enabled with >=3.
-- Calendar: 13 week rows x Mon-Sun, month labels, chips colored by sequence (5 colors), holiday/launch markers, hatched blackouts. States: proposed outlined, approved filled+check, rejected grey strike, edited dot, guardrail warning icon. Legend toggles visibility; click chip opens email detail.
+- OpportunityList/ScoreBreakdown: cards with rank, title, thesis, segment chip, reachable, score badge + 5-segment stacked contribution bar, expandable breakdown table with explanation + raw inputs, EvidenceChip popovers (label, value, source). "Generate 90-day plan" plans all opportunities returned by `buildOpportunities()`.
+- Calendar: 13 week rows x Mon-Sun, month labels, one neutral chip style, holiday/launch markers, hatched blackouts. States: proposed outlined, approved filled+check, rejected grey strike, edited dot, guardrail warning icon. Click chip opens email detail.
 - CampaignDetail/ReviewControls: sequence header (name, goal, cadence, segment, audience, rationale + suppression note), email stepper, editable fields (subject, preheader, date within window, time, creative direction, CTA label/target; editing sets editedByUser), rationale + evidence chips, Approve/Reject/Reset, sequence Approve all/Reject all, status badge, guardrail banner. Approve disabled while guardrailFlags set.
-- State `lib/planStore.ts` useReducer: `{status:'idle'|'loading'|'ready'|'error', plan?, selected?}`; localStorage `mie.plan.v1`; actions loaded, editEmail, setStatus, setSequenceStatus, select, reset. Empty/loading ("Claude is drafting...")/cache-banner states.
+- State `lib/planStore.ts` useReducer: `{status:'idle'|'loading'|'ready'|'error', plan?, selected?}`; localStorage `mie.plan.v1`; actions loaded, editEmail, setStatus, setSequenceStatus, select, reset. Empty and plain "Generating…" loading states; no cache/warning banners (plan `warnings` stays in data only). Light theme only.
 - ExportButton: disabled until >=1 approved; CSV/Markdown dropdown, Blob download `marketing-plan-<planStart>.csv|.md`.
 
 ## Export (`lib/export.ts`, Package B)
@@ -76,13 +76,13 @@ G1 sensitive-event (divorce, bereavement, health_journey) customers removed from
 Lead: scaffold, `lib/types.ts`, `.env.example`, `vitest.config.ts`, npm scripts.
 - **A**: `data/{trends,customers,context}.json`, `scripts/generate-customers.ts`, `lib/{scoring,segments,opportunities,data}.ts`, `tests/{scoring,segments,data,opportunities}.test.ts`.
 - **B**: `app/api/plan/route.ts`, `lib/{prompt,planSchema,guardrails,export}.ts`, `data/cached-plan.json` (last, after A ids stable), `tests/{planSchema,guardrails,export,plan-route}.test.ts` (mock Anthropic).
-- **C**: `app/{layout,page}.tsx`, `app/globals.css`, `components/*` (PlanApp, OpportunityList, ScoreBreakdown, Calendar, CampaignDetail, ReviewControls, EvidenceChip, ExportButton, `__mocks__/`), `lib/planStore.ts`, `tests/planStore.test.ts`.
+- **C**: `app/{layout,page}.tsx`, `app/globals.css`, `components/*` (PlanApp, OpportunityList, ScoreBreakdown, Calendar, CampaignDetail, ReviewControls, EvidenceChip, ExportButton), `lib/planStore.ts`, `tests/planStore.test.ts`.
 Cross-package imports only of exports named here.
 
 ## Test checklist
 Scoring: weights sum 1; deterministic; factors 0-100; total = weighted sum within rounding; boundary and monotonicity (yoy up never lowers total, fatigue up never raises); effort table + inventory penalty.
 Data: 200 unique rows, valid enums; segments 20-50; sensitive share 5-12%; yoyPct matches series; planEnd = planStart+89.
 Segments/opps: sensitive/opted-out excluded; 3-5 opps ranked, <=2 per segment/interest; evidence ids all exist; deterministic.
-API: mocked valid response -> source claude; invalid -> retry -> cache; API error -> cache+warning; missing key -> cache; bad ids -> 400; unknown evidence stripped; dates clamped; weekly cap; regex flags; suppressionNote present; cached-plan validates.
+API: mocked valid response -> source claude; invalid -> retry -> cache; API error -> cache+warning; missing key -> cache; bad/empty ids -> 400; unknown evidence stripped; dates clamped; weekly cap; regex flags; suppressionNote present; cached-plan validates.
 Export: exact header, escaping, CRLF, formula guard, approved-only; MD approved-only with suppression note.
 Smoke: `npm run build`; dev flow with key and without; edit/approve/reject persist on reload; flagged approve blocked; downloads open.

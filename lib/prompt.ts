@@ -31,7 +31,6 @@ export function buildPayload(opps: Opportunity[], profiles: SegmentProfile[], ct
         windowStart: o.windowStart,
         windowEnd: o.windowEnd,
         reachable: o.reachable,
-        estRevenueUsd: o.estRevenueUsd,
         scoreTotal: o.score.total,
         segment: p && {
           id: p.id, name: p.name, definition: p.definition, eligible: p.eligible,

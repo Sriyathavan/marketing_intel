@@ -1,17 +1,15 @@
 'use client';
-import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import { useEffect, useMemo, useReducer, useRef } from 'react';
 import type { CampaignPlan, ContextFile, Opportunity, PlanResponse, SegmentProfile } from '../lib/types';
 import { initialState, loadPersisted, planReducer, savePersisted } from '../lib/planStore';
-import { mockGeneratePlan } from './__mocks__/mockData';
 import OpportunityList from './OpportunityList';
 import Calendar from './Calendar';
 import CampaignDetail from './CampaignDetail';
 import ExportButton from './ExportButton';
 
-interface Props { opportunities: Opportunity[]; segments: SegmentProfile[]; context: ContextFile; useMock: boolean }
+interface Props { opportunities: Opportunity[]; segments: SegmentProfile[]; context: ContextFile }
 
-async function generate(ids: string[], useMock: boolean): Promise<CampaignPlan> {
-  if (useMock) { await new Promise(r => setTimeout(r, 900)); return mockGeneratePlan(ids); }
+async function generate(ids: string[]): Promise<CampaignPlan> {
   const res = await fetch('/api/plan', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ opportunityIds: ids }) });
   if (!res.ok) {
     const j = await res.json().catch(() => null);
@@ -20,11 +18,10 @@ async function generate(ids: string[], useMock: boolean): Promise<CampaignPlan> 
   return ((await res.json()) as PlanResponse).plan;
 }
 
-export default function PlanApp({ opportunities, segments, context, useMock }: Props) {
+export default function PlanApp({ opportunities, segments, context }: Props) {
   const [state, dispatch] = useReducer(planReducer, initialState);
-  const [checked, setChecked] = useState<Set<string>>(() => new Set(opportunities.map(o => o.id)));
-  const hydrated = useRef(false);
 
+  const hydrated = useRef(false);
   useEffect(() => {
     const saved = loadPersisted();
     if (saved) dispatch({ type: 'loaded', plan: saved });
@@ -34,13 +31,12 @@ export default function PlanApp({ opportunities, segments, context, useMock }: P
 
   async function onGenerate() {
     dispatch({ type: 'loading' });
-    try { dispatch({ type: 'loaded', plan: await generate([...checked], useMock) }); }
+    try { dispatch({ type: 'loaded', plan: await generate(opportunities.map(o => o.id)) }); }
     catch (e) { dispatch({ type: 'error', message: e instanceof Error ? e.message : 'Plan generation failed' }); }
   }
 
   const { plan, selected } = state;
-  const seqIndex = plan && selected ? plan.sequences.findIndex(s => s.id === selected.sequenceId) : -1;
-  const seq = plan && seqIndex >= 0 ? plan.sequences[seqIndex] : undefined;
+  const seq = plan && selected ? plan.sequences.find(s => s.id === selected.sequenceId) : undefined;
   const oppById = useMemo(() => new Map(opportunities.map(o => [o.id, o])), [opportunities]);
 
   return (
@@ -49,25 +45,20 @@ export default function PlanApp({ opportunities, segments, context, useMock }: P
         <div className="brand"><span className="logo" aria-hidden>◈</span><h1>Marketing Intelligence Engine</h1></div>
         <span className="muted small">{context.planStart} to {context.planEnd} · 90 days</span>
         <span className="spacer" />
-        {plan && <button type="button" className="btn" onClick={() => dispatch({ type: 'reset' })}>New plan</button>}
-        <ExportButton plan={plan} opportunities={opportunities} segments={segments} useMock={useMock} />
+        <ExportButton plan={plan} opportunities={opportunities} segments={segments} />
       </header>
       <main className="layout">
-        <OpportunityList opportunities={opportunities} segments={segments} checked={checked} loading={state.status === 'loading'}
-          onToggle={id => setChecked(c => { const n = new Set(c); if (n.has(id)) n.delete(id); else n.add(id); return n; })}
-          onGenerate={onGenerate} />
+        <OpportunityList opportunities={opportunities} segments={segments} loading={state.status === 'loading'} onGenerate={onGenerate} />
         <section className="col col-center">
           {state.error && <div className="banner banner-err" role="alert">{state.error}</div>}
-          {plan?.source === 'cache' && <div className="banner banner-info">{plan.warnings[0] ?? 'Showing a cached plan.'}</div>}
-          {plan?.warnings.slice(plan.source === 'cache' ? 1 : 0).map(w => <div key={w} className="banner banner-warn">{w}</div>)}
           {state.status === 'loading' && (
-            <div className="empty"><div className="spinner" /><h2>Claude is drafting...</h2><p className="muted">Sequencing emails against holidays, launches and send limits.</p></div>
+            <div className="empty"><div className="spinner" /><h2>Generating…</h2></div>
           )}
           {state.status !== 'loading' && !plan && (
             <div className="empty">
               <div className="empty-art" aria-hidden>▦</div>
               <h2>Your 90-day calendar</h2>
-              <p className="muted">Choose 3 to 5 scored opportunities on the left and generate a plan. Every email is explained and can be edited, approved or rejected.</p>
+              <p className="muted">Generate a plan from the scored opportunities on the left. Every email is explained and can be edited, approved or rejected.</p>
             </div>
           )}
           {plan && state.status !== 'loading' && (
@@ -77,7 +68,7 @@ export default function PlanApp({ opportunities, segments, context, useMock }: P
           )}
         </section>
         {seq && plan && (
-          <CampaignDetail sequence={seq} seqIndex={seqIndex} emailId={selected?.emailId}
+          <CampaignDetail sequence={seq} emailId={selected?.emailId}
             opportunity={oppById.get(seq.opportunityId)} segment={segments.find(s => s.id === seq.segmentId)} context={context}
             onClose={() => dispatch({ type: 'select', selection: undefined })}
             onPickEmail={id => dispatch({ type: 'select', selection: { sequenceId: seq.id, emailId: id } })}

@@ -5,7 +5,7 @@ import EvidenceChip from './EvidenceChip';
 import ReviewControls, { StatusBadge } from './ReviewControls';
 
 interface Props {
-  sequence: EmailSequence; seqIndex: number; emailId?: string;
+  sequence: EmailSequence; emailId?: string;
   opportunity?: Opportunity; segment?: SegmentProfile; context: ContextFile;
   onClose: () => void; onPickEmail: (id: string) => void;
   onEdit: (emailId: string, patch: EmailEdit) => void;
@@ -21,9 +21,8 @@ export default function CampaignDetail(p: Props) {
 
   return (
     <aside className="col col-right" aria-label="Campaign detail">
-      <header className={`detail-head seq-${p.seqIndex % 5}`}>
+      <header className="detail-head">
         <div className="detail-head-row">
-          <span className="seq-swatch" />
           <h2>{s.name}</h2>
           <button type="button" className="icon-btn" onClick={p.onClose} aria-label="Close detail">✕</button>
         </div>

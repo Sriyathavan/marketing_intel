@@ -82,8 +82,8 @@ export async function POST(req: Request) {
     return err('Invalid JSON body', 'bad_request', 400);
   }
   const ids = body?.opportunityIds;
-  if (!Array.isArray(ids) || ids.length < 3 || ids.length > 5 || ids.some((i) => typeof i !== 'string') || new Set(ids).size !== ids.length) {
-    return err('opportunityIds must be 3-5 unique ids', 'bad_request', 400);
+  if (!Array.isArray(ids) || ids.length < 1 || ids.some((i) => typeof i !== 'string') || new Set(ids).size !== ids.length) {
+    return err('opportunityIds must be a non-empty list of unique ids', 'bad_request', 400);
   }
 
   const allOpps = buildOpportunities();
@@ -97,7 +97,7 @@ export async function POST(req: Request) {
     return NextResponse.json<PlanResponse>({ plan });
   };
 
-  if (body.forceCache || !process.env.ANTHROPIC_API_KEY) return fallback([]);
+  if (!process.env.ANTHROPIC_API_KEY) return fallback([]);
 
   try {
     const opps = allOpps.filter((o) => ids.includes(o.id));

@@ -27,11 +27,16 @@ afterEach(() => { delete process.env.ANTHROPIC_API_KEY; });
 
 describe('POST /api/plan', () => {
   it('400 on bad ids', async () => {
-    expect((await POST(req({ opportunityIds: ids.slice(0, 2) }))).status).toBe(400);
-    const r = await POST(req({ opportunityIds: [...ids.slice(0, 2), 'opp_nope'] }));
+    expect((await POST(req({ opportunityIds: [] }))).status).toBe(400);
+    const r = await POST(req({ opportunityIds: [ids[0], 'opp_nope'] }));
     expect(r.status).toBe(400);
     expect((await r.json()).code).toBe('bad_request');
     expect(create).not.toHaveBeenCalled();
+  });
+  it('accepts a single known id', async () => {
+    create.mockResolvedValue(toolUse(modelPlanFor(opps.slice(0, 1))));
+    const r = await POST(req({ opportunityIds: [ids[0]] }));
+    expect(r.status).toBe(200);
   });
   it('valid Claude response -> source claude', async () => {
     create.mockResolvedValue(toolUse(modelPlanFor(opps.slice(0, 3))));
@@ -71,21 +76,18 @@ describe('POST /api/plan', () => {
     expect(plan.source).toBe('cache');
     expect(create).not.toHaveBeenCalled();
   });
-  it('forceCache skips Claude', async () => {
-    const { plan } = await (await POST(req({ opportunityIds: ids, forceCache: true }))).json();
-    expect(plan.source).toBe('cache');
-    expect(create).not.toHaveBeenCalled();
-  });
   it('500 claude_failed when cache unreadable', async () => {
+    delete process.env.ANTHROPIC_API_KEY;
     readFileMock.mockRejectedValue(new Error('ENOENT'));
-    const r = await POST(req({ opportunityIds: ids, forceCache: true }));
+    const r = await POST(req({ opportunityIds: ids }));
     expect(r.status).toBe(500);
     expect((await r.json()).code).toBe('claude_failed');
   });
   it('cache with no matching ids returns all with warning', async () => {
     const other = cachedPlanFor([opps[3], opps[4]]);
     readFileMock.mockResolvedValue(JSON.stringify(other));
-    const { plan } = await (await POST(req({ opportunityIds: ids, forceCache: true }))).json();
+    delete process.env.ANTHROPIC_API_KEY;
+    const { plan } = await (await POST(req({ opportunityIds: ids }))).json();
     expect(plan.sequences).toHaveLength(2);
     expect(plan.warnings.some((w: string) => /No cached sequences matched/.test(w))).toBe(true);
   });

@@ -2,13 +2,11 @@
 import { useEffect, useRef, useState } from 'react';
 import type { CampaignPlan, Opportunity, SegmentProfile } from '../lib/types';
 import { approvedCount } from '../lib/planStore';
-import { mockToCsv, mockToMarkdown } from './__mocks__/mockData';
 
-interface Props { plan?: CampaignPlan; opportunities: Opportunity[]; segments: SegmentProfile[]; useMock: boolean }
+interface Props { plan?: CampaignPlan; opportunities: Opportunity[]; segments: SegmentProfile[] }
 
 async function render(kind: 'csv' | 'md', p: Props): Promise<string> {
   const plan = p.plan!;
-  if (p.useMock) return kind === 'csv' ? mockToCsv(plan) : mockToMarkdown(plan);
   const ex = await import('../lib/export');
   return kind === 'csv' ? ex.toCsv(plan, p.opportunities, p.segments) : ex.toMarkdown(plan, p.opportunities, p.segments);
 }

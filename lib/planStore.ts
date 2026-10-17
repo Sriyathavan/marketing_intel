@@ -19,8 +19,7 @@ export type PlanAction =
   | { type: 'editEmail'; emailId: string; patch: EmailEdit }
   | { type: 'setStatus'; emailId: string; status: ReviewStatus }
   | { type: 'setSequenceStatus'; sequenceId: string; status: ReviewStatus }
-  | { type: 'select'; selection?: Selection }
-  | { type: 'reset' };
+  | { type: 'select'; selection?: Selection };
 
 const SENSITIVE_RE = /divorce|widow|bereave|grief|passed away|diagnos|weight loss|recover(y|ing) from|fresh start after|single again|empty nest|your age/i;
 /** Re-run the G4 copy check after a user edit; keeps non-copy flags untouched. */
@@ -56,7 +55,6 @@ export function planReducer(state: PlanState, action: PlanAction): PlanState {
     case 'error': return { ...state, status: state.plan ? 'ready' : 'error', error: action.message };
     case 'loaded': return { status: 'ready', plan: action.plan, selected: undefined };
     case 'select': return { ...state, selected: action.selection };
-    case 'reset': return { status: 'idle' };
     case 'editEmail': {
       if (!state.plan) return state;
       const plan = mapEmails(state.plan, e => e.id === action.emailId

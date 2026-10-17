@@ -19,7 +19,7 @@ export function opp(n: number, segmentId: SegmentId = 'seg_family'): Opportunity
   const id = `opp_o${n}__${segmentId}`;
   return {
     id, rank: n, title: `Opp ${n}`, thesis: 't', interest: 'hiking', trendIds: [], segmentId,
-    offerType: 'bundle', windowStart: '2026-11-02', windowEnd: '2027-01-30', reachable: 20, estRevenueUsd: 1000,
+    offerType: 'bundle', windowStart: '2026-11-02', windowEnd: '2027-01-30', reachable: 20,
     evidence: [1, 2, 3].map((k) => ({ id: `ev_trend_o${n}_${k}`, kind: 'trend' as const, label: `Label ${k}`, value: k, source: { file: 'trends.json' as const, ref: 'x' } })),
     score: { total: 70, factors: [{ key: 'trendMomentum', label: 'Trend momentum', weight: 0.25, score: 80, contribution: 20, inputs: {}, explanation: 'e' }] },
   };
