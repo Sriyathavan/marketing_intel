@@ -50,7 +50,7 @@ describe('data files', () => {
     const c = loadContext();
     const end = new Date(Date.parse(c.planStart) + 89 * 86400000).toISOString().slice(0, 10);
     expect(c.planEnd).toBe(end);
-    expect(c.sendBlackouts).toEqual(['2026-12-25', '2027-01-01']);
+    expect(c.sendBlackouts).toEqual(['2026-11-26', '2026-12-24', '2026-12-25', '2026-12-26']);
     expect(c.launches.length).toBeGreaterThanOrEqual(4);
     expect(c.launches.some((l) => l.inventoryConstrained)).toBe(true);
   });

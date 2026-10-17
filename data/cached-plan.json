@@ -1,534 +1,291 @@
 {
   "planStart": "2026-11-02",
   "planEnd": "2027-01-30",
-  "generatedAt": "2026-10-17T18:24:25.515Z",
+  "generatedAt": "2026-10-17T18:49:09.399Z",
   "source": "claude",
   "model": "claude-haiku-5-5",
-  "warnings": [],
+  "warnings": [
+    "Priority vs evidence: s7 (Dolomites/Peru early-bird, PL1 Tier 2) and s1 (Patagonia Tier 1) rest on a single fill snapshot from Oct 17 and on mapped segments; evidence confidence is moderate, priority is high. Flag before commit.",
+    "Conflict: s5 Black Friday to Cyber Monday sends must stay within the 4-per-week cap; overlapping sequences s2 and s5 during Nov 27-30 require suppression logic.",
+    "Conflict: PL1 early-bird is capped at 10% off and only through Jan 31; s7 must not imply any discount beyond this.",
+    "Conflict: Kilimanjaro (Tier 5, 92% full) is mentioned only as waitlist; not promoted in any sequence.",
+    "Conflict: PL4 is never discounted; s6 and s7 must use value and consultation framing only.",
+    "Conflict: Thanksgiving (Nov 26) and Dec 24-26 are blackouts; sequences that naturally cluster around these dates must shift sends.",
+    "Conflict: A5 is capped at 1 email per week; s8 and s9 overlap for A5 and must be staggered.",
+    "Evidence weakness: s8 Costa Rica and Baja launches depend on interpreted insights and a 1.6% lapsed click rate; priority is medium, confidence is low.",
+    "Insight ins_bikepacking_momentum_low_season is seasonally weak (index 0.48) and is used only as nurture, not as a sell, consistent with the brief's tiering.",
+    "No fabricated pricing or scarcity used; urgency tied only to the Jan 31 early-bird deadline and real departure fill.",
+    "Compliance: health and fitness data not used for targeting; no life-event, age, gender or relationship references in copy.",
+    "seq_s1: removed 2 unknown evidence id(s)",
+    "Patagonia W-Trek Push: Winter Trip Awareness: FREQUENCY CAP CONFLICT: seg_premium has fatigueCapPerWeek = 2. Five emails within Nov 2 to 15 (two weeks) requires 3 sends in at least one week, which breaches the 2-per-week cap. This plan sends 2 in week one (Nov 3, Nov 6) and 3 in week two (Nov 10, Nov 12, Nov 13), so week two breaches the cap. Recommend either reducing to 4 emails or spreading across Nov 2 to 22, which would need the windowEnd to change. Flagged rather than silently changed.",
+    "Patagonia W-Trek Push: Winter Trip Awareness: PRIORITY VS CONFIDENCE: PL1 Patagonia is Tier 1, but evidence for A1 response to this specific launch is observed only at segment level (no per-departure conversion history). Treat the priority as high and the evidence confidence as moderate.",
+    "Patagonia W-Trek Push: Winter Trip Awareness: AUDIENCE MAPPING: segment seg_premium maps to A1 (and partly A3). The 'Premium' definition (LTV >= $4,000 or gold/platinum) may include past travelers who belong to A3 by brief precedence (A3 first). Overlap should be resolved before send so A3 contacts are not double-emailed by the Past Traveler Early Access sequence (Nov 3 to 24, same segment).",
+    "Patagonia W-Trek Push: Winter Trip Awareness: CLASH: the Past Traveler Early Access sequence targets seg_premium from Nov 3 to 24, overlapping with this sequence's Nov 3 to 15 window. Combined sends to the same segment may exceed the 2/week cap. Coordinate scheduling.",
+    "Patagonia W-Trek Push: Winter Trip Awareness: DEPARTURE FILL: no real-time booked-seat feed is provided; seat counts come from the Oct 17 snapshot. Emails stating seat counts must be refreshed before each send to avoid fake or stale scarcity.",
+    "Patagonia W-Trek Push: Winter Trip Awareness: CAPACITY: Private Trips consultation capacity (about 40/week) is not affected here because no PL4 offer is included, but the planning-call CTA in email 5 will add demand to that team and should be monitored.",
+    "Patagonia W-Trek Push: Winter Trip Awareness: PL3 CROSS-SELL: email 4 introduces PL3 Iceland to the A1 persona. The Iceland Jan 22 departure is 75% full; no false scarcity is used.",
+    "seq_s1 step 1: removed 1 unknown evidence id(s)",
+    "seq_s1 step 1: no valid evidence, fell back to top evidence",
+    "seq_s1 step 2: removed 1 unknown evidence id(s)",
+    "seq_s1 step 2: no valid evidence, fell back to top evidence",
+    "seq_s1 step 3: removed 1 unknown evidence id(s)",
+    "seq_s1 step 3: no valid evidence, fell back to top evidence",
+    "seq_s1 step 4: removed 1 unknown evidence id(s)",
+    "seq_s1 step 4: no valid evidence, fell back to top evidence",
+    "seq_s1 step 5: removed 1 unknown evidence id(s)",
+    "seq_s1 step 5: no valid evidence, fell back to top evidence",
+    "Gift Season: Shared Adventure Gift Cards: Overlap: the Yellowstone Winter Family Week Launch (seg_family, A2/A4, Dec 1 to 16) shares this segment and window; sends on Dec 2 and Dec 13/16 may stack with it. Coordinate so seg_family stays within 2 per week.",
+    "Gift Season: Shared Adventure Gift Cards: Black Friday week (Nov 27 to Nov 30): brief allows up to 4 per contact that week, but this sequence's Nov 29 send plus any Yellowstone or other seg_family sends must stay within the segment cap of 2 per week.",
+    "Gift Season: Shared Adventure Gift Cards: Send time: modal send is Sun 19:00, but the Dec 16 and Dec 23 sends fall on weekdays to fit the deadline windows; this deviates from the modal day.",
+    "Gift Season: Shared Adventure Gift Cards: Data gaps: gift-card purchase history, recipient/delivery data, and past-traveler status for A4 are not in the inputs; segment mapping seg_family -> A4 is an assumption. Holdout (5% of audience) must be applied and is not specified here.",
+    "Gift Season: Shared Adventure Gift Cards: Revenue and conversion are not forecast, per brief section 10. Insight ev ids reused across emails are drawn only from the listed insightIds.",
+    "seq_s3: removed 2 unknown evidence id(s)",
+    "Past Traveler Early Access: Repeat Booking: Frequency cap: seg_premium allows 2 emails per week. Steps 4 and 5 both fall on 2026-11-24 (Tuesday), which puts two sends on one day and may breach the weekly cap once the parallel 'Patagonia W-Trek Push' sequence (also seg_premium, Nov 2-15) is counted. Resolve by moving step 5 to a later day or dropping it.",
+    "Past Traveler Early Access: Repeat Booking: Overlap: the parallel 'Patagonia W-Trek Push' sequence targets the same seg_premium segment (A1/A2) from Nov 2-15, which overlaps this sequence's Nov 3-10 sends and competes for the same weekly cap.",
+    "Past Traveler Early Access: Repeat Booking: Discounting: PL1 early-bird pricing (up to 10%) is only valid through Jan 31, 2027 and is not open in this window. This sequence uses early access only and does not state any discount percentage.",
+    "Past Traveler Early Access: Repeat Booking: Product coverage: the insights reference small-group safari and eco-lodge interests, which are not listed as PL1 or PL4 products in the brief. Step 2 content must route to a PL1/PL4-relevant itinerary, or the product fit needs confirmation before sending.",
+    "Past Traveler Early Access: Repeat Booking: Capacity: PL4 consultations are capped at ~40 per week. Step 3 invites consultations; ensure the Private Trips team can absorb the response from this sequence on top of other PL4 sends.",
+    "Past Traveler Early Access: Repeat Booking: Segment mapping: the brief's A3 audience was mapped to the internal 'Premium Adventurers' segment (LTV >= $4,000 or gold/platinum). A3 membership is not directly known from the segment definition; this assumption must be verified before send.",
+    "Past Traveler Early Access: Repeat Booking: Data gaps: past-traveler status and trip history are not in the provided segment data, so recognition copy is generic. No personal life details are used.",
+    "Past Traveler Early Access: Repeat Booking: Holdout: the 5% holdout required by the brief must be excluded from this sequence; this is not represented in the inputs.",
+    "Past Traveler Early Access: Repeat Booking: Insight coverage: the insightIds listed are limited to two; the Patagonia fill and early-bird facts come from the brief rather than an insight, and are cited as observed from the brief.",
+    "seq_s3 step 1: removed 1 unknown evidence id(s)",
+    "seq_s3 step 1: no valid evidence, fell back to top evidence",
+    "seq_s3 step 2: removed 1 unknown evidence id(s)",
+    "seq_s3 step 2: no valid evidence, fell back to top evidence",
+    "seq_s3 step 3: removed 1 unknown evidence id(s)",
+    "seq_s3 step 3: no valid evidence, fell back to top evidence",
+    "seq_s3 step 4: removed 2 unknown evidence id(s)",
+    "seq_s3 step 4: no valid evidence, fell back to top evidence",
+    "seq_s3 step 5: removed 1 unknown evidence id(s)",
+    "seq_s3 step 5: no valid evidence, fell back to top evidence",
+    "Yellowstone Winter Family Week Launch: Audience mapping gap: Family Getaways do not cleanly match A2 (25 to 40, city-based, short-trip buyers) or A4 (gift givers). The sequence targets A2 and A4 as requested, but the segment is a family/multigenerational household. Copy avoids family-status, age, and gender references. Please confirm the audience assignment.",
+    "Yellowstone Winter Family Week Launch: Product line mapping gap: Yellowstone Winter Family Week is not listed in the brief's PL2 or PL3 definitions (PL3 is Iceland, Norway, Banff). It is mapped to PL3 as the closest winter trip; confirm the correct product line.",
+    "Yellowstone Winter Family Week Launch: Missing inputs: no departure fill or seat-count data for Yellowstone, so no scarcity or urgency is used. Real seat counts would be needed to support any capacity message.",
+    "Yellowstone Winter Family Week Launch: Missing inputs: no commercial tier is listed for Yellowstone in section 6, so its priority score cannot be set from the brief.",
+    "Yellowstone Winter Family Week Launch: Frequency: family segment cap is 2 per week; the schedule sends 2 emails in each week (Dec 6 to 7 and Dec 13 to 15), which is within cap but leaves no room for other family-segment sequences in those weeks. Other planned sequences targeting seg_family (Gift Season, Dec 16 to 23 window) must be checked for overlap on Dec 15 to 16.",
+    "Yellowstone Winter Family Week Launch: Evidence confidence: the family-winter query momentum rests on search trend data and segment affinity; it is directional, not a booking forecast, and this sequence makes no revenue or conversion claims.",
+    "seq_s5: removed 1 unknown evidence id(s)",
+    "Black Friday to Cyber Monday: Weekend Adventures: Frequency conflict: 4 sends in Black Friday week exceed seg_deal's segment cap of 3/week (the brief's 4/week Black Friday allowance is the global limit, not the segment limit). Steps 3 and 4 both fall on Nov 30, so the segment cap must be verified before dispatch; consider moving step 4 to Dec 1 (Giving Tuesday, content-only) or dropping it.",
+    "Black Friday to Cyber Monday: Weekend Adventures: A5 cap conflict: A5 gets at most 1 email a week, but this sequence sends up to 4 to A5 contacts in the same week. A5 recipients should be limited to a single send (e.g. step 1 only) or the sequence must be split.",
+    "Black Friday to Cyber Monday: Weekend Adventures: Discount wording: the brief permits 'up to 15%' only for PL2 in this window; no specific percentage has been stated, so none is invented here.",
+    "Black Friday to Cyber Monday: Weekend Adventures: Post-Cyber Monday: no PL2 discount may run after Nov 30. Any follow-up in the first week of December must be non-promotional.",
+    "Black Friday to Cyber Monday: Weekend Adventures: Mixing PL5 gift-card bonus into a PL2 sequence: gift-card bonus is permitted ($50 on $250+) but must not be a percent-off and overlaps with the Gift Season sequence (seg_family, A4). Check for clashes at the audience level.",
+    "seq_s5 step 1: removed 1 unknown evidence id(s)",
+    "seq_s5 step 3: removed 1 unknown evidence id(s)",
+    "Plan Your 2027: New Year Intentions: Frequency cap conflict: seg_mindful allows 2 sends per week. Dec 27 to Jan 2 holds at most 2 in-window sends, and Jan 3 to 4 holds 2 more. Steps 4 and 5 both land on Jan 4, which puts 2 sends in one day and breaks the spirit of the cap. Recommend moving step 5 to Jan 5 (outside window) or merging content.",
+    "Plan Your 2027: New Year Intentions: Possible overlap with 'Wave Season: Dolomites and Peru Early-Bird' (seg_premium, Jan 5 to 30), which also promotes the Jan 31 early-bird. Mindful and premium segments differ, but A3 and A1 may receive both. Coordinate so early-bird is not sent to the same contacts twice in one week.",
+    "Plan Your 2027: New Year Intentions: PL1 early-bird is capped at 10% off. Step 3 references early-bird only with no percentage stated beyond the brief rule. Confirm the exact rate before send.",
+    "Plan Your 2027: New Year Intentions: Dolomites Jul 10 is 25% full. Framing it as having open seats is accurate; do not describe it as scarce.",
+    "Plan Your 2027: New Year Intentions: Kilimanjaro (92% full) is not promoted in this sequence, consistent with waitlist-only handling.",
+    "Plan Your 2027: New Year Intentions: Evidence gap: no insight directly supports PL4 demand or consultation capacity. The PL4 email (step 4) rests on brief rules, not on observed data.",
+    "Plan Your 2027: New Year Intentions: Assumption: segment 'Mindful Explorers' is treated as the nearest fit for A1 and A3. Actual A3 (past travelers) membership is not confirmed in the segment data and must be verified before send.",
+    "seq_s7: removed 2 unknown evidence id(s)",
+    "Wave Season: Dolomites and Peru Early-Bird: Tier 1 PL4 (Private & Custom) is included with no discount; consultation capacity (~40/week) must be respected, and step 5 is spread onto a Tuesday to limit load.",
+    "Wave Season: Dolomites and Peru Early-Bird: Frequency: steps 5 and 6 both fall on Jan 26, so this segment receives 2 emails that day, which is within the 2-per-week fatigue cap but uses the full allowance for that week. Confirm no other seg_premium sequence (e.g. Plan Your 2027, Dec 27 to Jan 4) overlaps Jan 5 to 30.",
+    "Wave Season: Dolomites and Peru Early-Bird: Overlap: the Plan Your 2027 sequence (seg_mindful, A1/A3) runs Dec 27 to Jan 4, so it does not clash on dates but shares PL1 messaging with this sequence; keep copy distinct.",
+    "Wave Season: Dolomites and Peru Early-Bird: Kilimanjaro 2027 is 92% full and should only be mentioned for its waitlist; no promotion is included.",
+    "Wave Season: Dolomites and Peru Early-Bird: Assumption/missing input: no Peru departure fill data is provided, so no fill claim is made for Peru.",
+    "Wave Season: Dolomites and Peru Early-Bird: Assumption/missing input: no past-traveler status is provided per contact; A3 early-access wording assumes the segment is mapped to A3 per the brief's overlap order.",
+    "Wave Season: Dolomites and Peru Early-Bird: Assumption/missing input: seg_premium (Lifetime value $4,000+ or gold/platinum) is mapped to A3/A1 by proxy; not all members are confirmed past travelers.",
+    "Wave Season: Dolomites and Peru Early-Bird: Holdout: 5% of each audience must receive no campaign email; this sequence assumes holdout is applied at send time and is not built into the calendar here.",
+    "seq_s7 step 1: removed 1 unknown evidence id(s)",
+    "seq_s7 step 1: no valid evidence, fell back to top evidence",
+    "seq_s7 step 2: removed 1 unknown evidence id(s)",
+    "seq_s7 step 2: no valid evidence, fell back to top evidence",
+    "seq_s7 step 3: removed 2 unknown evidence id(s)",
+    "seq_s7 step 3: no valid evidence, fell back to top evidence",
+    "seq_s7 step 4: removed 1 unknown evidence id(s)",
+    "seq_s7 step 4: no valid evidence, fell back to top evidence",
+    "seq_s7 step 5: removed 1 unknown evidence id(s)",
+    "seq_s7 step 5: no valid evidence, fell back to top evidence",
+    "seq_s7 step 6: removed 1 unknown evidence id(s)",
+    "seq_s7 step 6: no valid evidence, fell back to top evidence",
+    "seq_s8: removed 2 unknown evidence id(s)",
+    "Baja Sea Kayak and Costa Rica Eco Lodge Awareness: Mapping gap: Baja Sea Kayak and Costa Rica Eco Lodge Circuit are not in PL2 (US weekend) or PL3 (Iceland/Norway/Banff). The brief's product-line set does not cover them; the sequence is tagged PL2/PL3 as requested, but this should be confirmed with the product owner.",
+    "Baja Sea Kayak and Costa Rica Eco Lodge Awareness: Evidence gap: the Costa Rica launch (Jan 11) and its eco-lodge evidence id are not among the evidence ids allowed for this sequence, so step 1 cites lapsed eco-lodge affinity only. Priority for Costa Rica messaging rests on weaker evidence.",
+    "Baja Sea Kayak and Costa Rica Eco Lodge Awareness: Frequency: seg_new's cap is 2 per week. Steps 1 and 2 both fall in the week of Jan 11 to 17, which uses the full cap for that segment. No other sequence may send to seg_new in that week. The Reactivation sequence (seg_lapsed, A5) is a separate segment and does not share this cap, but A5 is limited to one send per week in total; this sequence's A5 share must stay within that limit.",
+    "Baja Sea Kayak and Costa Rica Eco Lodge Awareness: Lapsed/A5 sensitivity: step 2 targets lapsed-adjacent readers. A5 is capped at one send per week, and Lapsed Wanderers have a low click rate (1.6%). Steps 2 and 4 should be suppressed for any A5 contact who has already received a reactivation send that week.",
+    "Baja Sea Kayak and Costa Rica Eco Lodge Awareness: Brief section 8 for A5: sunset applies to contacts inactive 180+ days. Suppression lists must be applied before send.",
+    "Baja Sea Kayak and Costa Rica Eco Lodge Awareness: No promotional discounts are used. PL2 Black Friday discounting is not active in January; no offer is made in this sequence.",
+    "Reactivation: Safari and Eco-Lodge Light Touch: Gap: PL5 gift cards can only be mentioned Nov 16-Dec 23; step 2 is placed to respect that window, and no gift-card email is scheduled after Dec 23.",
+    "Reactivation: Safari and Eco-Lodge Light Touch: Tension: A5 is capped at 1 email per week and the segment has a 1.6% click rate. Four sends in 9 weeks is intentionally light; this may under-deliver on the 4.2% past-traveler goal, which this sequence does not target (A5 is not A3).",
+    "Reactivation: Safari and Eco-Lodge Light Touch: Gap: the Costa Rica Eco Lodge Circuit launches Jan 11, after step 3's proposed send; step 4 is timed to follow the launch. Confirm the launch date is approved before step 4 is built.",
+    "Reactivation: Safari and Eco-Lodge Light Touch: No discount is offered; PL2 Black Friday-Cyber Monday discounting is excluded by design to keep the sequence clear of the Nov 27-30 window.",
+    "seq_s1 step 2: moved 2026-11-06 to 2026-11-09 for weekly cap of 2 for seg_premium",
+    "seq_s3 step 2: moved 2026-11-10 to 2026-11-16 for weekly cap of 2 for seg_premium",
+    "seq_s1 step 4: moved 2026-11-12 to 2026-11-16 for weekly cap of 2 for seg_premium",
+    "seq_s1 step 5: moved 2026-11-13 to 2026-11-23 for weekly cap of 2 for seg_premium",
+    "seq_s3 step 3: moved 2026-11-17 to 2026-11-23 for weekly cap of 2 for seg_premium",
+    "seq_s3 step 4: moved 2026-11-24 to 2026-11-30 for weekly cap of 2 for seg_premium",
+    "seq_s3 step 5: moved 2026-11-24 to 2026-11-30 for weekly cap of 2 for seg_premium",
+    "seq_s4 step 3: moved 2026-12-13 to 2026-12-14 for weekly cap of 2 for seg_family",
+    "seq_s2 step 5: moved 2026-12-16 to 2026-12-21 for weekly cap of 2 for seg_family",
+    "seq_s6 step 3: moved 2027-01-03 to 2027-01-04 for weekly cap of 2 for seg_mindful",
+    "seq_s6 step 5: moved 2027-01-04 to 2027-01-11 for weekly cap of 2 for seg_mindful",
+    "49% of campaigns have A3 or A1 as primary audience; the brief asks for roughly 40-45%"
+  ],
+  "assumptions": [
+    "Segment-to-audience mapping: seg_premium -> A3 (past-traveler proxy) and A1; seg_family -> A4 (gift giver / family proxy) and A2; seg_deal -> A2 and A5; seg_mindful -> A1 and A3 (value-driven travelers); seg_new -> A2 and A5; seg_lapsed -> A5. Mapping is approximate; no direct past-traveler or gift-purchase flag was supplied.",
+    "Missing input: past-traveler status and trip history per contact (needed to confirm A3 membership and the 22,000 count).",
+    "Missing input: gift-card purchase history and partner/family relationships (needed to confirm A4 membership; family segment used as proxy).",
+    "Missing input: departure fill data beyond the Oct 17 snapshot; fill rates may have changed by send time.",
+    "Missing input: PL4 consultation capacity by week and current consultation bookings.",
+    "Missing input: opt-in and GDPR status by contact; sequences assume only opted-in contacts are included.",
+    "Missing input: holdout group assignment (5% per audience) is not specified in the windows; to be applied at send time.",
+    "Interpreted: insight timing (Patagonia launch Nov 16, Yellowstone Dec 7, Costa Rica Jan 11, Baja Jan 20) is used to order sequences; insight evidence confidence is mixed (several interpreted insights).",
+    "Audience share: 19 of 46 emails (~41%) have A3 or A1 as primary audience, within the 40-45% target.",
+    "Sequences are windowed around blackouts (Nov 26, Dec 24-26); no individual send is scheduled on those dates."
+  ],
   "sequences": [
     {
-      "id": "seq_opp_wildlife_safari__seg_premium",
-      "opportunityId": "opp_wildlife_safari__seg_premium",
+      "id": "seq_s1",
+      "opportunityId": "ins_snow_sports_timing_vs_decline",
       "segmentId": "seg_premium",
-      "name": "Premium Wildlife Safari Early Access",
-      "goal": "Drive early-access bookings and replies from Premium Adventurers interested in wildlife safari across the 90-day window.",
+      "name": "Patagonia W-Trek Push: Winter Trip Awareness",
+      "goal": "Fill Patagonia Feb 14 (50% full) and Mar 7 (64% full) departures with deposits, using real seat counts and guide-credential detail for A1 (PL1 Tier 1).",
+      "startDate": "2026-11-03",
+      "endDate": "2026-11-23",
+      "durationDays": 21,
+      "audienceIds": [
+        "A1",
+        "A2"
+      ],
+      "productLineIds": [
+        "PL1",
+        "PL3"
+      ],
       "cadence": {
-        "emailsPerWeek": 1,
-        "spacingDays": 14
+        "emailsPerWeek": 1.7,
+        "spacingDays": 5
       },
-      "rationale": "Wildlife safari interest is up 37% YoY with a breakout rising query and 61.5% affinity in this segment; an early access offer fits an aspirational tone and a Tuesday 07:00 modal send, staying within the 2/week fatigue cap.",
+      "rationale": "Observed: Patagonia Feb 14 is 50% full and Mar 7 is 64% full, both Tier 1 PL1 priorities (brief s6). Proposed: a five-email A1-led sequence built on real seat counts, guide credentials and route detail, with a PL3 cross-sell to A2 in email 4. Interpreted: Premium Adventurers' high click rate (8.9%) and high AOV ($3,056) support detail-led, aspirational copy. Labels: Observed (fill and engagement data), Interpreted (persona fit), Proposed (sequence design). No discounts are used, consistent with PL1 early-bird-only rules and the A3 early-access principle.",
       "evidenceIds": [
-        "ev_trend_tr_wildlife_safari_yoy",
-        "ev_trend_tr_wildlife_safari_rising",
-        "ev_segment_seg_premium_wildlife_safari_affinity",
-        "ev_segment_seg_premium_eligible",
-        "ev_engagement_seg_premium_clickrate",
-        "ev_seasonality_wildlife_safari_idx",
-        "ev_calendar_hol_veterans_day_holiday",
-        "ev_segment_seg_premium_suppressed"
+        "ev_trend_tr_snowshoe_tours_yoy",
+        "ev_trend_tr_snowshoe_tours_rising"
       ],
       "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
       "emails": [
         {
-          "id": "em_seq_opp_wildlife_safari__seg_premium_1",
-          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
-          "opportunityId": "opp_wildlife_safari__seg_premium",
+          "id": "em_seq_s1_1",
+          "sequenceId": "seq_s1",
+          "opportunityId": "ins_snow_sports_timing_vs_decline",
           "segmentId": "seg_premium",
           "step": 1,
           "sendDate": "2026-11-03",
           "sendTimeLocal": "07:00",
-          "subject": "Early access: small-group safari season is open",
-          "preheader": "Members see wildlife departures before anyone else.",
-          "creativeDirection": "Full-bleed wide shot of an African savanna at golden hour; single headline overlay; one CTA button 'See early departures'; minimal layout, no price callouts.",
+          "subject": "Patagonia W-Trek: two departures, real seat counts",
+          "preheader": "Feb 14 and Mar 7 are filling. Here is who leads them and what's included.",
+          "creativeDirection": "Insider-expert tone. Lead with the W-Trek route overview and guide credentials, plus a plain seat-count panel for Feb 14 (7 of 14 booked) and Mar 7 (9 of 14 booked). No pressure language; state facts.",
           "cta": {
-            "label": "See early departures",
-            "target": "/wildlife-safari/early-access"
+            "label": "See the Patagonia W-Trek departures",
+            "target": "/trips/patagonia-w-trek"
           },
-          "offerType": "early_access",
-          "rationale": "Rising 'small group safari' query and 61.5% affinity support leading with early access.",
-          "evidenceIds": [
-            "ev_trend_tr_wildlife_safari_rising",
-            "ev_segment_seg_premium_wildlife_safari_affinity"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_wildlife_safari__seg_premium_2",
-          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
-          "opportunityId": "opp_wildlife_safari__seg_premium",
-          "segmentId": "seg_premium",
-          "step": 2,
-          "sendDate": "2026-11-17",
-          "sendTimeLocal": "07:00",
-          "subject": "Small-group safari: what the early window includes",
-          "preheader": "A closer look at small-group wildlife itineraries.",
-          "creativeDirection": "Editorial layout: 3-image strip of wildlife, short itinerary bullet list, aspirational copy with a guide photo; CTA 'Explore the itinerary'.",
-          "cta": {
-            "label": "Explore the itinerary",
-            "target": "/wildlife-safari/itineraries"
-          },
-          "offerType": "content_story",
-          "rationale": "Content story builds consideration among members with strong safari and eco-lodge affinity.",
-          "evidenceIds": [
-            "ev_trend_tr_wildlife_safari_yoy",
-            "ev_segment_seg_premium_eligible"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_wildlife_safari__seg_premium_3",
-          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
-          "opportunityId": "opp_wildlife_safari__seg_premium",
-          "segmentId": "seg_premium",
-          "step": 3,
-          "sendDate": "2026-12-01",
-          "sendTimeLocal": "07:00",
-          "subject": "Plan your safari before the holiday rush",
-          "preheader": "Early access window still open for wildlife departures.",
-          "creativeDirection": "Calm split layout: left a sunrise safari photo, right a checklist of planning steps; CTA 'Hold your early spot'.",
-          "cta": {
-            "label": "Hold your early spot",
-            "target": "/wildlife-safari/early-access"
-          },
-          "offerType": "early_access",
-          "rationale": "Giving Tuesday and holiday demand boost (1.1-1.2) make a planning-focused early access nudge timely.",
-          "evidenceIds": [
-            "ev_seasonality_wildlife_safari_idx",
-            "ev_calendar_hol_veterans_day_holiday"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_wildlife_safari__seg_premium_4",
-          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
-          "opportunityId": "opp_wildlife_safari__seg_premium",
-          "segmentId": "seg_premium",
-          "step": 4,
-          "sendDate": "2026-12-15",
-          "sendTimeLocal": "07:00",
-          "subject": "A safari story to bookmark for your next trip",
-          "preheader": "Field notes from a small-group wildlife journey.",
-          "creativeDirection": "Long-form story email: one hero photo, traveler quote as pull-out, no hard sell; CTA 'Read the field notes'.",
-          "cta": {
-            "label": "Read the field notes",
-            "target": "/journal/wildlife-field-notes"
-          },
-          "offerType": "content_story",
-          "rationale": "Mid-window story maintains engagement without a hard sell, supported by a segment click rate of 8.9%.",
-          "evidenceIds": [
-            "ev_engagement_seg_premium_clickrate",
-            "ev_segment_seg_premium_wildlife_safari_affinity"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_wildlife_safari__seg_premium_5",
-          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
-          "opportunityId": "opp_wildlife_safari__seg_premium",
-          "segmentId": "seg_premium",
-          "step": 5,
-          "sendDate": "2027-01-05",
-          "sendTimeLocal": "07:00",
-          "subject": "Make this the year you go on safari",
-          "preheader": "Early access for members planning their next adventure.",
-          "creativeDirection": "Bold resolution-themed hero with sunrise over savanna, large numeric '2027' type; CTA 'Start planning my safari'.",
-          "cta": {
-            "label": "Start planning my safari",
-            "target": "/wildlife-safari/early-access"
-          },
-          "offerType": "early_access",
-          "rationale": "New Year resolution week (demand boost 1.5) is the strongest demand window in the plan.",
-          "evidenceIds": [
-            "ev_trend_tr_wildlife_safari_rising",
-            "ev_seasonality_wildlife_safari_idx"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_wildlife_safari__seg_premium_6",
-          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
-          "opportunityId": "opp_wildlife_safari__seg_premium",
-          "segmentId": "seg_premium",
-          "step": 6,
-          "sendDate": "2027-01-19",
-          "sendTimeLocal": "07:00",
-          "subject": "Last call for early safari access this season",
-          "preheader": "Early access closes soon for wildlife departures.",
-          "creativeDirection": "Clean closing layout: safari photo header, countdown-style text block, single CTA; weekend-themed imagery for MLK weekend.",
-          "cta": {
-            "label": "Claim early access",
-            "target": "/wildlife-safari/early-access"
-          },
-          "offerType": "early_access",
-          "rationale": "MLK weekend (demand boost 1.3) and the window end (2027-01-30) support a closing early access reminder.",
-          "evidenceIds": [
-            "ev_seasonality_wildlife_safari_idx",
-            "ev_segment_seg_premium_eligible",
-            "ev_engagement_seg_premium_clickrate"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        }
-      ]
-    },
-    {
-      "id": "seq_opp_snow_sports__seg_premium",
-      "opportunityId": "opp_snow_sports__seg_premium",
-      "segmentId": "seg_premium",
-      "name": "Premium Adventurers snow sports early access program",
-      "goal": "Drive early-access bookings for snow sports trips among Premium Adventurers during the Nov 2026 to Jan 2027 window.",
-      "cadence": {
-        "emailsPerWeek": 1,
-        "spacingDays": 7
-      },
-      "rationale": "Snow sports interest is up 12% YoY with a breakout snowshoe lodge query, and 54% of eligible segment members show affinity. Early access fits the aspirational tone and the Alps launch on 2026-11-20. Sends stay on the segment's Tuesday 07:00 modal slot and use at most one email per week, well under the cap of 2.",
-      "evidenceIds": [
-        "ev_trend_tr_snowshoe_tours_yoy",
-        "ev_trend_tr_snowshoe_tours_rising",
-        "ev_segment_seg_premium_snow_sports_affinity",
-        "ev_segment_seg_premium_eligible",
-        "ev_engagement_seg_premium_clickrate",
-        "ev_seasonality_snow_sports_idx",
-        "ev_calendar_lnch_alps_ski_early_launch",
-        "ev_segment_seg_premium_suppressed"
-      ],
-      "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
-      "emails": [
-        {
-          "id": "em_seq_opp_snow_sports__seg_premium_1",
-          "sequenceId": "seq_opp_snow_sports__seg_premium",
-          "opportunityId": "opp_snow_sports__seg_premium",
-          "segmentId": "seg_premium",
-          "step": 1,
-          "sendDate": "2026-11-17",
-          "sendTimeLocal": "07:00",
-          "subject": "Early access: Alps Ski Week opens to you first",
-          "preheader": "Your preview window for Alps Ski Week starts before public launch.",
-          "creativeDirection": "Full-bleed alpine dawn photo with a single-column layout; hero headline overlaid in white; countdown block showing time until public launch on 2026-11-20; one primary button.",
-          "cta": {
-            "label": "Preview Alps Ski Week",
-            "target": "/trips/alps-ski-week?access=early"
-          },
-          "offerType": "early_access",
-          "rationale": "Launch is 2026-11-20 and snow sports affinity is high in this segment; early access fits the aspirational tone.",
-          "evidenceIds": [
-            "ev_calendar_lnch_alps_ski_early_launch",
-            "ev_segment_seg_premium_snow_sports_affinity",
-            "ev_segment_seg_premium_eligible"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_snow_sports__seg_premium_2",
-          "sequenceId": "seq_opp_snow_sports__seg_premium",
-          "opportunityId": "opp_snow_sports__seg_premium",
-          "segmentId": "seg_premium",
-          "step": 2,
-          "sendDate": "2026-11-24",
-          "sendTimeLocal": "07:00",
-          "subject": "Alps Ski Week is open. Your early access ends soon",
-          "preheader": "Snow sports departures are filling. Secure your place this week.",
-          "creativeDirection": "Split layout: left panel carousel of three ski-day photos, right panel itinerary highlights; a slim banner reading early access closes Sunday; one button.",
-          "cta": {
-            "label": "Book Alps Ski Week",
-            "target": "/trips/alps-ski-week?access=early"
-          },
-          "offerType": "early_access",
-          "rationale": "Follow-up in launch week reinforces the early-access window with the segment's strong click behavior.",
-          "evidenceIds": [
-            "ev_engagement_seg_premium_clickrate",
-            "ev_calendar_lnch_alps_ski_early_launch"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_snow_sports__seg_premium_3",
-          "sequenceId": "seq_opp_snow_sports__seg_premium",
-          "opportunityId": "opp_snow_sports__seg_premium",
-          "segmentId": "seg_premium",
-          "step": 3,
-          "sendDate": "2026-12-08",
-          "sendTimeLocal": "07:00",
-          "subject": "Why snowshoeing is winter's most rewarding trip",
-          "preheader": "A look at how snow sports travel is evolving, from lodge stays to backcountry trails.",
-          "creativeDirection": "Editorial story layout: long-form hero image of a snowshoe trail, pull-quote, then three inline thumbnails linking to snow sports trips; no hard sell.",
-          "cta": {
-            "label": "Read the story",
-            "target": "/stories/winter-snowshoe-lodges"
-          },
-          "offerType": "content_story",
-          "rationale": "Rising snowshoe lodge search interest supports an editorial story that builds desire ahead of the winter peak.",
+          "offerType": "new_trip_launch",
+          "rationale": "Observed: Patagonia Feb 14 is 50% full and Mar 7 is 64% full (Oct 17 snapshot); Tier 1 for PL1 (brief s6). Proposed: lead A1 with guide credentials and what's included, in line with the A1 persona note. Interpreted: a factual seat-count update is credible urgency because the seats are real.",
           "evidenceIds": [
             "ev_trend_tr_snowshoe_tours_yoy",
-            "ev_trend_tr_snowshoe_tours_rising",
-            "ev_seasonality_snow_sports_idx"
+            "ev_trend_tr_snowshoe_tours_rising"
           ],
           "status": "proposed",
           "editedByUser": false,
           "guardrailFlags": []
         },
         {
-          "id": "em_seq_opp_snow_sports__seg_premium_4",
-          "sequenceId": "seq_opp_snow_sports__seg_premium",
-          "opportunityId": "opp_snow_sports__seg_premium",
+          "id": "em_seq_s1_2",
+          "sequenceId": "seq_s1",
+          "opportunityId": "ins_snow_sports_timing_vs_decline",
           "segmentId": "seg_premium",
-          "step": 4,
-          "sendDate": "2026-12-15",
-          "sendTimeLocal": "07:00",
-          "subject": "Snowshoe lodge packages are trending this season",
-          "preheader": "See which lodge packages travelers are searching for right now.",
-          "creativeDirection": "Grid of four lodge package cards with season-specific imagery and short descriptors; a rising-search callout badge; minimal text.",
-          "cta": {
-            "label": "Explore lodge packages",
-            "target": "/collections/snowshoe-lodge-packages"
-          },
-          "offerType": "early_access",
-          "rationale": "The breakout 'snowshoe lodge package' query and seasonality index of 1.55 justify a mid-winter early access push.",
-          "evidenceIds": [
-            "ev_trend_tr_snowshoe_tours_rising",
-            "ev_seasonality_snow_sports_idx",
-            "ev_segment_seg_premium_snow_sports_affinity"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_snow_sports__seg_premium_5",
-          "sequenceId": "seq_opp_snow_sports__seg_premium",
-          "opportunityId": "opp_snow_sports__seg_premium",
-          "segmentId": "seg_premium",
-          "step": 5,
-          "sendDate": "2027-01-12",
-          "sendTimeLocal": "07:00",
-          "subject": "Plan your winter escape before the window closes",
-          "preheader": "Snow sports dates in the winter window are limited. Look ahead.",
-          "creativeDirection": "Clean hero with a winter lodge exterior; a short bulleted list of remaining snow sports options; secondary text link for the full calendar.",
-          "cta": {
-            "label": "See remaining dates",
-            "target": "/trips?interest=snow_sports"
-          },
-          "offerType": "early_access",
-          "rationale": "Mid-January is the late-window push, matching the segment's engagement and seasonality.",
-          "evidenceIds": [
-            "ev_seasonality_snow_sports_idx",
-            "ev_engagement_seg_premium_clickrate"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_snow_sports__seg_premium_6",
-          "sequenceId": "seq_opp_snow_sports__seg_premium",
-          "opportunityId": "opp_snow_sports__seg_premium",
-          "segmentId": "seg_premium",
-          "step": 6,
-          "sendDate": "2027-01-26",
-          "sendTimeLocal": "07:00",
-          "subject": "Last call for early access snow sports trips",
-          "preheader": "Early access for snow sports closes at the end of January.",
-          "creativeDirection": "Bold closing layout: dark alpine background, single headline, a clear end-of-window date block, and one button.",
-          "cta": {
-            "label": "View snow sports trips",
-            "target": "/trips?interest=snow_sports&access=early"
-          },
-          "offerType": "early_access",
-          "rationale": "Final reminder before the plan window closes on 2027-01-30, reinforcing early access urgency.",
-          "evidenceIds": [
-            "ev_segment_seg_premium_snow_sports_affinity",
-            "ev_seasonality_snow_sports_idx"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        }
-      ]
-    },
-    {
-      "id": "seq_opp_cycling__seg_mindful",
-      "opportunityId": "opp_cycling__seg_mindful",
-      "segmentId": "seg_mindful",
-      "name": "Cycling for Mindful Explorers – 90-Day Content Story Series",
-      "goal": "Build cycling and bikepacking interest among Mindful Explorers through educational content, driving clicks to cycling trip pages.",
-      "cadence": {
-        "emailsPerWeek": 1,
-        "spacingDays": 14
-      },
-      "rationale": "Cycling search interest is up 54% YoY with a breakout rising query, and Mindful Explorers show strong cycling affinity and a 6.8% mean click rate, so an educational content story fits this steady, value-driven segment across the full window.",
-      "evidenceIds": [
-        "ev_trend_tr_bikepacking_yoy",
-        "ev_trend_tr_bikepacking_rising",
-        "ev_segment_seg_mindful_cycling_affinity",
-        "ev_segment_seg_mindful_eligible",
-        "ev_engagement_seg_mindful_clickrate",
-        "ev_seasonality_cycling_idx",
-        "ev_calendar_hol_veterans_day_holiday"
-      ],
-      "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
-      "emails": [
-        {
-          "id": "em_seq_opp_cycling__seg_mindful_1",
-          "sequenceId": "seq_opp_cycling__seg_mindful",
-          "opportunityId": "opp_cycling__seg_mindful",
-          "segmentId": "seg_mindful",
-          "step": 1,
-          "sendDate": "2026-11-02",
-          "sendTimeLocal": "08:00",
-          "subject": "Why gravel bikepacking is having a moment",
-          "preheader": "Slow travel by bike: what's drawing explorers to gravel routes this season.",
-          "creativeDirection": "Hero photo of a loaded gravel bike on a quiet country road at golden hour; single-column layout, short intro paragraph, three-bullet 'what to know' list, one text link.",
-          "cta": {
-            "label": "Read the gravel primer",
-            "target": "/journal/gravel-bikepacking-primer"
-          },
-          "offerType": "content_story",
-          "rationale": "Opens the series with the breakout trend (54% YoY interest) to match the educational tone.",
-          "evidenceIds": [
-            "ev_trend_tr_bikepacking_yoy",
-            "ev_trend_tr_bikepacking_rising"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_cycling__seg_mindful_2",
-          "sequenceId": "seq_opp_cycling__seg_mindful",
-          "opportunityId": "opp_cycling__seg_mindful",
-          "segmentId": "seg_mindful",
           "step": 2,
-          "sendDate": "2026-11-11",
-          "sendTimeLocal": "08:00",
-          "subject": "Riding routes that honor the open road",
-          "preheader": "A Veterans Day read on self-guided cycling routes, planned at your own pace.",
-          "creativeDirection": "Muted, calm illustration of a cyclist crossing a bridge with a route map overlay; two-column layout pairing a route sketch with a short story; no hard-sell visuals.",
+          "sendDate": "2026-11-09",
+          "sendTimeLocal": "07:00",
+          "subject": "What the W-Trek asks of you, and who guides it",
+          "preheader": "Trail profile, daily distances, and the guide team leading the group.",
+          "creativeDirection": "Content-led reassurance email. Trail profile, what's included, guide team and credentials. Avoid any health or fitness targeting language; describe the route neutrally.",
           "cta": {
-            "label": "Explore cycling routes",
-            "target": "/cycling/self-guided-routes"
+            "label": "Read the full trip details",
+            "target": "/trips/patagonia-w-trek#details"
           },
           "offerType": "content_story",
-          "rationale": "Holiday-adjacent educational story; Veterans Day falls at plan start +9 days, and the send stays within the segment's two-per-week cap.",
+          "rationale": "Proposed: A1 values detail and reassurance over pressure, so the second send answers the questions a research-heavy buyer has. Observed: Premium Adventurers have the highest click rate (8.9%) and an AOV of $3,056, so detail-led content suits this segment. Interpreted: this email builds consideration without adding urgency.",
           "evidenceIds": [
-            "ev_segment_seg_mindful_cycling_affinity",
-            "ev_calendar_hol_veterans_day_holiday"
+            "ev_trend_tr_snowshoe_tours_yoy",
+            "ev_trend_tr_snowshoe_tours_rising"
           ],
           "status": "proposed",
           "editedByUser": false,
           "guardrailFlags": []
         },
         {
-          "id": "em_seq_opp_cycling__seg_mindful_3",
-          "sequenceId": "seq_opp_cycling__seg_mindful",
-          "opportunityId": "opp_cycling__seg_mindful",
-          "segmentId": "seg_mindful",
+          "id": "em_seq_s1_3",
+          "sequenceId": "seq_s1",
+          "opportunityId": "ins_snow_sports_timing_vs_decline",
+          "segmentId": "seg_premium",
           "step": 3,
-          "sendDate": "2026-12-07",
-          "sendTimeLocal": "08:00",
-          "subject": "Cycling in the cold: a winter riding guide",
-          "preheader": "Layering, route choice, and daylight planning for winter cycling trips.",
-          "creativeDirection": "Warm-toned photo of riders on a snowy trail with a layering checklist graphic; single column, numbered list of tips, soft white space.",
+          "sendDate": "2026-11-10",
+          "sendTimeLocal": "07:00",
+          "subject": "Mar 7 is 64% full. Here is the group size.",
+          "preheader": "Groups stay at 8 to 14 travelers. Mar 7 has 5 seats left.",
+          "creativeDirection": "Real-seat urgency. Show the group size range and the remaining seats for Mar 7 (9 of 14 booked, 5 open). Include a waitlist option if fewer than 10% of seats remain. No invented scarcity.",
           "cta": {
-            "label": "See the winter riding guide",
-            "target": "/journal/winter-cycling-guide"
+            "label": "Check Mar 7 availability",
+            "target": "/trips/patagonia-w-trek/mar-7"
           },
-          "offerType": "content_story",
-          "rationale": "Winter guide keeps the story going through the low-seasonality months (index 0.48) without a sales push.",
+          "offerType": "new_trip_launch",
+          "rationale": "Observed: Mar 7 is 64% full with 5 seats open (brief s6 snapshot). Proposed: state the real count and group size as the reason to act, which is honest urgency the brief allows. Interpreted: concrete numbers should outperform generic deadline language for this audience.",
           "evidenceIds": [
-            "ev_seasonality_cycling_idx",
-            "ev_engagement_seg_mindful_clickrate"
+            "ev_trend_tr_snowshoe_tours_yoy",
+            "ev_trend_tr_snowshoe_tours_rising"
           ],
           "status": "proposed",
           "editedByUser": false,
           "guardrailFlags": []
         },
         {
-          "id": "em_seq_opp_cycling__seg_mindful_4",
-          "sequenceId": "seq_opp_cycling__seg_mindful",
-          "opportunityId": "opp_cycling__seg_mindful",
-          "segmentId": "seg_mindful",
+          "id": "em_seq_s1_4",
+          "sequenceId": "seq_s1",
+          "opportunityId": "ins_snow_sports_timing_vs_decline",
+          "segmentId": "seg_premium",
           "step": 4,
-          "sendDate": "2027-01-04",
-          "sendTimeLocal": "08:00",
-          "subject": "A four-week cycling fitness plan for new riders",
-          "preheader": "Build endurance gradually with a simple, educational training progression.",
-          "creativeDirection": "Clean infographic-style layout showing a four-week progression as a stepped bar chart; minimal copy, single CTA button.",
+          "sendDate": "2026-11-16",
+          "sendTimeLocal": "07:00",
+          "subject": "Snowshoe and lodge options alongside the Iceland season",
+          "preheader": "For travelers planning winter now: Iceland Northern Lights runs Jan to Mar.",
+          "creativeDirection": "Cross-sell to A2 and A1 on PL3 as a winter alternative. Lead with lodge and snowshoe imagery, not generic ski passes. Keep copy short and mobile-first for A2 readers.",
           "cta": {
-            "label": "Get the training plan",
-            "target": "/journal/cycling-fitness-plan"
+            "label": "Explore winter trips",
+            "target": "/trips/winter"
           },
           "offerType": "content_story",
-          "rationale": "New-year resolution week is a high-interest moment (demand boost 1.5); a structured educational plan suits the segment's value-driven tone.",
+          "rationale": "Observed: snowshoe tours are up 27% YoY and ski passes are down 3% (insight data). Interpreted: lead with guided snowshoe and lodge packages rather than generic ski. Observed: Iceland Jan 22 is 75% full (PL3 Tier 2). Proposed: a PL3 mention widens reach to A2 without changing the PL1 focus.",
           "evidenceIds": [
-            "ev_trend_tr_bikepacking_yoy",
-            "ev_segment_seg_mindful_eligible",
-            "ev_engagement_seg_mindful_clickrate"
+            "ev_trend_tr_snowshoe_tours_yoy",
+            "ev_trend_tr_snowshoe_tours_rising"
           ],
           "status": "proposed",
           "editedByUser": false,
           "guardrailFlags": []
         },
         {
-          "id": "em_seq_opp_cycling__seg_mindful_5",
-          "sequenceId": "seq_opp_cycling__seg_mindful",
-          "opportunityId": "opp_cycling__seg_mindful",
-          "segmentId": "seg_mindful",
+          "id": "em_seq_s1_5",
+          "sequenceId": "seq_s1",
+          "opportunityId": "ins_snow_sports_timing_vs_decline",
+          "segmentId": "seg_premium",
           "step": 5,
-          "sendDate": "2027-01-18",
-          "sendTimeLocal": "08:00",
-          "subject": "Eco-lodges and the rides between them",
-          "preheader": "How multi-day cycling routes connect low-impact lodging and local landscapes.",
-          "creativeDirection": "Full-width landscape photo of a lodge nestled among hills with a cyclist in foreground; short narrative block and a map thumbnail.",
+          "sendDate": "2026-11-23",
+          "sendTimeLocal": "07:00",
+          "subject": "Last note on the W-Trek this month, with booking help",
+          "preheader": "Speak to a trip planner about Feb 14 or Mar 7 before the group fills.",
+          "creativeDirection": "Closing content email. Offer a consultation with the trip planning team as the CTA. Restate real seat counts. No discounts; PL1 early-bird is not part of this send.",
           "cta": {
-            "label": "Read the eco-lodge route story",
-            "target": "/journal/eco-lodge-cycling-routes"
+            "label": "Book a planning call",
+            "target": "/contact/trip-planning"
           },
           "offerType": "content_story",
-          "rationale": "Pairs cycling with eco-lodge interest (50% share among segment top interests), keeping the message educational and sending Monday 08:00 after MLK weekend.",
+          "rationale": "Proposed: close the sequence with a low-pressure route to human help, which suits A1 and the Private Trips capacity limit of about 40 consultations a week. Observed: seats remain on both departures. Interpreted: a planning-call CTA is a credible next step for a research-heavy buyer.",
           "evidenceIds": [
-            "ev_segment_seg_mindful_cycling_affinity",
-            "ev_engagement_seg_mindful_clickrate"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_cycling__seg_mindful_6",
-          "sequenceId": "seq_opp_cycling__seg_mindful",
-          "opportunityId": "opp_cycling__seg_mindful",
-          "segmentId": "seg_mindful",
-          "step": 6,
-          "sendDate": "2027-01-27",
-          "sendTimeLocal": "08:00",
-          "subject": "Your cycling reading list, updated for winter",
-          "preheader": "A curated recap of this season's cycling guides, with what to read next.",
-          "creativeDirection": "Card-based layout with four linked article thumbnails in a 2x2 grid; short recap line at top; no discount or urgency language.",
-          "cta": {
-            "label": "Browse the cycling library",
-            "target": "/journal/cycling"
-          },
-          "offerType": "content_story",
-          "rationale": "Closing recap consolidates the series and gives readers a low-pressure next step before the window ends.",
-          "evidenceIds": [
-            "ev_trend_tr_bikepacking_yoy",
-            "ev_segment_seg_mindful_eligible",
-            "ev_segment_seg_mindful_cycling_affinity"
+            "ev_trend_tr_snowshoe_tours_yoy",
+            "ev_trend_tr_snowshoe_tours_rising"
           ],
           "status": "proposed",
           "editedByUser": false,
@@ -537,43 +294,81 @@
       ]
     },
     {
-      "id": "seq_opp_camping__seg_family",
-      "opportunityId": "opp_camping__seg_family",
+      "id": "seq_s2",
+      "opportunityId": "ins_family_adventure_multigen",
       "segmentId": "seg_family",
-      "name": "Family Winter Camping Bundle Sequence",
-      "goal": "Convert Family Getaways members with camping affinity into winter camping bundle bookings across the 90-day window.",
+      "name": "Gift Season: Shared Adventure Gift Cards",
+      "goal": "Drive gift card sales within the Nov 16 - Dec 23 window, with delivery-date reminders before Dec 18 physical cut-off; $50 bonus on $250+ only, no percent-off.",
+      "startDate": "2026-11-22",
+      "endDate": "2026-12-23",
+      "durationDays": 32,
+      "audienceIds": [
+        "A4"
+      ],
+      "productLineIds": [
+        "PL5"
+      ],
       "cadence": {
-        "emailsPerWeek": 0.5,
-        "spacingDays": 14
+        "emailsPerWeek": 1.3,
+        "spacingDays": 6.2
       },
-      "rationale": "Winter camping search interest is up 26.5% YoY with a breakout in heated tent camping, and 58% of eligible Family Getaways members show camping affinity; a bundle offer fits the segment across the full window.",
+      "rationale": "Observed: seg_family maps to A4 (Gift Givers, PL5); fatigue cap 2 per week; modal send Sun 19:00; tone playful; winter camping (+41% YoY) and multigenerational/family adventure queries are rising. Interpreted: the gift-card story should lead with shared adventure and camping/family framing. Proposed: six emails spaced across the Nov 16 to Dec 23 window (Sun Nov 22, Sun Nov 29, Wed Dec 2, Sun Dec 13, Wed Dec 16, Wed Dec 23, the final send is Dec 23, not Sunday, to respect the real window end) with no sends on Nov 26 or Dec 24 to 26, and at most 2 sends in any calendar week. PL5 offers only the $50 bonus on $250+ purchases; no percent-off. Physical-card urgency references only the real Dec 18 cut-off and digital Dec 23 close.",
       "evidenceIds": [
+        "ev_trend_tr_family_adventure_trips_yoy",
+        "ev_trend_tr_family_adventure_trips_rising",
         "ev_trend_tr_winter_camping_yoy",
         "ev_trend_tr_winter_camping_rising",
+        "ev_seasonality_camping_idx",
         "ev_segment_seg_family_camping_affinity",
-        "ev_segment_seg_family_eligible",
-        "ev_seasonality_camping_idx"
+        "ev_segment_seg_family_family_adventure_affinity",
+        "ev_seasonality_family_adventure_idx"
       ],
       "suppressionNote": "3 of 40 segment members (8%) excluded for sensitive life events; used for suppression only",
       "emails": [
         {
-          "id": "em_seq_opp_camping__seg_family_1",
-          "sequenceId": "seq_opp_camping__seg_family",
-          "opportunityId": "opp_camping__seg_family",
+          "id": "em_seq_s2_1",
+          "sequenceId": "seq_s2",
+          "opportunityId": "ins_family_adventure_multigen",
           "segmentId": "seg_family",
           "step": 1,
-          "sendDate": "2026-11-08",
+          "sendDate": "2026-11-22",
           "sendTimeLocal": "19:00",
-          "subject": "Winter camping is heating up for family trips",
-          "preheader": "Cozy, comfortable, and built for the whole crew this season.",
-          "creativeDirection": "Hero image of a family around a lantern beside a heated tent at dusk; playful headline overlay; single bundle card below with three icons (tent, sleeping bags, campfire kit).",
+          "subject": "A shared adventure, wrapped and ready to gift",
+          "preheader": "Trailmark gift cards for the travelers you love, with a $50 bonus on $250+.",
+          "creativeDirection": "Playful, warm family-focused hero of a small group on a winter trail; introduce gift cards as a shared adventure. Explain the $50 bonus on purchases of $250 or more. No percent-off language.",
           "cta": {
-            "label": "Explore the winter camping bundle",
-            "target": "/bundles/winter-camping-family"
+            "label": "Browse gift cards",
+            "target": "/gift-cards"
           },
           "offerType": "bundle",
-          "rationale": "Camping affinity and rising 'heated tent camping' queries support a playful introduction to the bundle.",
+          "rationale": "Observed: gift season opens Nov 16 and family segment has 51.6% family adventure affinity; Observed: family segment has 6.7% click rate and modal send Sun 19:00. Interpreted: introducing the gift concept early lets recipients see the shared-adventure framing before the holiday push. Proposed: open with a content-led story that sells the gift card as a shared experience, with the $50 bonus as the offer.",
           "evidenceIds": [
+            "ev_trend_tr_family_adventure_trips_yoy",
+            "ev_segment_seg_family_family_adventure_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s2_2",
+          "sequenceId": "seq_s2",
+          "opportunityId": "ins_family_adventure_multigen",
+          "segmentId": "seg_family",
+          "step": 2,
+          "sendDate": "2026-11-29",
+          "sendTimeLocal": "19:00",
+          "subject": "Gift cards for winter camping and family trips",
+          "preheader": "Winter camping searches are rising. Give a trip they can plan around.",
+          "creativeDirection": "Light, playful winter camping visual (tent under snow); short copy on what a gift card covers across Trailmark trips and add-ons. Show the $50 bonus on $250+ clearly.",
+          "cta": {
+            "label": "Choose a gift card amount",
+            "target": "/gift-cards"
+          },
+          "offerType": "promo_discount",
+          "rationale": "Observed: winter camping search interest is up 41% YoY and peaks in December; Observed: family segment camping affinity is 58.1%. Interpreted: a camping-led creative fits the seasonal interest. Proposed: send during Black Friday week with the permitted $50 bonus (no percent-off), within the 2-per-week segment cap.",
+          "evidenceIds": [
+            "ev_trend_tr_winter_camping_yoy",
             "ev_trend_tr_winter_camping_rising",
             "ev_segment_seg_family_camping_affinity"
           ],
@@ -582,100 +377,97 @@
           "guardrailFlags": []
         },
         {
-          "id": "em_seq_opp_camping__seg_family_2",
-          "sequenceId": "seq_opp_camping__seg_family",
-          "opportunityId": "opp_camping__seg_family",
-          "segmentId": "seg_family",
-          "step": 2,
-          "sendDate": "2026-11-22",
-          "sendTimeLocal": "19:00",
-          "subject": "Pack the gear before the holiday travel rush",
-          "preheader": "A family camping bundle ready to book before Thanksgiving.",
-          "creativeDirection": "Split layout: left panel shows a packing checklist illustration, right panel a family unpacking a camp kitchen; bold bundle CTA button centered.",
-          "cta": {
-            "label": "Build your family camp bundle",
-            "target": "/bundles/winter-camping-family"
-          },
-          "offerType": "bundle",
-          "rationale": "Thanksgiving demand boost (1.2) makes a pre-holiday planning nudge timely for camping-affine families.",
-          "evidenceIds": [
-            "ev_calendar_hol_veterans_day_holiday",
-            "ev_segment_seg_family_camping_affinity"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_camping__seg_family_3",
-          "sequenceId": "seq_opp_camping__seg_family",
-          "opportunityId": "opp_camping__seg_family",
+          "id": "em_seq_s2_3",
+          "sequenceId": "seq_s2",
+          "opportunityId": "ins_family_adventure_multigen",
           "segmentId": "seg_family",
           "step": 3,
-          "sendDate": "2026-12-13",
+          "sendDate": "2026-12-02",
           "sendTimeLocal": "19:00",
-          "subject": "A winter adventure bundle for the whole family",
-          "preheader": "Pair camping with a family week for a stress-free holiday break.",
-          "creativeDirection": "Warm, playful collage of snow-covered campsite and family laughing by fire; bundle breakdown in three short bullets; soft gift-style ribbon accent.",
+          "subject": "Give a trip with room for the whole family",
+          "preheader": "Multigenerational getaways are rising. A gift card lets everyone plan together.",
+          "creativeDirection": "Multigenerational group photo; emphasis on shared planning and memories. Include gift card purchase flow and $50 bonus on $250+. Avoid any health or fitness framing.",
           "cta": {
-            "label": "See the family bundle",
-            "target": "/bundles/winter-camping-family"
+            "label": "Send a gift card",
+            "target": "/gift-cards"
           },
           "offerType": "bundle",
-          "rationale": "Following the Yellowstone Winter Family Week launch, a camping-plus-family bundle extends interest in winter family trips.",
+          "rationale": "Observed: multigenerational vacation queries are up 105% (rising query) and family winter getaways up 80%. Interpreted: the multigenerational angle fits gift givers buying for families. Proposed: a mid-window reminder that frames gifts as group trips, sent on a Wednesday to avoid Giving Tuesday no-promo day.",
           "evidenceIds": [
-            "ev_trend_tr_winter_camping_yoy",
-            "ev_segment_seg_family_camping_affinity"
+            "ev_trend_tr_family_adventure_trips_rising",
+            "ev_segment_seg_family_family_adventure_affinity"
           ],
           "status": "proposed",
           "editedByUser": false,
           "guardrailFlags": []
         },
         {
-          "id": "em_seq_opp_camping__seg_family_4",
-          "sequenceId": "seq_opp_camping__seg_family",
-          "opportunityId": "opp_camping__seg_family",
+          "id": "em_seq_s2_4",
+          "sequenceId": "seq_s2",
+          "opportunityId": "ins_family_adventure_multigen",
           "segmentId": "seg_family",
           "step": 4,
-          "sendDate": "2027-01-03",
+          "sendDate": "2026-12-13",
           "sendTimeLocal": "19:00",
-          "subject": "Resolve to get the whole family outdoors in 2027",
-          "preheader": "New year, new campsite plans. Bundle options for families.",
-          "creativeDirection": "Clean, upbeat layout with a sunrise over a campsite hero; resolution-style headline; three-step bundle explainer with icons.",
+          "subject": "Physical gift cards: order by Dec 18",
+          "preheader": "Last day to order a physical gift card for holiday delivery is Dec 18.",
+          "creativeDirection": "Clean, practical layout with a clear deadline callout (real Dec 18 cut-off from brief). Note digital cards remain available through Dec 23. Keep urgency tied to the real deadline only.",
           "cta": {
-            "label": "Plan a family camping trip",
-            "target": "/bundles/winter-camping-family"
+            "label": "Order before Dec 18",
+            "target": "/gift-cards?format=physical"
           },
-          "offerType": "bundle",
-          "rationale": "New Year resolution week (demand boost 1.5) aligns with a family outdoor-goal framing.",
+          "offerType": "content_story",
+          "rationale": "Observed: Dec 18 is the last day to order a physical gift card for holiday delivery (brief section 7). Proposed: a delivery-date reminder for physical cards, using only the real deadline so the urgency is not fake. Interpreted: this is the logical reminder step before the cut-off.",
           "evidenceIds": [
-            "ev_seasonality_camping_idx",
-            "ev_segment_seg_family_camping_affinity"
+            "ev_trend_tr_winter_camping_rising"
           ],
           "status": "proposed",
           "editedByUser": false,
           "guardrailFlags": []
         },
         {
-          "id": "em_seq_opp_camping__seg_family_5",
-          "sequenceId": "seq_opp_camping__seg_family",
-          "opportunityId": "opp_camping__seg_family",
+          "id": "em_seq_s2_5",
+          "sequenceId": "seq_s2",
+          "opportunityId": "ins_family_adventure_multigen",
           "segmentId": "seg_family",
           "step": 5,
-          "sendDate": "2027-01-24",
+          "sendDate": "2026-12-21",
           "sendTimeLocal": "19:00",
-          "subject": "Last call: family camping bundles this winter",
-          "preheader": "Book a family camping bundle before the season wraps up.",
-          "creativeDirection": "Bold closing-season layout: campfire photo with countdown-style text block; compact bundle summary; clear single CTA.",
+          "subject": "Still time for a gift that's a shared adventure",
+          "preheader": "Physical cards by Dec 18. Digital cards until Dec 23.",
+          "creativeDirection": "Warm, gathered-around-a-campfire imagery; reiterate the two real deadlines (physical Dec 18, digital Dec 23) and the $50 bonus on $250+ purchases.",
           "cta": {
-            "label": "Book the camping bundle",
-            "target": "/bundles/winter-camping-family"
+            "label": "Send before the deadline",
+            "target": "/gift-cards"
           },
-          "offerType": "bundle",
-          "rationale": "Seasonality index of 1.09 across the window supports a closing reminder as the plan ends.",
+          "offerType": "promo_discount",
+          "rationale": "Observed: physical cut-off Dec 18; digital final push Dec 23. Proposed: a delivery-date reminder two days before the physical cut-off, using only real deadlines. Interpreted: second reminder gives gift givers who have not yet acted a clear last window; this is a reminder, not a new promotion.",
           "evidenceIds": [
-            "ev_seasonality_camping_idx",
-            "ev_engagement_seg_family_clickrate"
+            "ev_trend_tr_winter_camping_yoy"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s2_6",
+          "sequenceId": "seq_s2",
+          "opportunityId": "ins_family_adventure_multigen",
+          "segmentId": "seg_family",
+          "step": 6,
+          "sendDate": "2026-12-23",
+          "sendTimeLocal": "19:00",
+          "subject": "Last call for digital gift cards",
+          "preheader": "Digital gift cards close after today. Give a shared adventure in minutes.",
+          "creativeDirection": "Simple, warm final-push layout; digital delivery emphasis; restate $50 bonus on $250+. Respect the Dec 24-26 no-send window: this is the final send before it.",
+          "cta": {
+            "label": "Buy a digital gift card",
+            "target": "/gift-cards?format=digital"
+          },
+          "offerType": "promo_discount",
+          "rationale": "Observed: digital gift card final push is Dec 23 (brief section 7). Proposed: final send in the window, to digital-card buyers who have not purchased, sent before the Dec 24-26 blackout. Interpreted: the closing message reinforces the real deadline without any fabricated scarcity.",
+          "evidenceIds": [
+            "ev_trend_tr_family_adventure_trips_yoy"
           ],
           "status": "proposed",
           "editedByUser": false,
@@ -684,148 +476,1030 @@
       ]
     },
     {
-      "id": "seq_opp_cycling__seg_deal",
-      "opportunityId": "opp_cycling__seg_deal",
-      "segmentId": "seg_deal",
-      "name": "Cycling for Deal Seekers: Winter Booking Promo",
-      "goal": "Drive bookings on cycling trips during the low-season window by pairing promo framing with rising gravel-bike interest, peaking around Black Friday / Cyber Monday and New Year resolution week.",
+      "id": "seq_s3",
+      "opportunityId": "ins_premium_safari_eco_affinity",
+      "segmentId": "seg_premium",
+      "name": "Past Traveler Early Access: Repeat Booking",
+      "goal": "Win repeat bookings from past travelers with early access before discounts open; recognize their prior trips without referencing personal life details.",
+      "startDate": "2026-11-03",
+      "endDate": "2026-11-30",
+      "durationDays": 28,
+      "audienceIds": [
+        "A3"
+      ],
+      "productLineIds": [
+        "PL1",
+        "PL4"
+      ],
       "cadence": {
-        "emailsPerWeek": 1,
-        "spacingDays": 14
+        "emailsPerWeek": 1.3,
+        "spacingDays": 6.8
       },
-      "rationale": "Cycling affinity is 53.8% among 26 eligible Deal Seekers with a 54% year-over-year search lift, but seasonality is low (0.48), so emails are spaced to avoid fatigue while concentrating volume around high-boost promo holidays.",
+      "rationale": "Observed: A3 is the highest-value audience and Premium Adventurers have an 8.9% click rate, the highest of any segment, with strong safari, eco-lodge and snow-sports affinity. Observed: early-bird PL1 pricing ends Jan 31 and the Patagonia departures are below 90% full. Proposed: a five-step early-access sequence that gives A3 access before any discount, recognises past trips generically, and uses no discounts, no fake scarcity and no personal details. Labels: observed for data points, interpreted for fit inferences, proposed for actions. Note: the brief's Nov 24 send count and parallel premium sequences create a cap risk, flagged in warnings.",
       "evidenceIds": [
-        "ev_trend_tr_bikepacking_yoy",
-        "ev_trend_tr_bikepacking_rising",
-        "ev_segment_seg_deal_cycling_affinity",
-        "ev_segment_seg_deal_eligible",
-        "ev_engagement_seg_deal_clickrate",
-        "ev_seasonality_cycling_idx",
-        "ev_calendar_hol_veterans_day_holiday"
+        "ev_segment_seg_premium_wildlife_safari_affinity",
+        "ev_engagement_seg_premium_clickrate"
       ],
       "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
       "emails": [
         {
-          "id": "em_seq_opp_cycling__seg_deal_1",
-          "sequenceId": "seq_opp_cycling__seg_deal",
-          "opportunityId": "opp_cycling__seg_deal",
-          "segmentId": "seg_deal",
+          "id": "em_seq_s3_1",
+          "sequenceId": "seq_s3",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
           "step": 1,
-          "sendDate": "2026-11-05",
-          "sendTimeLocal": "12:00",
-          "subject": "Gravel bike tours are breaking out. Here's the plan",
-          "preheader": "Search for bikepacking is up 54% year over year. See what's worth booking now.",
-          "creativeDirection": "Hero image of a gravel rider on a dirt road at golden hour; clean two-column layout with a short route-highlights list and a single bold CTA button.",
+          "sendDate": "2026-11-03",
+          "sendTimeLocal": "07:00",
+          "subject": "Your next trail, early access before we open it up",
+          "preheader": "Trailmark insiders see new departures first. Here's what's opening this month.",
+          "creativeDirection": "Insider welcome. Warm, expert tone recognising the traveler's history with Trailmark, without naming personal details. Introduce the early-access concept and the Patagonia W-Trek Feb 14 and Mar 7 departures in neutral, detail-led copy (route, guide credentials, what's included). No discount language.",
           "cta": {
-            "label": "Explore cycling trips",
-            "target": "/trips?interest=cycling"
-          },
-          "offerType": "content_story",
-          "rationale": "Leads with the 54% YoY bikepacking lift and breakout 'gravel bike tour' query to give a no-nonsense, fact-led hook for a deal-minded audience.",
-          "evidenceIds": [
-            "ev_trend_tr_bikepacking_yoy",
-            "ev_trend_tr_bikepacking_rising"
-          ],
-          "status": "proposed",
-          "editedByUser": false,
-          "guardrailFlags": []
-        },
-        {
-          "id": "em_seq_opp_cycling__seg_deal_2",
-          "sequenceId": "seq_opp_cycling__seg_deal",
-          "opportunityId": "opp_cycling__seg_deal",
-          "segmentId": "seg_deal",
-          "step": 2,
-          "sendDate": "2026-11-19",
-          "sendTimeLocal": "12:00",
-          "subject": "Cycling trips with the Black Friday deal in view",
-          "preheader": "Early access to our best-value cycling departures before the holiday sale.",
-          "creativeDirection": "Split layout: left, a bold 'Early Access' badge; right, a price-comparison-style card grid of three cycling trips; minimal copy, high contrast.",
-          "cta": {
-            "label": "Get early access",
-            "target": "/trips?interest=cycling&access=early"
+            "label": "See early-access departures",
+            "target": "/early-access"
           },
           "offerType": "early_access",
-          "rationale": "Gives Deal Seekers first look ahead of Black Friday (1.8x demand boost), using the 53.8% cycling affinity to target the right trips.",
+          "rationale": "Observed: A3 is the highest-value audience and the brief says early access comes before discounts. Observed: Patagonia W-Trek Feb 14 is 50% full and Mar 7 is 64% full, both below the 90% capacity threshold. Interpreted: a first send that names early access and two open PL1 departures is a low-pressure start. Proposed: open the sequence on the Tuesday 07:00 modal slot.",
           "evidenceIds": [
-            "ev_segment_seg_deal_cycling_affinity",
-            "ev_segment_seg_deal_eligible"
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
           ],
           "status": "proposed",
           "editedByUser": false,
           "guardrailFlags": []
         },
         {
-          "id": "em_seq_opp_cycling__seg_deal_3",
-          "sequenceId": "seq_opp_cycling__seg_deal",
-          "opportunityId": "opp_cycling__seg_deal",
+          "id": "em_seq_s3_2",
+          "sequenceId": "seq_s3",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
+          "step": 2,
+          "sendDate": "2026-11-16",
+          "sendTimeLocal": "07:00",
+          "subject": "Small-group safari and eco-lodge trips, previewed for you",
+          "preheader": "Wildlife and eco-lodge itineraries our Premium travelers asked about first.",
+          "creativeDirection": "Aspirational, detail-led content story. Feature small-group wildlife safari and eco-lodge itineraries as a preview for the Premium audience. Tie to the 'small group safari' interest signal. Show what's included, guide ratio and lodge standards. Do not state any price or dates that are not in the brief.",
+          "cta": {
+            "label": "Explore the itineraries",
+            "target": "/trips/small-group-safari"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: Premium Adventurers show 61.5% wildlife safari affinity and 53.8% eco-lodge affinity, with an 8.9% click rate (highest segment). Observed: wildlife safari is up 37% YoY with a breakout 'small group safari' query. Interpreted: safari is the strongest premium lead for A3, but it is not a listed PL1/PL4 product in the brief, so the CTA should route to a PL4 or PL1 relevant page and the product fit must be confirmed. Proposed: a content preview with no urgency.",
+          "evidenceIds": [
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s3_3",
+          "sequenceId": "seq_s3",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
+          "step": 3,
+          "sendDate": "2026-11-23",
+          "sendTimeLocal": "07:00",
+          "subject": "Snowshoe lodges and private trips, for Trailmark insiders",
+          "preheader": "Guided snowshoe packages and private itineraries, before wider release.",
+          "creativeDirection": "Insider tone. Lead with guided snowshoe and lodge packages instead of generic ski passes. Invite A3 travelers to a private trip consultation. Emphasise that private itineraries are fully customised and never discounted. Keep the copy calm and unhurried.",
+          "cta": {
+            "label": "Book a private consultation",
+            "target": "/private-trips/consult"
+          },
+          "offerType": "early_access",
+          "rationale": "Observed: snow sports has the highest plan-window seasonality index (1.55), and snowshoe tours are up 27% YoY with a breakout 'snowshoe lodge package' query, while ski passes are down 3%. Interpreted: lead with snowshoe and lodge packages. Observed: PL4 has a ~40 consultations/week capacity, so this single consultation invitation is spread across the sequence rather than stacked. Proposed: PL4 CTA here, with no discount.",
+          "evidenceIds": [
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s3_4",
+          "sequenceId": "seq_s3",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
+          "step": 4,
+          "sendDate": "2026-11-30",
+          "sendTimeLocal": "07:00",
+          "subject": "Patagonia and Dolomites, early access opens before pricing does",
+          "preheader": "Hut-to-hut and W-Trek departures for insiders before the wider list.",
+          "creativeDirection": "Insider recognition. Summarise open PL1 departures with real fill-backed facts: Patagonia W-Trek Feb 14 and Mar 7. Mention that early-bird pricing for summer 2027 ends Jan 31, but do not state a percentage in this email. Use real deadlines only. No countdown graphics unless backed by the Jan 31 date.",
+          "cta": {
+            "label": "View Patagonia departures",
+            "target": "/trips/patagonia-w-trek"
+          },
+          "offerType": "early_access",
+          "rationale": "Observed: early-bird pricing ends Jan 31, 2027 (brief). Observed: Patagonia Feb 14 is 50% full and Mar 7 is 64% full. Interpreted: this real deadline supports an early-access reminder without fake scarcity. Proposed: final send in the window, placed on the Tuesday 07:00 slot. Sent 2026-11-24 is a Tuesday and is not a blackout date (Nov 26 is the blackout).",
+          "evidenceIds": [
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s3_5",
+          "sequenceId": "seq_s3",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
+          "step": 5,
+          "sendDate": "2026-11-30",
+          "sendTimeLocal": "07:00",
+          "subject": "Last look at early access before we open to all",
+          "preheader": "Your early-access window is closing. Patagonia and snowshoe departures inside.",
+          "creativeDirection": "Final recap. Short, calm tone. Recap the early-access offer for A3 travelers, the Patagonia and snowshoe departures, and the consultation option. Clarify that early access comes before any discount, and that discounts are not part of this sequence.",
+          "cta": {
+            "label": "Open my early access",
+            "target": "/early-access"
+          },
+          "offerType": "early_access",
+          "rationale": "Observed: A3 receives early access before discounts open. Proposed: a recap send. Warning: step 4 and step 5 both fall on 2026-11-24, which exceeds the premium cap of 2 per week only if combined with other premium sends that week, and the 2-per-week cap leaves no room for the parallel Patagonia awareness sequence on this segment. Proposed: consider moving step 5 to Nov 24 at a different hour, or dropping it if the cap is breached.",
+          "evidenceIds": [
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        }
+      ]
+    },
+    {
+      "id": "seq_s4",
+      "opportunityId": "ins_family_adventure_multigen",
+      "segmentId": "seg_family",
+      "name": "Yellowstone Winter Family Week Launch",
+      "goal": "Announce the Dec 7 Yellowstone Winter Family Week to the family segment and nearby A2 interest, using the family-winter query momentum.",
+      "startDate": "2026-12-06",
+      "endDate": "2026-12-15",
+      "durationDays": 10,
+      "audienceIds": [
+        "A2",
+        "A4"
+      ],
+      "productLineIds": [
+        "PL2",
+        "PL3"
+      ],
+      "cadence": {
+        "emailsPerWeek": 2.8,
+        "spacingDays": 3
+      },
+      "rationale": "Observed: Yellowstone Winter Family Week launches Dec 7, inside the window. Observed: family adventure search is up 17% YoY and family winter getaways are up 80%; winter camping is up 41% YoY with a 1.66 seasonality index. Proposed: a 4-email launch sequence (preview, launch day, content story, final reminder) that stays within the family segment's 2-per-week fatigue cap and avoids all blackout dates. Interpreted: the Family Getaways segment is the closest match to the brief's A2/A4 audiences; the mapping is imperfect and is flagged below. No discounts are offered, consistent with the brief's rules for new trip launches.",
+      "evidenceIds": [
+        "ev_trend_tr_family_adventure_trips_yoy",
+        "ev_trend_tr_winter_camping_yoy",
+        "ev_seasonality_camping_idx",
+        "ev_segment_seg_family_camping_affinity",
+        "ev_segment_seg_family_family_adventure_affinity",
+        "ev_calendar_lnch_yellowstone_winter_launch"
+      ],
+      "suppressionNote": "3 of 40 segment members (8%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_s4_1",
+          "sequenceId": "seq_s4",
+          "opportunityId": "ins_family_adventure_multigen",
+          "segmentId": "seg_family",
+          "step": 1,
+          "sendDate": "2026-12-06",
+          "sendTimeLocal": "19:00",
+          "subject": "A winter week in Yellowstone, coming Dec 7",
+          "preheader": "Snow, wildlife and a slower pace, planned for shared trips together.",
+          "creativeDirection": "Warm, grounded teaser. Open on a quiet winter landscape in Yellowstone. Introduce the Winter Family Week as a launch preview, with the trip name, the launch date and a simple 'see the details' link. No discount, no countdown timer.",
+          "cta": {
+            "label": "Get the launch details",
+            "target": "/trips/yellowstone-winter-family-week"
+          },
+          "offerType": "new_trip_launch",
+          "rationale": "Observed: family adventure trips are up 17% YoY and the Yellowstone Winter Family Week launches Dec 7 (ins_family_adventure_multigen). Observed: Family Getaways show 51.6% family-adventure affinity and a 6.7% click rate. Proposed: a Sunday evening preview, the segment's modal send slot, to build anticipation before launch day. Interpreted: mapped to A2 (short-trip interest) and A4 (shared-trip buyers), with PL3 as the closest winter product line; this mapping is an assumption.",
+          "evidenceIds": [
+            "ev_trend_tr_family_adventure_trips_yoy",
+            "ev_segment_seg_family_family_adventure_affinity",
+            "ev_calendar_lnch_yellowstone_winter_launch"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s4_2",
+          "sequenceId": "seq_s4",
+          "opportunityId": "ins_family_adventure_multigen",
+          "segmentId": "seg_family",
+          "step": 2,
+          "sendDate": "2026-12-07",
+          "sendTimeLocal": "10:00",
+          "subject": "Yellowstone Winter Family Week is now open",
+          "preheader": "Guided winter days in Yellowstone, with trip details and what's included.",
+          "creativeDirection": "Launch-day announcement. Clean hero image of winter wildlife in Yellowstone. Three short bullets: what the week covers, how the days are paced, and what's included. Include a clear 'view trip' button. Keep it mobile-first and short. No urgency language unless a real departure deadline exists.",
+          "cta": {
+            "label": "View the trip and dates",
+            "target": "/trips/yellowstone-winter-family-week"
+          },
+          "offerType": "new_trip_launch",
+          "rationale": "Observed: the launch is dated Dec 7 (ev_calendar_lnch_yellowstone_winter_launch). Proposed: a Monday 10:00 send, an hour after the 9:00 open. Note: the segment's modal slot is Sunday 19:00; the launch-day email goes out on the launch date, so the time is set to the launch moment instead. Interpreted: the search momentum for family winter getaways (+80%, ins_family_adventure_multigen) supports a launch-day push.",
+          "evidenceIds": [
+            "ev_trend_tr_family_adventure_trips_yoy",
+            "ev_calendar_lnch_yellowstone_winter_launch",
+            "ev_seasonality_family_adventure_idx"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s4_3",
+          "sequenceId": "seq_s4",
+          "opportunityId": "ins_family_adventure_multigen",
+          "segmentId": "seg_family",
+          "step": 3,
+          "sendDate": "2026-12-14",
+          "sendTimeLocal": "19:00",
+          "subject": "Winter camping, guided: what a Yellowstone week looks like",
+          "preheader": "A content-led look at winter camping and wildlife days in Yellowstone.",
+          "creativeDirection": "Content story, no sales push. Feature a short guide to winter camping basics (gear, warmth, how days are paced) and a guest-style story from the trip. Link to the trip page as the last element. Use accessible, expert, warm tone.",
+          "cta": {
+            "label": "Read the winter camping guide",
+            "target": "/journal/winter-camping-yellowstone"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: winter camping search interest is up 41% YoY, peaks in December, with a plan-window index of 1.66 and 58.1% camping affinity in Family Getaways (ins_winter_camping_surge). Proposed: a Sunday evening content send that uses the camping interest to keep the trip in view without pressure. Interpreted: the content approach fits the Family Getaways' playful tone and avoids a second promotional send.",
+          "evidenceIds": [
+            "ev_trend_tr_winter_camping_yoy",
+            "ev_seasonality_camping_idx",
+            "ev_segment_seg_family_camping_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s4_4",
+          "sequenceId": "seq_s4",
+          "opportunityId": "ins_family_adventure_multigen",
+          "segmentId": "seg_family",
+          "step": 4,
+          "sendDate": "2026-12-15",
+          "sendTimeLocal": "12:00",
+          "subject": "Last look at Yellowstone Winter Family Week",
+          "preheader": "Trip details and questions answered, before the week of Dec 7 ends.",
+          "creativeDirection": "Short closing reminder. Restate the trip in one line, add a FAQ link covering what's included, pacing and how to ask about dates. Plain text feel with one button. No countdown and no scarcity language, since real seat counts are not in the data.",
+          "cta": {
+            "label": "See trip FAQs and dates",
+            "target": "/trips/yellowstone-winter-family-week#faq"
+          },
+          "offerType": "new_trip_launch",
+          "rationale": "Proposed: a final reminder on Tuesday midday, an off-peak slot that avoids crowding the Monday cap and stays within the 2-per-week limit. Observed: the trip is an existing launch with no real deadline in the data. Interpreted: this closes the sequence without implying urgency that the brief forbids.",
+          "evidenceIds": [
+            "ev_trend_tr_family_adventure_trips_yoy",
+            "ev_calendar_lnch_yellowstone_winter_launch"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        }
+      ]
+    },
+    {
+      "id": "seq_s5",
+      "opportunityId": "ins_hiking_deal_mindful_affinity",
+      "segmentId": "seg_deal",
+      "name": "Black Friday to Cyber Monday: Weekend Adventures",
+      "goal": "Sell PL2 weekend trips with up to 15% off during Black Friday through Cyber Monday only, keeping sends within the 4-per-week Black Friday cap.",
+      "startDate": "2026-11-27",
+      "endDate": "2026-11-30",
+      "durationDays": 4,
+      "audienceIds": [
+        "A2",
+        "A5"
+      ],
+      "productLineIds": [
+        "PL2",
+        "PL5"
+      ],
+      "cadence": {
+        "emailsPerWeek": 7,
+        "spacingDays": 1
+      },
+      "rationale": "Observed: seg_deal shows the strongest deal response (7.9% click rate) and 73.1% hiking affinity; PL2 discount is allowed only Black Friday through Cyber Monday (up to 15%). Interpreted: the sequence should lead with the permitted offer on Black Friday, reinforce the short-trip format mid-week, and close on the real Cyber Monday deadline, with a non-promotional bikepacking nurture as the fourth step. Proposed: 4 sends across Nov 27 to 30 at the segment's modal Thursday-noon timing adjusted to the sale days, with A2 as primary and A5 receiving the same content within its once-weekly cap. Mapping: seg_deal to A2 (deal-driven, short-dates buyers) with A5 secondary. Gaps: no fill or past-traveler data for PL2 departures; no revenue or conversion forecast is made.",
+      "evidenceIds": [
+        "ev_segment_seg_deal_hiking_affinity",
+        "ev_segment_seg_mindful_hiking_affinity",
+        "ev_seasonality_hiking_idx",
+        "ev_trend_tr_bikepacking_yoy",
+        "ev_seasonality_cycling_idx",
+        "ev_trend_tr_bikepacking_rising",
+        "ev_segment_seg_deal_cycling_affinity"
+      ],
+      "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_s5_1",
+          "sequenceId": "seq_s5",
+          "opportunityId": "ins_hiking_deal_mindful_affinity",
+          "segmentId": "seg_deal",
+          "step": 1,
+          "sendDate": "2026-11-27",
+          "sendTimeLocal": "12:00",
+          "subject": "Black Friday: up to 15% off weekend trips",
+          "preheader": "Short-dates escapes, booked this weekend. Offer ends Cyber Monday.",
+          "creativeDirection": "Grounded, expert, warm. Lead with a hiking weekend hero image and short trip facts (length, group size 8 to 14, what's included). Single clear CTA to the Weekend Adventures page. No countdown timers or invented seat counts.",
+          "cta": {
+            "label": "See weekend trips",
+            "target": "/weekend-adventures"
+          },
+          "offerType": "promo_discount",
+          "rationale": "Observed: seg_deal has 73.1% hiking affinity and a 7.9% click rate (highest-volume deal responder); PL2 discount is permitted Black Friday through Cyber Monday only. Interpreted: a Thursday-style noon send is off-modal (Friday), so we keep the modal 12:00 hour and open the offer on the first permitted day. Proposed: lead with the offer and the hiking-weekend experience for A2, with A5 receiving the same content at the once-weekly cap.",
+          "evidenceIds": [
+            "ev_segment_seg_deal_hiking_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s5_2",
+          "sequenceId": "seq_s5",
+          "opportunityId": "ins_hiking_deal_mindful_affinity",
+          "segmentId": "seg_deal",
+          "step": 2,
+          "sendDate": "2026-11-28",
+          "sendTimeLocal": "12:00",
+          "subject": "Your weekend in the hills, up to 15% off",
+          "preheader": "Two or three days, small groups, real mountain views. Black Friday pricing ends Monday.",
+          "creativeDirection": "Mobile-first, short copy. Show a 2 to 3 day itinerary strip and a traveler quote. Reinforce that the discount runs through Cyber Monday only, with no invented urgency.",
+          "cta": {
+            "label": "Compare weekend dates",
+            "target": "/weekend-adventures/dates"
+          },
+          "offerType": "promo_discount",
+          "rationale": "Observed: hiking affinity is concentrated in deal-driven segments and the hiking plan-window index is 0.63 (softer demand). Interpreted: a second touch in the same week should emphasize the short-trip format rather than repeat the discount. Proposed: keep to the seg_deal weekly cap (3) with this as send 2 of 3.",
+          "evidenceIds": [
+            "ev_segment_seg_deal_hiking_affinity",
+            "ev_seasonality_hiking_idx"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s5_3",
+          "sequenceId": "seq_s5",
+          "opportunityId": "ins_hiking_deal_mindful_affinity",
           "segmentId": "seg_deal",
           "step": 3,
-          "sendDate": "2026-11-26",
+          "sendDate": "2026-11-30",
           "sendTimeLocal": "12:00",
-          "subject": "Black Friday: our cycling promo is live",
-          "preheader": "Promo pricing on cycling trips. Book before the sale window closes.",
-          "creativeDirection": "Bold promo banner in brand color with a countdown-style 'Sale ends' line; product grid of cycling trips with the promo tag on each card.",
+          "subject": "Cyber Monday: last day for up to 15% off weekends",
+          "preheader": "The Weekend Adventures discount closes tonight. Gift cards also get a $50 bonus on $250+.",
+          "creativeDirection": "Direct, no-nonsense tone. Clear deadline (end of Cyber Monday, a real date). Secondary PL5 block: gift-card $50 bonus on purchases of $250 or more, no percent-off.",
           "cta": {
-            "label": "Shop cycling promo",
-            "target": "/trips?interest=cycling&promo=bf"
+            "label": "Book a weekend",
+            "target": "/weekend-adventures"
           },
           "offerType": "promo_discount",
-          "rationale": "Black Friday carries the highest demand boost (1.8x) and this segment's mean click rate is 7.9%, supporting a direct promo send.",
+          "rationale": "Observed: the Black Friday to Cyber Monday discount window is the only permitted PL2 discount period, so the deadline is real. Interpreted: the PL5 mention is a supporting add-on and should stay secondary. Proposed: this is the final send and must be checked against the seg_deal weekly cap before dispatch.",
           "evidenceIds": [
-            "ev_engagement_seg_deal_clickrate",
-            "ev_segment_seg_deal_cycling_affinity"
+            "ev_segment_seg_deal_hiking_affinity"
           ],
           "status": "proposed",
           "editedByUser": false,
           "guardrailFlags": []
         },
         {
-          "id": "em_seq_opp_cycling__seg_deal_4",
-          "sequenceId": "seq_opp_cycling__seg_deal",
-          "opportunityId": "opp_cycling__seg_deal",
+          "id": "em_seq_s5_4",
+          "sequenceId": "seq_s5",
+          "opportunityId": "ins_hiking_deal_mindful_affinity",
           "segmentId": "seg_deal",
           "step": 4,
-          "sendDate": "2026-12-03",
-          "sendTimeLocal": "12:00",
-          "subject": "Last call on cycling promo. Plan your winter ride",
-          "preheader": "Promo pricing ends soon. Lock in your gravel or road cycling trip.",
-          "creativeDirection": "Simple text-forward layout with one hero cycling photo, a short bulleted list of promo trip highlights, and a clear 'Book now' button.",
+          "sendDate": "2026-11-30",
+          "sendTimeLocal": "18:00",
+          "subject": "Next up: bikepacking and weekend trips in the new year",
+          "preheader": "Plan now, travel later. A light look at what is coming for spring and summer.",
+          "creativeDirection": "Educational, low-pressure content. Bikepacking and gravel route story with no discount. Explicitly not a push, since cycling seasonal index is weak in this window.",
           "cta": {
-            "label": "Book a cycling trip",
-            "target": "/trips?interest=cycling&promo=cyber"
+            "label": "Read the route guide",
+            "target": "/journal/bikepacking"
           },
-          "offerType": "promo_discount",
-          "rationale": "Covers Cyber Monday and Giving Tuesday follow-through with a 'last call' angle to convert promo-responsive members.",
+          "offerType": "content_story",
+          "rationale": "Observed: bikepacking search interest is up 54% YoY but plan-window seasonality index is 0.48 (peak July). Interpreted: nurture this interest now without selling, to build demand for spring. Proposed: content-only step to stay within the frequency caps; intended for A5 engagement recovery and labelled as non-promotional.",
           "evidenceIds": [
-            "ev_engagement_seg_deal_clickrate",
+            "ev_trend_tr_bikepacking_yoy",
             "ev_seasonality_cycling_idx"
           ],
           "status": "proposed",
           "editedByUser": false,
           "guardrailFlags": []
+        }
+      ]
+    },
+    {
+      "id": "seq_s6",
+      "opportunityId": "ins_hiking_deal_mindful_affinity",
+      "segmentId": "seg_mindful",
+      "name": "Plan Your 2027: New Year Intentions",
+      "goal": "Support New Year planning for A1 and A3 on PL1 and PL4 with content-led sends; PL4 consultations spread to respect the ~40/week capacity.",
+      "startDate": "2026-12-28",
+      "endDate": "2027-01-11",
+      "durationDays": 15,
+      "audienceIds": [
+        "A1",
+        "A3"
+      ],
+      "productLineIds": [
+        "PL1",
+        "PL4"
+      ],
+      "cadence": {
+        "emailsPerWeek": 2.3,
+        "spacingDays": 3.5
+      },
+      "rationale": "Observed: seg_mindful (Mindful Explorers) has 73.1% hiking affinity, a Mon 08:00 modal send and a 2/week fatigue cap. Interpreted: hiking-led content is the strongest fit for A1 and A3 PL1 planning, and bikepacking is nurture-only given its 0.48 seasonal index. Proposed: five content-led steps covering PL1 (Patagonia, Dolomites, Peru early-bird) and PL4 (staggered consultations). A3 gets early access before the Jan 31 early-bird discount opens. No sends fall on blackouts Dec 24 to 26.",
+      "evidenceIds": [
+        "ev_segment_seg_mindful_hiking_affinity",
+        "ev_trend_tr_backpacking_trips_yoy",
+        "ev_seasonality_hiking_idx",
+        "ev_trend_tr_bikepacking_yoy",
+        "ev_seasonality_cycling_idx",
+        "ev_trend_tr_backpacking_trips_rising"
+      ],
+      "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_s6_1",
+          "sequenceId": "seq_s6",
+          "opportunityId": "ins_hiking_deal_mindful_affinity",
+          "segmentId": "seg_mindful",
+          "step": 1,
+          "sendDate": "2026-12-28",
+          "sendTimeLocal": "08:00",
+          "subject": "Your 2027 starts with one trail",
+          "preheader": "Plan the year ahead with guided treks built for careful, curious travelers.",
+          "creativeDirection": "Warm, expert editorial. Open with a reflective New Year question, then a Patagonia or Dolomites hut-to-hut route with guide credentials and trip difficulty stated plainly. Explain what is included. No pressure language.",
+          "cta": {
+            "label": "Explore 2027 treks",
+            "target": "/trips/guided-treks-2027"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: Mindful Explorers show 73.1% hiking affinity and the modal send is Mon 08:00. Interpreted: a content-led opener suits A1 detail-seekers and A3 insiders in New Year planning week. Proposed: no discount; this is planning content for PL1.",
+          "evidenceIds": [
+            "ev_segment_seg_mindful_hiking_affinity",
+            "ev_trend_tr_backpacking_trips_yoy"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
         },
         {
-          "id": "em_seq_opp_cycling__seg_deal_5",
-          "sequenceId": "seq_opp_cycling__seg_deal",
-          "opportunityId": "opp_cycling__seg_deal",
-          "segmentId": "seg_deal",
-          "step": 5,
-          "sendDate": "2027-01-07",
-          "sendTimeLocal": "12:00",
-          "subject": "New year, new ride: cycling trips for 2027",
-          "preheader": "Resolution week picks: book a cycling trip while the new-year offer lasts.",
-          "creativeDirection": "Bright, energetic hero shot of riders on a winter-to-spring route; checklist-style layout titled 'Your 2027 ride plan' with a single CTA.",
+          "id": "em_seq_s6_2",
+          "sequenceId": "seq_s6",
+          "opportunityId": "ins_hiking_deal_mindful_affinity",
+          "segmentId": "seg_mindful",
+          "step": 2,
+          "sendDate": "2026-12-31",
+          "sendTimeLocal": "10:00",
+          "subject": "Three questions before you choose a 2027 trip",
+          "preheader": "How hard is it, what is included, and who leads it? Answers inside.",
+          "creativeDirection": "Educational guide format. A short checklist for choosing a trek: pace, altitude, group size of 8 to 14, guide ratio. Reassure A1 without pressure. Include a neutral hiking-fitness explainer linked to trip pages, not to any individual's health.",
           "cta": {
-            "label": "Start planning 2027",
-            "target": "/trips?interest=cycling&promo=ny"
+            "label": "Compare treks by pace",
+            "target": "/trips/guided-treks-2027/compare"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: hiking affinity is concentrated in Mindful Explorers (73.1%). Interpreted: a checklist fits the educational tone and A1 need for reassurance. Proposed: content only, no urgency, since no real deadline applies here.",
+          "evidenceIds": [
+            "ev_segment_seg_mindful_hiking_affinity",
+            "ev_seasonality_hiking_idx"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s6_3",
+          "sequenceId": "seq_s6",
+          "opportunityId": "ins_hiking_deal_mindful_affinity",
+          "segmentId": "seg_mindful",
+          "step": 3,
+          "sendDate": "2027-01-04",
+          "sendTimeLocal": "08:00",
+          "subject": "Early-bird pricing on summer treks closes Jan 31",
+          "preheader": "Dolomites and Peru early-bird rates end January 31. Past travelers see them first.",
+          "creativeDirection": "Insider tone for A3 with a clear early-access line. For A1, factual deadline only. Show the real Jan 31 end date and the early-bird rate of up to 10% off, with no flash-sale language. Dolomites Jul 10 is at 25% full, so it may be framed as having open seats, not as scarce.",
+          "cta": {
+            "label": "View summer early-bird",
+            "target": "/trips/dolomites-peru-2027/early-bird"
+          },
+          "offerType": "early_access",
+          "rationale": "Observed: early-bird ends Jan 31 and Dolomites Jul 10 is 25% full. Proposed: A3 gets access before the discount opens; A1 gets the factual deadline. Interpreted: this is the only send that carries the PL1 early-bird offer, so it respects the 10% cap.",
+          "evidenceIds": [
+            "ev_segment_seg_mindful_hiking_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s6_4",
+          "sequenceId": "seq_s6",
+          "opportunityId": "ins_hiking_deal_mindful_affinity",
+          "segmentId": "seg_mindful",
+          "step": 4,
+          "sendDate": "2027-01-04",
+          "sendTimeLocal": "08:00",
+          "subject": "A private trip, planned around your year",
+          "preheader": "Consultations with our private trips team are booked in order. Request yours.",
+          "creativeDirection": "Consultative and calm. Describe PL4 private and custom trips as a planning session, not a sale. No discount language, since PL4 is never discounted. Mention consultation availability without implying scarcity.",
+          "cta": {
+            "label": "Request a private consultation",
+            "target": "/private-trips/consultation"
+          },
+          "offerType": "new_trip_launch",
+          "rationale": "Observed: PL4 margin is high and consultations are capped near 40 per week. Proposed: a staggered PL4 send on Jan 4 spreads demand. Interpreted: a planning-session frame suits A3 insiders and A1 researchers.",
+          "evidenceIds": [
+            "ev_segment_seg_mindful_hiking_affinity",
+            "ev_trend_tr_backpacking_trips_rising"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s6_5",
+          "sequenceId": "seq_s6",
+          "opportunityId": "ins_hiking_deal_mindful_affinity",
+          "segmentId": "seg_mindful",
+          "step": 5,
+          "sendDate": "2027-01-11",
+          "sendTimeLocal": "18:00",
+          "subject": "Nature, bikes and new routes for 2027",
+          "preheader": "Gravel and bikepacking interest is rising. We'll show you the routes for spring.",
+          "creativeDirection": "Light nurture for Mindful Explorers' cycling affinity. Frame as a preview with no offer and no departure push, since cycling is seasonally weak in this window. Link to a planning guide rather than a booking page.",
+          "cta": {
+            "label": "Read the 2027 route guide",
+            "target": "/guides/2027-routes"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: cycling affinity is 65.4% in Mindful Explorers and bikepacking is up 54% YoY. Interpreted: its seasonal index is 0.48, so this is nurture only. Proposed: no PL1 or PL4 offer here.",
+          "evidenceIds": [
+            "ev_trend_tr_bikepacking_yoy",
+            "ev_seasonality_cycling_idx"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        }
+      ]
+    },
+    {
+      "id": "seq_s7",
+      "opportunityId": "ins_premium_safari_eco_affinity",
+      "segmentId": "seg_premium",
+      "name": "Wave Season: Dolomites and Peru Early-Bird",
+      "goal": "Drive summer 2027 PL1 deposits (Dolomites Jul 10 at 25% full) before early-bird pricing ends Jan 31, using only real deadlines.",
+      "startDate": "2027-01-05",
+      "endDate": "2027-01-26",
+      "durationDays": 22,
+      "audienceIds": [
+        "A3",
+        "A1"
+      ],
+      "productLineIds": [
+        "PL1",
+        "PL4"
+      ],
+      "cadence": {
+        "emailsPerWeek": 1.9,
+        "spacingDays": 4.2
+      },
+      "rationale": "Observed: early-bird pricing ends Jan 31, Dolomites Jul 10 is 25% full (3 of 12), and seg_premium has an 8.9% click rate and the highest AOV. Proposed: a six-email sequence spread across Jan 5 to 26 that leads with A3 early access and A1 detail, uses real deadlines only, and keeps PL4 undiscounted. Interpreted: the Dolomites is the strongest fill lever in this window; Peru is referenced without a fill figure because the brief gives none.",
+      "evidenceIds": [
+        "ev_segment_seg_premium_wildlife_safari_affinity",
+        "ev_engagement_seg_premium_clickrate"
+      ],
+      "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_s7_1",
+          "sequenceId": "seq_s7",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
+          "step": 1,
+          "sendDate": "2027-01-05",
+          "sendTimeLocal": "07:00",
+          "subject": "Your early-bird window on summer 2027 is open",
+          "preheader": "Early access for past travelers before pricing opens to everyone else.",
+          "creativeDirection": "Insider tone. Recognise past trips where data allows. Show the Dolomites Hut-to-Hut Jul 10 departure with real seat counts and the Jan 31 early-bird end date. Lead with guide credentials and what is included.",
+          "cta": {
+            "label": "See summer 2027 departures",
+            "target": "/trips/summer-2027"
+          },
+          "offerType": "early_access",
+          "rationale": "Observed: early-bird pricing ends Jan 31 and Dolomites Jul 10 is 25% full. Interpreted: A3 responds to early access ahead of discounts. Proposed: open with early access only, no percent-off in step 1, to keep PL1 discount use within the 10% cap.",
+          "evidenceIds": [
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s7_2",
+          "sequenceId": "seq_s7",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
+          "step": 2,
+          "sendDate": "2027-01-12",
+          "sendTimeLocal": "07:00",
+          "subject": "Dolomites Hut-to-Hut: what the route really involves",
+          "preheader": "Guide credentials, daily distances and what's included on the Jul 10 departure.",
+          "creativeDirection": "Detail and reassurance for A1. Content-led, no pressure. Explain difficulty in plain terms, hut logistics and guide ratio. Do not use health or fitness-level targeting data.",
+          "cta": {
+            "label": "Read the full itinerary",
+            "target": "/trips/dolomites-hut-to-hut"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: hiking affinity is 73.1% in Premium-adjacent segments and the Dolomites is a hut-to-hut trek. Interpreted: A1 wants detail before deposit. Proposed: a content-only send mid-sequence to build trust.",
+          "evidenceIds": [
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s7_3",
+          "sequenceId": "seq_s7",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
+          "step": 3,
+          "sendDate": "2027-01-15",
+          "sendTimeLocal": "07:00",
+          "subject": "Peru and the Dolomites, early-bird through Jan 31",
+          "preheader": "Up to 10% off PL1 early-bird pricing, ends January 31. Private trips available.",
+          "creativeDirection": "Promotional, grounded and warm. State the real early-bird ceiling (up to 10%) and the real Jan 31 end date. Mention Private & Custom as an option without discount. Payday send alignment (15th).",
+          "cta": {
+            "label": "Lock in early-bird pricing",
+            "target": "/trips/early-bird"
+          },
+          "offerType": "promo_discount",
+          "rationale": "Observed: paydays fall on the 15th and booking intent rises after. Proposed: first promotional offer on the payday, capped at the brief's 10% early-bird ceiling. PL4 is mentioned with no discount.",
+          "evidenceIds": [
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s7_4",
+          "sequenceId": "seq_s7",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
+          "step": 4,
+          "sendDate": "2027-01-19",
+          "sendTimeLocal": "07:00",
+          "subject": "Summer 2027 seats are filling; early-bird ends Jan 31",
+          "preheader": "Dolomites Jul 10 has seats left. Early-bird pricing closes January 31.",
+          "creativeDirection": "Honest urgency only. Quote the real booked count on Dolomites Jul 10 (3 of 12) and the real Jan 31 deadline. No invented scarcity. Calm, expert tone.",
+          "cta": {
+            "label": "Check seats on Jul 10",
+            "target": "/trips/dolomites-hut-to-hut/jul-10"
+          },
+          "offerType": "promo_discount",
+          "rationale": "Observed: Dolomites Jul 10 is 25% full (3 of 12). Proposed: real urgency tied to the real Jan 31 deadline. Interpreted: this is the sequence's core fill push; it is not fake scarcity.",
+          "evidenceIds": [
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s7_5",
+          "sequenceId": "seq_s7",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
+          "step": 5,
+          "sendDate": "2027-01-26",
+          "sendTimeLocal": "07:00",
+          "subject": "Private & Custom trips for summer 2027: consultations open",
+          "preheader": "Tailor a Peru or Dolomites journey with our Private Trips team. No discounting.",
+          "creativeDirection": "Aspirational and expert for A1 and A3 on PL4. Describe the private option and consultation process. Do not reference discounts. Consultation capacity is limited, so describe booking as an invitation, not a deadline.",
+          "cta": {
+            "label": "Request a private consultation",
+            "target": "/private-trips"
           },
           "offerType": "bundle",
-          "rationale": "New Year resolution week (1.5x demand boost) is a strong planning moment; a bundle framing fits a value-seeking segment and closes the window ahead of plan end.",
+          "rationale": "Observed: Premium Adventurers have the highest click rate (8.9%) and mean AOV ($3,056). Interpreted: PL4 fits this segment. Proposed: a no-discount PL4 send. Consultation load is capped at about 40 per week, so this send is spread across the week.",
           "evidenceIds": [
-            "ev_seasonality_cycling_idx",
-            "ev_segment_seg_deal_eligible",
-            "ev_trend_tr_bikepacking_rising"
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s7_6",
+          "sequenceId": "seq_s7",
+          "opportunityId": "ins_premium_safari_eco_affinity",
+          "segmentId": "seg_premium",
+          "step": 6,
+          "sendDate": "2027-01-26",
+          "sendTimeLocal": "18:00",
+          "subject": "Last week of early-bird on summer 2027 trips",
+          "preheader": "Early-bird pricing ends January 31. Speak with us before it closes.",
+          "creativeDirection": "Final, direct deadline send. Short copy, one CTA, real date. Mention Kilimanjaro only as a waitlist option if relevant, not as a promotion.",
+          "cta": {
+            "label": "Book before January 31",
+            "target": "/trips/early-bird"
+          },
+          "offerType": "promo_discount",
+          "rationale": "Observed: early-bird ends Jan 31. Proposed: a final deadline send on Jan 26. Interpreted: a second same-week send is kept within the 2-per-week cap for this segment and the brief's 3-per-week limit.",
+          "evidenceIds": [
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        }
+      ]
+    },
+    {
+      "id": "seq_s8",
+      "opportunityId": "ins_family_water_sports_low_season",
+      "segmentId": "seg_new",
+      "name": "Baja Sea Kayak and Costa Rica Eco Lodge Awareness",
+      "goal": "Build awareness ahead of the Jan 11 Costa Rica and Jan 20 Baja launches for A2 and lapsed-adjacent audiences, with low-frequency sends.",
+      "startDate": "2027-01-13",
+      "endDate": "2027-01-21",
+      "durationDays": 9,
+      "audienceIds": [
+        "A2",
+        "A5"
+      ],
+      "productLineIds": [
+        "PL2",
+        "PL3"
+      ],
+      "cadence": {
+        "emailsPerWeek": 3.1,
+        "spacingDays": 2.7
+      },
+      "rationale": "Observed: the Baja Sea Kayak launch is Jan 20, and kayak interest is rising (16.4% three-month slope) with a seasonally weak plan-window index (0.43). Observed: Lapsed Wanderers have a 1.6% click rate and a one-send-per-week cap, so reactivation must be light. Interpreted: the sequence should be awareness-led, content-first, and spaced so no contact receives more than two sends in any week. Proposed: four launch-adjacent sends from Jan 13 to Jan 21 using segment modal timing (Wed 18:00), with no discounts and no fake urgency. Audience mapping: seg_new is used as the host segment for A2 (Weekend Warriors) and A5 (Dreamers / Never Booked). Priority (commercial tier) is moderate, since the launch is not inventory-constrained; evidence confidence is moderate because the trend and affinity data are segment-level and the Costa Rica launch is not in the cited evidence set.",
+      "evidenceIds": [
+        "ev_segment_seg_family_water_sports_affinity",
+        "ev_trend_tr_kayak_tours_yoy",
+        "ev_trend_tr_kayak_tours_rising",
+        "ev_seasonality_water_sports_idx",
+        "ev_calendar_lnch_baja_kayak_launch",
+        "ev_engagement_seg_lapsed_clickrate",
+        "ev_segment_seg_lapsed_wildlife_safari_affinity",
+        "ev_segment_seg_lapsed_eco_lodges_affinity",
+        "ev_segment_seg_lapsed_eligible"
+      ],
+      "suppressionNote": "3 of 35 segment members (9%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_s8_1",
+          "sequenceId": "seq_s8",
+          "opportunityId": "ins_family_water_sports_low_season",
+          "segmentId": "seg_new",
+          "step": 1,
+          "sendDate": "2027-01-13",
+          "sendTimeLocal": "18:00",
+          "subject": "Two days into the new Costa Rica eco-lodge circuit",
+          "preheader": "A first look at the lodges, the pace, and what's included, before the Baja launch.",
+          "creativeDirection": "Warm, grounded editorial. Lead with the eco-lodge stays and what a day looks like. Plain language, no pressure. Mobile-first, short paragraphs.",
+          "cta": {
+            "label": "Explore the Costa Rica circuit",
+            "target": "/trips/costa-rica-eco-lodge-circuit"
+          },
+          "offerType": "new_trip_launch",
+          "rationale": "Observed: Lapsed Wanderers show 45.2% eco-lodge affinity (lapsed segment evidence). Interpreted: Costa Rica eco-lodge content is the most relevant lead for lapsed-adjacent readers. Proposed: a single content-led send, no offer, to keep fatigue low.",
+          "evidenceIds": [
+            "ev_segment_seg_lapsed_eco_lodges_affinity",
+            "ev_segment_seg_lapsed_eligible"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s8_2",
+          "sequenceId": "seq_s8",
+          "opportunityId": "ins_family_water_sports_low_season",
+          "segmentId": "seg_new",
+          "step": 2,
+          "sendDate": "2027-01-15",
+          "sendTimeLocal": "18:00",
+          "subject": "Safari and eco lodges, if you're still curious",
+          "preheader": "Small-group wildlife and lodge stays, with no commitment needed to look around.",
+          "creativeDirection": "Playful, low-key tone. Short carousel of wildlife and lodge imagery, one line of copy each. Easy opt-out language in footer.",
+          "cta": {
+            "label": "See small-group trips",
+            "target": "/trips?interest=wildlife-safari"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: Lapsed Wanderers show 45.2% wildlife safari affinity and a 1.6% mean click rate. Interpreted: a second light touch on safari content may re-engage without raising fatigue risk. Proposed: content-only, no discount, low volume.",
+          "evidenceIds": [
+            "ev_segment_seg_lapsed_wildlife_safari_affinity",
+            "ev_engagement_seg_lapsed_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s8_3",
+          "sequenceId": "seq_s8",
+          "opportunityId": "ins_family_water_sports_low_season",
+          "segmentId": "seg_new",
+          "step": 3,
+          "sendDate": "2027-01-20",
+          "sendTimeLocal": "18:00",
+          "subject": "Baja Sea Kayak Expedition launches today",
+          "preheader": "Paddle the Baja coast in a small group. Details, dates and what's included.",
+          "creativeDirection": "Energetic but measured. Hero image of kayaking water. Show what the trip includes and the skill level in plain terms. No countdown or scarcity devices.",
+          "cta": {
+            "label": "View the Baja expedition",
+            "target": "/trips/baja-sea-kayak-expedition"
+          },
+          "offerType": "new_trip_launch",
+          "rationale": "Observed: Family Getaways show 61.3% water-sports affinity, and kayak tour search is up 5% YoY with a 16.4% three-month slope (family water sports evidence). Interpreted: the Jan 20 launch is the main timing lever for water-sports interest. Proposed: launch-day announcement with product detail. No discount, per PL2 rules.",
+          "evidenceIds": [
+            "ev_segment_seg_family_water_sports_affinity",
+            "ev_trend_tr_kayak_tours_yoy",
+            "ev_trend_tr_kayak_tours_rising",
+            "ev_calendar_lnch_baja_kayak_launch"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s8_4",
+          "sequenceId": "seq_s8",
+          "opportunityId": "ins_family_water_sports_low_season",
+          "segmentId": "seg_new",
+          "step": 4,
+          "sendDate": "2027-01-21",
+          "sendTimeLocal": "18:00",
+          "subject": "Baja kayaking: what a small-group week looks like",
+          "preheader": "Guides, daily paddling, and the option to ask us anything before you decide.",
+          "creativeDirection": "Educational recap. Short FAQ-style layout covering pace, guide support, and what to bring. Reassuring and clear. Include a reply-to-ask option.",
+          "cta": {
+            "label": "Read the trip details",
+            "target": "/trips/baja-sea-kayak-expedition#details"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: kayak tour interest has a seasonally low plan-window index of 0.43 (water sports evidence). Interpreted: a detail-led follow-up helps convert awareness without pushing. Proposed: a closing content send in the window, no offer.",
+          "evidenceIds": [
+            "ev_seasonality_water_sports_idx",
+            "ev_calendar_lnch_baja_kayak_launch"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        }
+      ]
+    },
+    {
+      "id": "seq_s9",
+      "opportunityId": "ins_lapsed_reactivation_caution",
+      "segmentId": "seg_lapsed",
+      "name": "Reactivation: Safari and Eco-Lodge Light Touch",
+      "goal": "Light, high-relevance reactivation for dormant contacts using safari and eco-lodge content, capped at 1 email per week.",
+      "startDate": "2026-11-07",
+      "endDate": "2027-01-09",
+      "durationDays": 64,
+      "audienceIds": [
+        "A5"
+      ],
+      "productLineIds": [
+        "PL2",
+        "PL5"
+      ],
+      "cadence": {
+        "emailsPerWeek": 0.4,
+        "spacingDays": 21
+      },
+      "rationale": "Observed: Lapsed Wanderers have a 1.6% click rate, 19 of 31 eligible members are dormant, the fatigue cap is one send per week, and their top interests are eco lodges and wildlife safari (45.2% each). Interpreted: reactivation should be low-frequency and content-led, not promotional. Proposed: four emails across Nov 7 to Jan 9 on the Saturday 10:00 modal slot, spaced at least 1 week apart. Mapping: seg_lapsed -> A5 (dormant, never-booked or lapsed); products PL2 (short trips, safari and eco content) and PL5 (gift cards, only as a Nov 16-Dec 23 mention). Discount: none, since PL2 discounts are limited to Black Friday-Cyber Monday and this sequence avoids that window.",
+      "evidenceIds": [
+        "ev_segment_seg_lapsed_wildlife_safari_affinity",
+        "ev_trend_tr_wildlife_safari_yoy",
+        "ev_engagement_seg_lapsed_clickrate",
+        "ev_segment_seg_lapsed_eligible"
+      ],
+      "suppressionNote": "3 of 35 segment members (9%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_s9_1",
+          "sequenceId": "seq_s9",
+          "opportunityId": "ins_lapsed_reactivation_caution",
+          "segmentId": "seg_lapsed",
+          "step": 1,
+          "sendDate": "2026-11-07",
+          "sendTimeLocal": "10:00",
+          "subject": "Wild cats, quiet camps: small-group safari ideas",
+          "preheader": "A few short-trip ideas with wildlife and eco lodges, no pressure.",
+          "creativeDirection": "Warm, playful, low-pressure editorial card. Lead with one wildlife photo and a short note on what a small-group safari includes (guide, group of 8-14, lodge stays). One optional link to browse. No discount, no countdown.",
+          "cta": {
+            "label": "See small-group safari ideas",
+            "target": "/trips/wildlife-safari"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: Lapsed Wanderers show 45.2% wildlife safari affinity and safari search is up 37% YoY. Interpreted: a single content-led safari note is the lowest-pressure reactivation for a 1.6% click-rate segment. Proposed: content story on the modal Saturday 10:00 slot, no offer.",
+          "evidenceIds": [
+            "ev_segment_seg_lapsed_wildlife_safari_affinity",
+            "ev_trend_tr_wildlife_safari_yoy"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s9_2",
+          "sequenceId": "seq_s9",
+          "opportunityId": "ins_lapsed_reactivation_caution",
+          "segmentId": "seg_lapsed",
+          "step": 2,
+          "sendDate": "2026-12-05",
+          "sendTimeLocal": "10:00",
+          "subject": "Eco lodges worth a look before the holidays",
+          "preheader": "Gift cards for a shared trip are available through Dec 23.",
+          "creativeDirection": "Calm, playful card. One eco-lodge image and a two-line description of what the stay includes. A single secondary block noting that gift cards for shared adventures are available through Dec 23. No percent-off, no bonus language.",
+          "cta": {
+            "label": "Browse eco-lodge trips",
+            "target": "/trips/eco-lodges"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: eco lodges are a top interest for this segment at 45.2%. Interpreted: a second, lightly-timed eco-lodge story, with a gift-card line inside the Nov 16-Dec 23 PL5 window, gives a reason to reopen without pressure. Proposed: send Sat Dec 5 at 10:00, 4 weeks after step 1, staying under the 1-per-week cap.",
+          "evidenceIds": [
+            "ev_segment_seg_lapsed_eco_lodges_affinity",
+            "ev_engagement_seg_lapsed_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s9_3",
+          "sequenceId": "seq_s9",
+          "opportunityId": "ins_lapsed_reactivation_caution",
+          "segmentId": "seg_lapsed",
+          "step": 3,
+          "sendDate": "2027-01-02",
+          "sendTimeLocal": "10:00",
+          "subject": "A quieter start to 2027: a few ideas to browse",
+          "preheader": "Short trips and eco lodges for when you are ready to look again.",
+          "creativeDirection": "Clean, editorial card focused on the new year. Two trip thumbnails (one safari, one eco lodge) with one-line descriptions. No deadline, no offer.",
+          "cta": {
+            "label": "Browse 2027 ideas",
+            "target": "/trips"
+          },
+          "offerType": "content_story",
+          "rationale": "Observed: safari interest is rising and the segment's click rate is low. Interpreted: a soft new-year check-in fits the New Year planning mood without pressure. Proposed: Sat Jan 2, a non-promotional content story, 4 weeks after step 2.",
+          "evidenceIds": [
+            "ev_trend_tr_wildlife_safari_yoy",
+            "ev_engagement_seg_lapsed_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_s9_4",
+          "sequenceId": "seq_s9",
+          "opportunityId": "ins_lapsed_reactivation_caution",
+          "segmentId": "seg_lapsed",
+          "step": 4,
+          "sendDate": "2027-01-09",
+          "sendTimeLocal": "10:00",
+          "subject": "New eco-lodge circuit in Costa Rica, if it interests you",
+          "preheader": "The Costa Rica Eco Lodge Circuit opens Jan 11. Browse first.",
+          "creativeDirection": "Warm, grounded card announcing the Costa Rica Eco Lodge Circuit. Eco-lodge photo, a short description of the circuit and what is included, and a plain link. Respect the Jan 11 launch date; no early-access claim, no discount, no scarcity language.",
+          "cta": {
+            "label": "Read about the Costa Rica circuit",
+            "target": "/trips/costa-rica-eco-lodge-circuit"
+          },
+          "offerType": "new_trip_launch",
+          "rationale": "Observed: eco lodges are a top segment interest (45.2%) and the Costa Rica Eco Lodge Circuit launches Jan 11, 2027. Interpreted: a launch note is the one relevant reason to send a fourth email. Proposed: Sat Jan 9 at 10:00, the day before launch, 1 week after step 3 and well under the cap.",
+          "evidenceIds": [
+            "ev_segment_seg_lapsed_eco_lodges_affinity",
+            "ev_segment_seg_lapsed_eligible"
           ],
           "status": "proposed",
           "editedByUser": false,

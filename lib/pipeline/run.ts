@@ -6,6 +6,7 @@ import { buildPackets } from './packets';
 import { runAnalyst } from './analyst';
 import { loadBrief, runPlanner } from './planner';
 import type { Thinking } from './llm';
+import { sanitizeDeep } from '../sanitize';
 
 export interface PipelineOptions {
   onEvent?: (e: RefreshEvent) => void;
@@ -54,7 +55,7 @@ export async function runPipeline(opts: PipelineOptions = {}): Promise<PipelineR
   emit({ stage: 'planner', status: 'done', sequences: plan.sequences.length });
 
   if (opts.write !== false) {
-    await writeAtomically(opts.dataDir ?? path.join(process.cwd(), 'data'), { 'insights.json': insights, 'cached-plan.json': plan });
+    await writeAtomically(opts.dataDir ?? path.join(process.cwd(), 'data'), { 'insights.json': sanitizeDeep(insights), 'cached-plan.json': sanitizeDeep(plan) });
   }
   emit({ stage: 'done' });
   return { insights, plan, timingsMs: { analyst: tAnalyst - t0, planner: tPlanner - tAnalyst, total: Date.now() - t0 } };

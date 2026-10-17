@@ -1,3 +1,4 @@
+import { sortSequences } from './sequenceSpan';
 import type { CampaignPlan, EmailCampaign, EmailSequence, SegmentProfile, ContextFile } from './types';
 import type { CalendarSlot, ModelSequence } from './planSchema';
 
@@ -190,6 +191,6 @@ export function postProcess(planned: PlannedSequence[], input: GuardrailInput): 
 
   return {
     planStart, planEnd, generatedAt: (input.now ?? new Date()).toISOString(),
-    source: 'claude', model: input.model, warnings, assumptions: input.assumptions ?? [], sequences,
+    source: 'claude', model: input.model, warnings, assumptions: input.assumptions ?? [], sequences: sortSequences(sequences),
   };
 }

@@ -6,7 +6,7 @@ export default function BarList({ data, unit = '', ariaLabel, max }: {
   data: { name: string; value: number }[]; unit?: string; ariaLabel: string; max?: number;
 }) {
   return (
-    <div role="img" aria-label={`${ariaLabel}. ${data.map(d => `${d.name} ${d.value}${unit}`).join('; ')}.`} style={{ height: data.length * 38 + 8 }}>
+    <div role="img" aria-label={`${ariaLabel}. ${data.map(d => `${d.name} ${d.value}${unit}`).join('; ')}.`} style={{ height: data.length * 50 + 8 }}>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 0, right: 44, bottom: 0, left: 0 }} barCategoryGap={10}>
           <XAxis type="number" hide domain={[0, max ?? 'dataMax']} />

@@ -1,0 +1,187 @@
+{
+  "generatedAt": "2026-10-17T18:48:36.784Z",
+  "model": "claude-haiku-5-5",
+  "trendSummary": "Search interest is rising most strongly for winter camping (+41% YoY, 14.7% three-month slope, breakout query \"heated tent camping\"), bikepacking (+54% YoY), wildlife safari (+37% YoY, breakout \"small group safari\") and backpacking trips (+35% YoY). Ski passes are the clear decliner (-3% YoY, negative slope), while kayak tours are flat YoY (+5%) despite a strong 16.4% three-month slope and a 110% rising query for Baja sea kayaking. For the Nov 2026 to Jan 2027 plan window, winter-indexed interests (snow sports at 1.55, camping at 1.09) carry the most seasonal weight, while cycling (0.48) and water sports (0.43) are seasonally weak.",
+  "customerSummary": "Premium Adventurers have the highest engagement (8.9% mean click rate) and value (mean LTV $7,329), with strong affinity for wildlife safari (61.5%) and snow sports and eco lodges (53.8% each). Deal Seekers and Mindful Explorers show the strongest hiking affinity (73.1% each), and Family Getaways over-index on camping (58.1%) and water sports (61.3%). Lapsed Wanderers have a 1.6% click rate with 19 of 31 eligible members dormant, so any reactivation should be low-volume and well targeted. Three members per segment are suppressed for sensitive life events and are excluded from all targeting.",
+  "insights": [
+    {
+      "id": "ins_winter_camping_surge",
+      "title": "Winter camping is the fastest-rising winter-timed interest",
+      "summary": "Observed: winter camping search interest is up 41% YoY with a 14.7% three-month slope, peaks in December, and has a plan-window seasonality index of 1.66. Interpreted: this timing fits the plan window well, and the Family Getaways segment's 58.1% camping affinity makes it the most natural audience.",
+      "interest": "camping",
+      "segmentIds": [
+        "seg_family",
+        "seg_mindful",
+        "seg_deal"
+      ],
+      "trendIds": [
+        "tr_winter_camping"
+      ],
+      "momentum": "rising",
+      "label": "observed",
+      "evidenceIds": [
+        "ev_trend_tr_winter_camping_yoy",
+        "ev_trend_tr_winter_camping_rising",
+        "ev_seasonality_camping_idx",
+        "ev_segment_seg_family_camping_affinity"
+      ]
+    },
+    {
+      "id": "ins_bikepacking_momentum_low_season",
+      "title": "Bikepacking is surging but seasonally weak in the plan window",
+      "summary": "Observed: bikepacking is up 54% YoY with a breakout rising query for gravel bike tours, but its plan-window seasonality index is only 0.48 and its peak month is July. Interpreted: demand is growing, but the window is a poor time to push cycling trips, so consider nurturing now and selling closer to spring.",
+      "interest": "cycling",
+      "segmentIds": [
+        "seg_mindful",
+        "seg_deal",
+        "seg_new"
+      ],
+      "trendIds": [
+        "tr_bikepacking"
+      ],
+      "momentum": "rising",
+      "label": "interpreted",
+      "evidenceIds": [
+        "ev_trend_tr_bikepacking_yoy",
+        "ev_trend_tr_bikepacking_rising",
+        "ev_seasonality_cycling_idx",
+        "ev_segment_seg_mindful_cycling_affinity",
+        "ev_segment_seg_deal_cycling_affinity"
+      ]
+    },
+    {
+      "id": "ins_premium_safari_eco_affinity",
+      "title": "Premium Adventurers over-index on safari, snow and eco lodges",
+      "summary": "Observed: Premium Adventurers show 61.5% wildlife safari affinity and 53.8% for both snow sports and eco lodges, with an 8.9% click rate, the highest of any segment. Wildlife safari is up 37% YoY with a breakout 'small group safari' query, and its plan-window index is 0.93. Interpreted: a small-group safari offer is the strongest premium lead, with snowshoe and eco-lodge packages as the next tier.",
+      "interest": "wildlife_safari",
+      "segmentIds": [
+        "seg_premium"
+      ],
+      "trendIds": [
+        "tr_wildlife_safari",
+        "tr_snowshoe_tours",
+        "tr_eco_lodges"
+      ],
+      "momentum": "rising",
+      "label": "observed",
+      "evidenceIds": [
+        "ev_segment_seg_premium_wildlife_safari_affinity",
+        "ev_engagement_seg_premium_clickrate",
+        "ev_trend_tr_wildlife_safari_yoy",
+        "ev_trend_tr_wildlife_safari_rising",
+        "ev_segment_seg_premium_snow_sports_affinity",
+        "ev_segment_seg_premium_eco_lodges_affinity"
+      ]
+    },
+    {
+      "id": "ins_snow_sports_timing_vs_decline",
+      "title": "Snow sports timing is strong but generic ski demand is declining",
+      "summary": "Observed: ski passes are down 3% YoY with a negative slope, while snowshoe tours are up 27% YoY with a breakout 'snowshoe lodge package' query. Snow sports has the highest plan-window seasonality index (1.55). Interpreted: lead with guided snowshoe and lodge packages rather than generic ski passes, which are losing ground.",
+      "interest": "snow_sports",
+      "segmentIds": [
+        "seg_premium",
+        "seg_family",
+        "seg_new"
+      ],
+      "trendIds": [
+        "tr_ski_passes",
+        "tr_snowshoe_tours"
+      ],
+      "momentum": "steady",
+      "label": "interpreted",
+      "evidenceIds": [
+        "ev_trend_tr_snowshoe_tours_yoy",
+        "ev_trend_tr_snowshoe_tours_rising",
+        "ev_seasonality_snow_sports_idx",
+        "ev_calendar_lnch_alps_ski_early_launch"
+      ]
+    },
+    {
+      "id": "ins_hiking_deal_mindful_affinity",
+      "title": "Hiking affinity is concentrated in value-driven segments",
+      "summary": "Observed: Deal Seekers and Mindful Explorers both show 73.1% hiking affinity, while hiking search interest is up 22% YoY (backpacking trips +35%, with a breakout query for Patagonia backpacking). Hiking's plan-window index is 0.63 and Family Getaways affinity is only 9.7%. Interpreted: hiking offers reach value-led audiences well, but expect seasonal softness in the window.",
+      "interest": "hiking",
+      "segmentIds": [
+        "seg_deal",
+        "seg_mindful"
+      ],
+      "trendIds": [
+        "tr_backpacking_trips",
+        "tr_hiking_trails_near_me"
+      ],
+      "momentum": "steady",
+      "label": "observed",
+      "evidenceIds": [
+        "ev_segment_seg_deal_hiking_affinity",
+        "ev_segment_seg_mindful_hiking_affinity",
+        "ev_trend_tr_backpacking_trips_yoy",
+        "ev_trend_tr_backpacking_trips_rising",
+        "ev_seasonality_hiking_idx"
+      ]
+    },
+    {
+      "id": "ins_family_water_sports_low_season",
+      "title": "Family water sports interest is strong in affinity but weak seasonally",
+      "summary": "Observed: Family Getaways show 61.3% water sports affinity, and kayak tours are flat YoY (+5%) but have a 16.4% three-month slope and a 110% rising query for Baja kayaking. The water sports plan-window index is 0.43, the lowest of any interest. Interpreted: the Baja Sea Kayak launch on 2027-01-20 is the main timing lever, so build awareness before the launch.",
+      "interest": "water_sports",
+      "segmentIds": [
+        "seg_family"
+      ],
+      "trendIds": [
+        "tr_kayak_tours"
+      ],
+      "momentum": "steady",
+      "label": "interpreted",
+      "evidenceIds": [
+        "ev_segment_seg_family_water_sports_affinity",
+        "ev_trend_tr_kayak_tours_yoy",
+        "ev_trend_tr_kayak_tours_rising",
+        "ev_seasonality_water_sports_idx",
+        "ev_calendar_lnch_baja_kayak_launch"
+      ]
+    },
+    {
+      "id": "ins_family_adventure_multigen",
+      "title": "Multigenerational and family winter getaways are a rising query set",
+      "summary": "Observed: family adventure trips are up 17% YoY, with a 105% rising query for multigenerational vacations and an 80% rise for family winter getaways. Family Getaways show 51.6% affinity for family adventure, and the Yellowstone Winter Family Week launches on 2026-12-07 within the plan window. Its plan-window index is 0.92.",
+      "interest": "family_adventure",
+      "segmentIds": [
+        "seg_family",
+        "seg_premium"
+      ],
+      "trendIds": [
+        "tr_family_adventure_trips"
+      ],
+      "momentum": "steady",
+      "label": "observed",
+      "evidenceIds": [
+        "ev_trend_tr_family_adventure_trips_yoy",
+        "ev_trend_tr_family_adventure_trips_rising",
+        "ev_segment_seg_family_family_adventure_affinity",
+        "ev_seasonality_family_adventure_idx",
+        "ev_calendar_lnch_yellowstone_winter_launch"
+      ]
+    },
+    {
+      "id": "ins_lapsed_reactivation_caution",
+      "title": "Lapsed Wanderers respond weakly, so keep reactivation light",
+      "summary": "Observed: Lapsed Wanderers have a 1.6% mean click rate, 19 of 31 eligible members are dormant, and the fatigue cap is one send per week. Their best-affinity interests (wildlife safari and eco lodges, both 45.2%) match rising trends. Interpreted: use low-frequency, high-relevance reactivation with safari and eco-lodge content instead of broad campaigns.",
+      "interest": "wildlife_safari",
+      "segmentIds": [
+        "seg_lapsed"
+      ],
+      "trendIds": [
+        "tr_wildlife_safari",
+        "tr_eco_lodges"
+      ],
+      "momentum": "steady",
+      "label": "interpreted",
+      "evidenceIds": [
+        "ev_engagement_seg_lapsed_clickrate",
+        "ev_segment_seg_lapsed_wildlife_safari_affinity",
+        "ev_segment_seg_lapsed_eco_lodges_affinity",
+        "ev_segment_seg_lapsed_eligible"
+      ]
+    }
+  ]
+}

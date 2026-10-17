@@ -1,12 +1,13 @@
 'use client';
-import { useEffect, useMemo, useReducer, useRef } from 'react';
-import type { CampaignPlan, ContextFile, Opportunity, SegmentProfile } from '../lib/types';
+import { useEffect, useReducer, useRef } from 'react';
+import type { CampaignPlan, ContextFile, Evidence, Insight, Opportunity, SegmentProfile } from '../lib/types';
+import type { Selection } from '../lib/planStore';
 import { loadPersisted, planReducer, savePersisted } from '../lib/planStore';
 import Calendar from './Calendar';
 import CampaignDetail from './CampaignDetail';
 import ExportButton from './ExportButton';
 
-interface Props { plan: CampaignPlan; opportunities: Opportunity[]; segments: SegmentProfile[]; context: ContextFile }
+interface Props { plan: CampaignPlan; opportunities: Opportunity[]; evidence: Record<string, Evidence>; insights: Insight[]; segments: SegmentProfile[]; context: ContextFile }
 
 /** Saved review state is only reused if it belongs to this exact plan. */
 function sameShape(a: CampaignPlan, b: CampaignPlan): boolean {
@@ -14,7 +15,7 @@ function sameShape(a: CampaignPlan, b: CampaignPlan): boolean {
   return a.generatedAt === b.generatedAt && ids(a) === ids(b);
 }
 
-export default function CalendarApp({ plan: initial, opportunities, segments, context }: Props) {
+export default function CalendarApp({ plan: initial, opportunities, evidence, insights, segments, context }: Props) {
   const [state, dispatch] = useReducer(planReducer, { status: 'ready', plan: initial });
 
   useEffect(() => {
@@ -28,13 +29,12 @@ export default function CalendarApp({ plan: initial, opportunities, segments, co
   const selected = state.selected;
   const seq = selected ? plan.sequences.find(s => s.id === selected.sequenceId) : undefined;
   // Radix only restores focus to its own trigger; the pills are not triggers, so remember the one that opened the panel.
-  const opener = useRef<string>();
-  const select = (sel: Parameters<typeof Calendar>[0]['selected']) => { opener.current = sel?.emailId; dispatch({ type: 'select', selection: sel }); };
+  const opener = useRef<string | undefined>(undefined);
+  const select = (sel: Selection | undefined) => { opener.current = sel?.emailId; dispatch({ type: 'select', selection: sel }); };
   const returnFocus = (ev: Event) => {
     ev.preventDefault();
     if (opener.current) document.querySelector<HTMLElement>(`[data-email-id="${CSS.escape(opener.current)}"]`)?.focus();
   };
-  const oppById = useMemo(() => new Map(opportunities.map(o => [o.id, o])), [opportunities]);
 
   return (
     <main className="mx-auto max-w-[1600px] px-6 py-8">
@@ -45,14 +45,14 @@ export default function CalendarApp({ plan: initial, opportunities, segments, co
             {plan.sequences.reduce((n, s) => n + s.emails.length, 0)} proposed emails across {plan.sequences.length} sequences. Open an email to see why it was planned, then approve, edit or reject it.
           </p>
         </div>
-        <ExportButton plan={plan} opportunities={opportunities} segments={segments} />
+        <ExportButton plan={plan} opportunities={opportunities} insights={insights} segments={segments} />
       </div>
 
-      <Calendar plan={plan} segments={segments} selected={selected} onSelect={select} />
+      <Calendar plan={plan} segments={segments} selected={selected} onSelect={sel => select(sel)} />
 
       <CampaignDetail
-        sequence={seq} assumptions={plan.assumptions ?? []} onCloseAutoFocus={returnFocus} familyIndex={seq ? plan.sequences.indexOf(seq) : 0} emailId={selected?.emailId} context={context}
-        opportunity={seq ? oppById.get(seq.opportunityId) : undefined}
+        sequence={seq} assumptions={plan.assumptions ?? []} allSequences={plan.sequences} onCloseAutoFocus={returnFocus} familyIndex={seq ? plan.sequences.indexOf(seq) : 0} emailId={selected?.emailId} context={context}
+        evidence={evidence} insights={insights}
         segment={seq ? segments.find(s => s.id === seq.segmentId) : undefined}
         onClose={() => dispatch({ type: 'select', selection: undefined })}
         onPickEmail={id => seq && dispatch({ type: 'select', selection: { sequenceId: seq.id, emailId: id } })}

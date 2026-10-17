@@ -9,8 +9,8 @@ const email = (n: number, flags: string[] = []): EmailCampaign => ({
   status: 'proposed', editedByUser: false, guardrailFlags: flags,
 });
 const plan = (): CampaignPlan => ({
-  planStart: '2026-11-02', planEnd: '2027-01-30', generatedAt: 'x', source: 'cache', model: null, warnings: [],
-  sequences: [{ id: 'seq_a', opportunityId: 'opp_a', segmentId: 'seg_family', name: 'A', goal: 'g',
+  planStart: '2026-11-02', planEnd: '2027-01-30', generatedAt: 'x', source: 'cache', model: null, warnings: [], assumptions: [],
+  sequences: [{ id: 'seq_a', opportunityId: 'opp_a', segmentId: 'seg_family', name: 'A', goal: 'g', startDate: '2026-11-03', endDate: '2026-11-10', durationDays: 8, audienceIds: [], productLineIds: [],
     cadence: { emailsPerWeek: 1, spacingDays: 7 }, rationale: 'r', evidenceIds: [], suppressionNote: '',
     emails: [email(1), email(2, ['copy_sensitive_term:grief'])] }],
 });

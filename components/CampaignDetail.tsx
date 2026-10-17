@@ -1,24 +1,26 @@
 'use client';
 import { useState } from 'react';
 import { AlertTriangle, Check, Pencil, RotateCcw, ShieldCheck, X } from 'lucide-react';
-import type { ContextFile, EmailCampaign, EmailSequence, Opportunity, ReviewStatus, SegmentProfile } from '../lib/types';
+import type { ContextFile, EmailCampaign, EmailSequence, Evidence, Insight, ReviewStatus, SegmentProfile } from '../lib/types';
 import type { EmailEdit } from '../lib/planStore';
 import { Sheet, SheetContent, SheetDescription, SheetDragHandle, SheetTitle } from './ui/sheet';
 import { sequenceSpan, shortDate, spanSentence } from '../lib/sequenceSpan';
 import { Button } from './ui/button';
 import { Input, Label, Textarea } from './ui/field';
-import { FAMILY_SWATCH, STATUS_LABEL } from './Calendar';
+import { seqColor, STATUS_LABEL } from './Calendar';
 import { cn } from '../lib/utils';
+import { briefName, nameify } from '../lib/briefNames';
 
 interface Props {
-  sequence?: EmailSequence; emailId?: string; familyIndex?: number; assumptions: string[]; onCloseAutoFocus: (e: Event) => void;
-  opportunity?: Opportunity; segment?: SegmentProfile; context: ContextFile;
+  sequence?: EmailSequence; emailId?: string; familyIndex?: number; assumptions: string[]; allSequences: EmailSequence[]; onCloseAutoFocus: (e: Event) => void;
+  evidence: Record<string, Evidence>; insights: Insight[]; segment?: SegmentProfile; context: ContextFile;
   onClose: () => void; onPickEmail: (id: string) => void;
   onEdit: (emailId: string, patch: EmailEdit) => void;
   onStatus: (emailId: string, s: ReviewStatus) => void;
   onSequenceStatus: (s: ReviewStatus) => void;
 }
 
+const OFFER_LABEL: Record<string, string> = { content_story: 'Content story', early_access: 'Early access', promo_discount: 'Promo discount', new_trip_launch: 'New trip launch', bundle: 'Bundle' };
 const STATUS_STYLE: Record<ReviewStatus, string> = {
   proposed: 'bg-[#fff6dc] text-[#7a5a00]', approved: 'bg-[#e1f4ea] text-[#1b6b47]', rejected: 'bg-[#fbe7e6] text-[#9a3532]',
 };
@@ -27,21 +29,20 @@ function StatusBadge({ status }: { status: ReviewStatus }) {
 }
 const fmtDate = (d: string) => new Date(d + 'T00:00:00Z').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
-function EvidenceList({ ids, opportunity }: { ids: string[]; opportunity?: Opportunity }) {
+function EvidenceList({ ids, evidence }: { ids: string[]; evidence: Record<string, Evidence> }) {
+  const found = ids.map(id => evidence[id]).filter((e): e is Evidence => !!e);
+  if (!found.length) return null;
   return (
     <ul className="divide-y divide-border rounded-md border border-border">
-      {ids.map(id => {
-        const ev = opportunity?.evidence.find(e => e.id === id);
-        return (
-          <li key={id} className="flex items-start justify-between gap-3 px-3 py-2 text-[13px]">
-            <div className="min-w-0">
-              <div className="font-medium">{ev?.label ?? id}</div>
-              <div className="text-xs text-muted-foreground">{ev ? `${ev.kind} · ${ev.source.file} / ${ev.source.ref}` : 'Evidence record not found'}</div>
-            </div>
-            {ev && <div className="tabular shrink-0 font-semibold">{ev.value}{ev.unit ?? ''}</div>}
-          </li>
-        );
-      })}
+      {found.map(ev => (
+        <li key={ev.id} className="flex items-start justify-between gap-3 px-3 py-2 text-[13px]">
+          <div className="min-w-0">
+            <div className="font-medium">{ev.label}</div>
+            <div className="text-xs text-muted-foreground">{ev.kind} · {ev.source.file} / {ev.source.ref}</div>
+          </div>
+          <div className="tabular shrink-0 font-semibold">{ev.value}{ev.unit ?? ''}</div>
+        </li>
+      ))}
     </ul>
   );
 }
@@ -69,29 +70,73 @@ export default function CampaignDetail(p: Props) {
 }
 
 function Body(p: Props & { sequence: EmailSequence; email: EmailCampaign }) {
-  const { sequence: s, email, opportunity, segment, context } = p;
+  const { sequence: s, email, segment, context } = p;
+  const insight = p.insights.find(i => i.id === s.opportunityId);
   const [editing, setEditing] = useState(false);
   const flagged = email.guardrailFlags.length > 0;
   const edit = (patch: EmailEdit) => p.onEdit(email.id, patch);
 
+  const month = email.sendDate.slice(0, 7);
+  const monthName = new Date(month + '-01T00:00:00Z').toLocaleDateString('en-US', { month: 'long', timeZone: 'UTC' });
+  const segName = segment?.name ?? email.segmentId;
+  const inMonth = p.allSequences.flatMap(q => q.emails).filter(e => e.segmentId === email.segmentId && e.sendDate.startsWith(month)).map(e => e.sendDate).sort();
+  const gap = inMonth.length > 1 ? Math.round((Date.parse(inMonth[inMonth.length - 1]) - Date.parse(inMonth[0])) / 86_400_000 / (inMonth.length - 1)) : 0;
+  const freq = `${inMonth.length} email${inMonth.length === 1 ? '' : 's'} across all sequences to ${segName} in ${monthName}${gap > 0 ? `, about every ${gap} day${gap === 1 ? '' : 's'}` : ''}`;
+
   return (
     <>
-      <SheetDragHandle className="border-b border-border bg-muted/50 px-5 pb-4 pt-4 pr-12">
+      <SheetDragHandle className="border-b border-border bg-muted/50 px-5 pb-3 pt-4 pr-12">
         <div className="flex items-center gap-2 text-[13px] font-semibold">
-          <i aria-hidden className={cn('size-3 shrink-0 rounded-sm', FAMILY_SWATCH[(p.familyIndex ?? 0) % FAMILY_SWATCH.length])} />
-          <span className="min-w-0 break-words">{s.name}</span>
+          <i aria-hidden className="size-3 shrink-0 rounded-sm" style={{ backgroundColor: seqColor(p.familyIndex ?? 0) }} />
+          <SheetTitle className="min-w-0 break-words text-[13px] font-semibold">{s.name}</SheetTitle>
         </div>
-        <div className="mt-1 text-xs text-muted-foreground">
+        <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
           <span className="font-medium text-foreground">Email {email.step} of {s.emails.length}</span>
-          <span aria-hidden> · </span>{fmtDate(email.sendDate)}
-        </div>
-        <SheetTitle className="mt-3 text-lg font-semibold leading-snug tracking-tight">{email.subject}</SheetTitle>
-        <SheetDescription id="detail-desc" className="sr-only">Details and rationale for this email, with approve, edit and reject actions.</SheetDescription>
-        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <span aria-hidden>·</span><span>{fmtDate(email.sendDate)}</span>
           <StatusBadge status={email.status} />
           {email.editedByUser && <Tag>Edited</Tag>}
         </div>
-        <nav aria-label={`Emails in ${s.name}`} className="mt-3 max-h-[176px] overflow-y-auto rounded-md border border-border bg-surface py-1">
+        <SheetDescription id="detail-desc" className="sr-only">Review actions, audience, topic and rationale for this email.</SheetDescription>
+      </SheetDragHandle>
+
+      <div className="flex items-center gap-2 border-b border-border bg-surface px-5 py-3">
+        <Button variant="ok" disabled={flagged || email.status === 'approved'} onClick={() => p.onStatus(email.id, 'approved')}><Check /> Approve</Button>
+        <Button variant="outline" onClick={() => setEditing(e => !e)}><Pencil /> {editing ? 'Done' : 'Edit'}</Button>
+        <Button variant="destructive" disabled={email.status === 'rejected'} onClick={() => p.onStatus(email.id, 'rejected')}><X /> Reject</Button>
+        {email.status !== 'proposed' && <Button variant="ghost" className="ml-auto" onClick={() => p.onStatus(email.id, 'proposed')}><RotateCcw /> Reset</Button>}
+      </div>
+
+      <div className="flex-1 space-y-6 overflow-y-auto px-5 py-5">
+        {flagged && (
+          <div role="alert" className="flex gap-2 rounded-md border border-[#e0a100]/50 bg-[#fff6dc] p-3 text-[13px] text-[#6b4e00]">
+            <AlertTriangle className="mt-0.5 size-4 shrink-0" />
+            <div><strong>Approval blocked by a copy guardrail.</strong> Edit the copy to clear it.
+              <ul className="mt-1 list-disc pl-4">{email.guardrailFlags.map(f => <li key={f}><code>{f}</code></li>)}</ul></div>
+          </div>
+        )}
+
+        <section aria-labelledby="d-aud">
+          <h3 id="d-aud" className="mb-1 text-sm font-semibold">Audience and frequency</h3>
+          <p className="text-[13px] font-medium">{freq}</p>
+          <dl className="mt-1 divide-y divide-border">
+            <Row k="Segment">{segName}{segment && <span className="text-muted-foreground"> · {segment.eligible} email-eligible of {segment.size}</span>}</Row>
+            {s.audienceIds?.length > 0 && <Row k="Audiences"><span className="flex flex-wrap gap-1">{s.audienceIds.map(i => <Tag key={i}>{briefName(i)}</Tag>)}</span></Row>}
+          </dl>
+        </section>
+
+        <section aria-labelledby="d-topic">
+          <h3 id="d-topic" className="mb-1 text-sm font-semibold">Main topic</h3>
+          <dl className="divide-y divide-border">
+            <Row k="Angle">{insight?.title ?? s.goal}{insight && <span className="block text-xs text-muted-foreground">{insight.summary}</span>}</Row>
+            <Row k="Offer">{OFFER_LABEL[email.offerType] ?? email.offerType}</Row>
+            {!editing && <Row k="Creative">{nameify(email.creativeDirection)}</Row>}
+            {!editing && <Row k="CTA">{email.cta.label} <span className="text-muted-foreground">to {email.cta.target}</span></Row>}
+          </dl>
+        </section>
+
+        <section aria-label="Sequence emails">
+          <h3 className="mb-2 text-sm font-semibold">Emails in this sequence</h3>
+        <nav aria-label={`Emails in ${s.name}`} className="max-h-[220px] overflow-y-auto rounded-md border border-border bg-surface py-1">
           <ol>
             {s.emails.map(e => {
               const cur = e.id === email.id;
@@ -110,19 +155,11 @@ function Body(p: Props & { sequence: EmailSequence; email: EmailCampaign }) {
             })}
           </ol>
         </nav>
-      </SheetDragHandle>
 
-      <div className="flex-1 space-y-7 overflow-y-auto px-5 py-5">
-        {flagged && (
-          <div role="alert" className="flex gap-2 rounded-md border border-[#e0a100]/50 bg-[#fff6dc] p-3 text-[13px] text-[#6b4e00]">
-            <AlertTriangle className="mt-0.5 size-4 shrink-0" />
-            <div><strong>Approval blocked by a copy guardrail.</strong> Edit the copy to clear it.
-              <ul className="mt-1 list-disc pl-4">{email.guardrailFlags.map(f => <li key={f}><code>{f}</code></li>)}</ul></div>
-          </div>
-        )}
+        </section>
 
-        <section aria-labelledby="d-details">
-          <h3 id="d-details" className="mb-1 text-sm font-semibold">Details</h3>
+        <section aria-labelledby="d-copy">
+          <h3 id="d-copy" className="mb-1 text-sm font-semibold">Email copy and send time</h3>
           {editing ? (
             <div className="space-y-3 pt-2">
               <Label>Subject <span className={cn('font-normal', email.subject.length > 70 && 'text-bad')}>{email.subject.length}/70</span>
@@ -150,9 +187,6 @@ function Body(p: Props & { sequence: EmailSequence; email: EmailCampaign }) {
               <Row k="Subject">{email.subject}</Row>
               <Row k="Preheader">{email.preheader}</Row>
               <Row k="Send">{fmtDate(email.sendDate)}, {email.sendTimeLocal} recipient-local</Row>
-              <Row k="Segment">{segment?.name ?? email.segmentId}{segment && <span className="text-muted-foreground"> · {segment.eligible} eligible</span>}</Row>
-              <Row k="CTA">{email.cta.label} <span className="text-muted-foreground">→ {email.cta.target}</span></Row>
-              <Row k="Creative">{email.creativeDirection}</Row>
             </dl>
           )}
           {context.sendBlackouts.includes(email.sendDate) && <p className="mt-2 text-xs text-bad">This date is a send blackout.</p>}
@@ -161,28 +195,28 @@ function Body(p: Props & { sequence: EmailSequence; email: EmailCampaign }) {
         <section aria-labelledby="d-why">
           <h3 id="d-why" className="sr-only">Rationale</h3>
           <H tag="Judgment">Why this email</H>
-          <p className="mb-3 text-[13px] leading-relaxed">{email.rationale}</p>
+          <p className="mb-3 text-[13px] leading-relaxed">{nameify(email.rationale)}</p>
           <H tag="Sourced data">Evidence</H>
-          <EvidenceList ids={email.evidenceIds} opportunity={opportunity} />
+          <EvidenceList ids={email.evidenceIds} evidence={p.evidence} />
         </section>
 
         <section aria-labelledby="d-seq" className="rounded-lg bg-muted/60 p-4">
           <H tag="Judgment">Why this sequence</H>
           <p className="text-[13px] font-medium">{s.name}</p>
-          <p className="mt-0.5 text-[13px] text-muted-foreground">{s.goal}</p>
-          <p className="mt-2 text-[13px] leading-relaxed">{s.rationale}</p>
+          <p className="mt-0.5 text-[13px] text-muted-foreground">{nameify(s.goal)}</p>
+          <p className="mt-2 text-[13px] leading-relaxed">{nameify(s.rationale)}</p>
           <p className="mt-3 text-[13px] font-medium">{spanSentence(sequenceSpan(s))}</p>
           {(s.audienceIds?.length > 0 || s.productLineIds?.length > 0) && (
             <dl className="mt-2 divide-y divide-border">
-              {s.audienceIds?.length > 0 && <Row k="Audiences"><span className="flex flex-wrap gap-1">{s.audienceIds.map(i => <Tag key={i}>{i}</Tag>)}</span></Row>}
-              {s.productLineIds?.length > 0 && <Row k="Product lines"><span className="flex flex-wrap gap-1">{s.productLineIds.map(i => <Tag key={i}>{i}</Tag>)}</span></Row>}
+              {s.audienceIds?.length > 0 && <Row k="Audiences"><span className="flex flex-wrap gap-1">{s.audienceIds.map(i => <Tag key={i}>{briefName(i)}</Tag>)}</span></Row>}
+              {s.productLineIds?.length > 0 && <Row k="Product lines"><span className="flex flex-wrap gap-1">{s.productLineIds.map(i => <Tag key={i}>{briefName(i)}</Tag>)}</span></Row>}
             </dl>
           )}
-          <div className="mt-3"><EvidenceList ids={s.evidenceIds} opportunity={opportunity} /></div>
+          <div className="mt-3"><EvidenceList ids={s.evidenceIds} evidence={p.evidence} /></div>
           {p.assumptions.length > 0 && (
             <div className="mt-3">
               <H tag="Judgment">Plan assumptions</H>
-              <ul className="list-disc space-y-1 pl-4 text-[13px] leading-relaxed">{p.assumptions.map(a => <li key={a}>{a}</li>)}</ul>
+              <ul className="list-disc space-y-1 pl-4 text-[13px] leading-relaxed">{p.assumptions.map(a => <li key={a}>{nameify(a)}</li>)}</ul>
             </div>
           )}
           <p className="mt-3 flex gap-2 text-xs text-muted-foreground"><ShieldCheck className="mt-px size-4 shrink-0" />{s.suppressionNote}</p>
@@ -193,13 +227,6 @@ function Body(p: Props & { sequence: EmailSequence; email: EmailCampaign }) {
           </div>
         </section>
       </div>
-
-      <footer className="flex items-center gap-2 border-t border-border bg-surface px-5 py-3">
-        <Button variant="ok" disabled={flagged || email.status === 'approved'} onClick={() => p.onStatus(email.id, 'approved')}><Check /> Approve</Button>
-        <Button variant="outline" onClick={() => setEditing(e => !e)}><Pencil /> {editing ? 'Done' : 'Edit'}</Button>
-        <Button variant="destructive" disabled={email.status === 'rejected'} onClick={() => p.onStatus(email.id, 'rejected')}><X /> Reject</Button>
-        {email.status !== 'proposed' && <Button variant="ghost" className="ml-auto" onClick={() => p.onStatus(email.id, 'proposed')}><RotateCcw /> Reset</Button>}
-      </footer>
     </>
   );
 }

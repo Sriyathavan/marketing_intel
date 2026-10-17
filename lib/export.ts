@@ -1,4 +1,4 @@
-import type { CampaignPlan, EmailCampaign, EmailSequence, Opportunity, SegmentProfile } from './types';
+import type { CampaignPlan, EmailCampaign, EmailSequence, Insight, Opportunity, SegmentProfile } from './types';
 
 export const CSV_HEADER =
   'sequence,opportunity,step,send_date,day,send_time_local,segment,audience_size,subject,preheader,creative_direction,cta_label,cta_target,offer_type,rationale,evidence_ids,edited';
@@ -19,14 +19,14 @@ function approved(plan: CampaignPlan): { seq: EmailSequence; email: EmailCampaig
   return out;
 }
 
-export function toCsv(plan: CampaignPlan, opps: Opportunity[], segments: SegmentProfile[]): string {
-  const oppById = new Map(opps.map((o) => [o.id, o]));
+export function toCsv(plan: CampaignPlan, opps: Opportunity[], segments: SegmentProfile[], insights: Insight[] = []): string {
+  const oppById = new Map<string, { title: string }>([...insights, ...opps].map((o) => [o.id, o]));
   const segById = new Map(segments.map((s) => [s.id, s]));
   const rows = approved(plan).map(({ seq, email: e }) => {
-    const opp = oppById.get(e.opportunityId);
+    const opp = oppById.get(e.opportunityId) ?? oppById.get(seq.opportunityId);
     const seg = segById.get(e.segmentId);
     return [
-      seq.name, opp?.title ?? e.opportunityId, e.step, e.sendDate, dayOf(e.sendDate), e.sendTimeLocal,
+      seq.name, opp?.title ?? seq.name, e.step, e.sendDate, dayOf(e.sendDate), e.sendTimeLocal,
       seg?.name ?? e.segmentId, seg?.eligible ?? '', e.subject, e.preheader, e.creativeDirection,
       e.cta.label, e.cta.target, e.offerType, e.rationale, e.evidenceIds.join(';'), e.editedByUser ? 'yes' : 'no',
     ].map(cell).join(',');
@@ -34,7 +34,7 @@ export function toCsv(plan: CampaignPlan, opps: Opportunity[], segments: Segment
   return [CSV_HEADER, ...rows].join('\r\n') + '\r\n';
 }
 
-export function toMarkdown(plan: CampaignPlan, opps: Opportunity[], segments: SegmentProfile[]): string {
+export function toMarkdown(plan: CampaignPlan, opps: Opportunity[], segments: SegmentProfile[], insights: Insight[] = []): string {
   const items = approved(plan);
   const oppById = new Map(opps.map((o) => [o.id, o]));
   const segById = new Map(segments.map((s) => [s.id, s]));
@@ -45,7 +45,7 @@ export function toMarkdown(plan: CampaignPlan, opps: Opportunity[], segments: Se
   for (const seq of seqs) {
     const opp = oppById.get(seq.opportunityId);
     const seg = segById.get(seq.segmentId);
-    L.push(`## ${opp?.title ?? seq.name}`, '');
+    L.push(`## ${opp?.title ?? insights.find((i) => i.id === seq.opportunityId)?.title ?? seq.name}`, '');
     L.push(`Sequence: ${seq.name}`, `Goal: ${seq.goal}`);
     if (seg) L.push(`Segment: ${seg.name} (${seg.eligible} eligible)`);
     if (opp) {

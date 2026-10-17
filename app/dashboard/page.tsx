@@ -1,13 +1,9 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { loadCustomers, loadTrends } from '../../lib/data';
 import { buildDashboard, ENGAGEMENT_STATES } from '../../lib/dashboard';
 import { buildOpportunities } from '../../lib/opportunities';
 import { buttonVariants } from '../../components/ui/button';
 import { cn } from '../../lib/utils';
-import { getInsights } from '../../lib/getInsights';
-import Insights from '../../components/dashboard/Insights';
-import { SEGMENT_DEFS } from '../../lib/segments';
 import { Card, Section } from '../../components/dashboard/Section';
 import TrendChart from '../../components/dashboard/TrendChart';
 import BarList from '../../components/dashboard/BarList';
@@ -24,7 +20,6 @@ export const dynamic = 'force-dynamic';
 export const metadata = { title: 'Dashboard · Marketing Intelligence Engine' };
 
 export default async function Dashboard() {
-  const insights = await getInsights();
   const { trends, customers } = buildDashboard(loadTrends(), loadCustomers());
   const opps = buildOpportunities();
   const maxYoy = Math.max(...trends.ranking.map(r => r.yoyPct), 1);
@@ -39,15 +34,8 @@ export default async function Dashboard() {
             What is rising in search, who we can reach, and which opportunities score highest. The 90-day calendar is built from the ranked opportunities below.
           </p>
         </div>
-        <Link href="/" className={buttonVariants()}>View calendar <ArrowRight /></Link>
+        <Link href="/" className={buttonVariants()}>View calendar</Link>
       </div>
-
-      <Section title="Analyst findings" description="What the analyst read from the search trends and our customer data. Observed means taken straight from the data; interpreted means the analyst's inference."
-        source={insights ? `${insights.model} · ${insights.generatedAt.slice(0, 10)}` : undefined}>
-        <Insights insights={insights} segmentNames={Object.fromEntries(Object.entries(SEGMENT_DEFS).map(([k, v]) => [k, v.name]))}
-          trendNames={Object.fromEntries(trends.ranking.map(r => [r.id, r.term]))}
-          evidence={Object.fromEntries(opps.flatMap(o => o.evidence).map(e => [e.id, e]))} />
-      </Section>
 
       <Section title="Search trends" description="Interest over time for the fastest-rising keywords, index 0 to 100, US." source={trendsSource}>
         <div className="grid gap-4 lg:grid-cols-3">
@@ -134,7 +122,7 @@ export default async function Dashboard() {
 
       <Section title="Scored opportunities" description="Ranked by a weighted score. These five opportunities are the basis of the calendar."
         source="Scores computed from the data above"
-        action={<Link href="/" className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}>View calendar <ArrowRight /></Link>}>
+        action={<Link href="/" className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}>View calendar</Link>}>
         <div className="overflow-x-auto rounded-lg border border-border bg-surface">
           <table className="w-full min-w-[900px] text-left text-[13px]">
             <thead className="border-b border-border text-xs text-muted-foreground">

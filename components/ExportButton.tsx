@@ -2,15 +2,15 @@
 import { useState } from 'react';
 import * as Menu from '@radix-ui/react-dropdown-menu';
 import { ChevronDown, Download } from 'lucide-react';
-import type { CampaignPlan, Opportunity, SegmentProfile } from '../lib/types';
+import type { CampaignPlan, Insight, Opportunity, SegmentProfile } from '../lib/types';
 import { approvedCount } from '../lib/planStore';
 import { Button } from './ui/button';
 
-interface Props { plan?: CampaignPlan; opportunities: Opportunity[]; segments: SegmentProfile[] }
+interface Props { plan?: CampaignPlan; opportunities: Opportunity[]; insights?: Insight[]; segments: SegmentProfile[] }
 
 async function render(kind: 'csv' | 'md', p: Props): Promise<string> {
   const ex = await import('../lib/export');
-  return kind === 'csv' ? ex.toCsv(p.plan!, p.opportunities, p.segments) : ex.toMarkdown(p.plan!, p.opportunities, p.segments);
+  return kind === 'csv' ? ex.toCsv(p.plan!, p.opportunities, p.segments, p.insights) : ex.toMarkdown(p.plan!, p.opportunities, p.segments, p.insights);
 }
 
 export default function ExportButton(props: Props) {

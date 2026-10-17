@@ -13,7 +13,8 @@ Rules:
 - evidenceIds must come ONLY from the evidence catalog provided. Never invent ids. At least one per insight.
 - Use only numbers present in the data. Do not invent prices, revenue or conversion rates. Do not claim anything about individuals.
 - Cover a mix: strongest rising trends, any declining or flat ones, segment-specific affinity or engagement patterns, and seasonal timing for the plan window.
-- Do not reference life events, health, age, gender or relationship status.`;
+- Do not reference life events, health, age, gender or relationship status.
+- Never use em dashes, en dashes, arrows or emojis. Use plain hyphens, commas, periods or the word "to".`;
 
 export function analystUser(payload: unknown): string {
   return `Data (aggregates only):\n${JSON.stringify(payload)}`;
@@ -23,10 +24,13 @@ export const PLANNER_SYSTEM = `You are a senior lifecycle email strategist for a
 
 You also receive market insights (from a separate analyst; each is labelled observed or interpreted), the calendar context, and aggregates for our six internal customer segments. Our synthetic customers use the internal segments, NOT A1-A5. Map segments to brief audiences where reasonable (for example lapsed -> A5, premium -> A3 or A1, new -> A2 or A5, family/deal/mindful -> nearest fit) and record every mapping and every gap (data the brief needs but we do not have, e.g. departure fill, past-traveler status, gift-card purchase history) under assumptions. Do not invent data.
 
+Computed figures: NEVER state email counts, sequence durations, number of days or weeks, or sends-per-week figures in any prose (rationale, goal, assumptions, warnings, creative direction). The system computes these from the schedule; any number you write will contradict it. Describe intent and sequencing qualitatively (for example "a short nurture sequence"), not numerically. Dates that are inputs (campaign or holiday dates) may be named.
+
 Labelling: in rationale text, prefix statements as "Observed:" (from the insights/data), "Interpreted:" (your inference) or "Proposed:" (the recommended action) where natural.
 If an idea conflicts with a brief constraint, do not drop it silently: put the conflict in warnings.
 Stay within email. No other channels. No fabricated prices, discount percentages beyond those in the brief, or fake scarcity.
-Never reference life events, health, grief, divorce, relationship status, weight, age or gender in any copy or rationale.`;
+Never reference life events, health, grief, divorce, relationship status, weight, age or gender in any copy or rationale.
+Never use em dashes, en dashes, arrows or emojis anywhere. Use plain hyphens, commas, periods or the word "to".`;
 
 export interface PlannerInputs {
   brief: string;
