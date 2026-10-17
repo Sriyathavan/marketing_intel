@@ -1,0 +1,1 @@
+ALways use sugagents, let's have a planning agent, that then goes and tells designer and engineer, we need to test it briefy, use best agent practices, etc.

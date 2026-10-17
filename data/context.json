@@ -1,0 +1,31 @@
+{
+  "planStart": "2026-11-02",
+  "planEnd": "2027-01-30",
+  "hemisphere": "north",
+  "seasons": [
+    { "name": "autumn", "start": "2026-09-23", "end": "2026-12-20" },
+    { "name": "winter", "start": "2026-12-21", "end": "2027-03-19" }
+  ],
+  "holidays": [
+    { "id": "hol_veterans_day", "name": "Veterans Day", "date": "2026-11-11", "kind": "public", "demandBoost": 1.1 },
+    { "id": "hol_thanksgiving", "name": "Thanksgiving", "date": "2026-11-26", "kind": "public", "demandBoost": 1.2 },
+    { "id": "hol_black_friday", "name": "Black Friday", "date": "2026-11-27", "kind": "shopping", "demandBoost": 1.8 },
+    { "id": "hol_cyber_monday", "name": "Cyber Monday", "date": "2026-11-30", "kind": "shopping", "demandBoost": 1.6 },
+    { "id": "hol_giving_tuesday", "name": "Giving Tuesday", "date": "2026-12-01", "kind": "cultural", "demandBoost": 1.1 },
+    { "id": "hol_hanukkah", "name": "Hanukkah begins", "date": "2026-12-04", "kind": "cultural", "demandBoost": 1.2 },
+    { "id": "hol_christmas", "name": "Christmas", "date": "2026-12-25", "kind": "public", "demandBoost": 1.3 },
+    { "id": "hol_nye", "name": "New Year's Eve", "date": "2026-12-31", "kind": "cultural", "demandBoost": 1.2 },
+    { "id": "hol_new_years", "name": "New Year's Day", "date": "2027-01-01", "kind": "public", "demandBoost": 1.1 },
+    { "id": "hol_resolution_week", "name": "New Year resolution week", "date": "2027-01-04", "kind": "cultural", "demandBoost": 1.5 },
+    { "id": "hol_mlk_weekend", "name": "MLK weekend", "date": "2027-01-16", "kind": "public", "demandBoost": 1.3 }
+  ],
+  "launches": [
+    { "id": "lnch_patagonia_trek", "name": "Patagonia W Trek (limited departure)", "date": "2026-11-16", "interest": "hiking", "inventoryConstrained": true },
+    { "id": "lnch_alps_ski_early", "name": "Alps Ski Week early access", "date": "2026-11-20", "interest": "snow_sports", "inventoryConstrained": false },
+    { "id": "lnch_yellowstone_winter", "name": "Yellowstone Winter Family Week", "date": "2026-12-07", "interest": "family_adventure", "inventoryConstrained": false },
+    { "id": "lnch_costa_rica_lodges", "name": "Costa Rica Eco Lodge Circuit", "date": "2027-01-11", "interest": "eco_lodges", "inventoryConstrained": false },
+    { "id": "lnch_baja_kayak", "name": "Baja Sea Kayak Expedition", "date": "2027-01-20", "interest": "water_sports", "inventoryConstrained": false }
+  ],
+  "paydays": "Paydays fall on the 1st and 15th of each month; expect higher booking intent in the days after.",
+  "sendBlackouts": ["2026-12-25", "2027-01-01"]
+}

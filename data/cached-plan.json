@@ -1,0 +1,770 @@
+{
+  "planStart": "2026-11-02",
+  "planEnd": "2027-01-30",
+  "generatedAt": "2026-10-17T17:51:55.046Z",
+  "source": "claude",
+  "model": "claude-sonnet-5-5",
+  "warnings": [],
+  "sequences": [
+    {
+      "id": "seq_opp_wildlife_safari__seg_premium",
+      "opportunityId": "opp_wildlife_safari__seg_premium",
+      "segmentId": "seg_premium",
+      "name": "Premium Safari: Small-Group First Look",
+      "goal": "Build anticipation for small-group safari and convert Premium Adventurers via priority early access",
+      "cadence": {
+        "emailsPerWeek": 0.4,
+        "spacingDays": 14
+      },
+      "rationale": "Safari search is up 37% YoY with 'small group safari' breaking out, and 61.5% of Premium members show affinity. Sends use Tuesdays at 07:00 and are offset from the snow sequence so the segment's 2/week cap is never exceeded.",
+      "evidenceIds": [
+        "ev_trend_tr_wildlife_safari_yoy",
+        "ev_trend_tr_wildlife_safari_rising",
+        "ev_segment_seg_premium_wildlife_safari_affinity",
+        "ev_engagement_seg_premium_clickrate",
+        "ev_seasonality_wildlife_safari_idx"
+      ],
+      "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_opp_wildlife_safari__seg_premium_1",
+          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
+          "opportunityId": "opp_wildlife_safari__seg_premium",
+          "segmentId": "seg_premium",
+          "step": 1,
+          "sendDate": "2026-11-03",
+          "sendTimeLocal": "07:00",
+          "subject": "Why small-group safaris are having a moment",
+          "preheader": "Fewer vehicles, closer encounters, unhurried mornings in the bush.",
+          "creativeDirection": "Full-bleed golden-hour hero of a single open-sided vehicle facing an elephant herd. Short editorial layout with three pull-quotes on what small-group means. One quiet CTA button.",
+          "cta": {
+            "label": "Read the story",
+            "target": "/stories/small-group-safari"
+          },
+          "offerType": "content_story",
+          "rationale": "'Small group safari' is a breakout query and 61.5% of the segment shows affinity; lead with story before the ask.",
+          "evidenceIds": [
+            "ev_trend_tr_wildlife_safari_rising",
+            "ev_segment_seg_premium_wildlife_safari_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_wildlife_safari__seg_premium_2",
+          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
+          "opportunityId": "opp_wildlife_safari__seg_premium",
+          "segmentId": "seg_premium",
+          "step": 2,
+          "sendDate": "2026-11-24",
+          "sendTimeLocal": "07:00",
+          "subject": "Your first look at small-group safari departures",
+          "preheader": "Premium members see new safari dates before the wider list.",
+          "creativeDirection": "Dark, elegant layout with a lodge-at-dusk image and a simple three-row departure teaser module. A 'Premium early access' badge in the header.",
+          "cta": {
+            "label": "Get early access",
+            "target": "/safari/early-access"
+          },
+          "offerType": "early_access",
+          "rationale": "Early access fits the segment's aspirational tone and above-average 8.9% click rate; pre-holiday timing catches planning intent.",
+          "evidenceIds": [
+            "ev_trend_tr_wildlife_safari_yoy",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_wildlife_safari__seg_premium_3",
+          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
+          "opportunityId": "opp_wildlife_safari__seg_premium",
+          "segmentId": "seg_premium",
+          "step": 3,
+          "sendDate": "2026-12-08",
+          "sendTimeLocal": "07:00",
+          "subject": "A dawn game drive, hour by hour",
+          "preheader": "What a morning in the savanna really feels like.",
+          "creativeDirection": "Timeline-style story with five sunrise-to-brunch photos and a short guide quote. Soft CTA at the bottom plus a link to the priority list.",
+          "cta": {
+            "label": "See the experience",
+            "target": "/stories/dawn-game-drive"
+          },
+          "offerType": "content_story",
+          "rationale": "Seasonality index of 0.93 means steady, not peak, demand; story content keeps interest warm without pressure.",
+          "evidenceIds": [
+            "ev_seasonality_wildlife_safari_idx",
+            "ev_segment_seg_premium_wildlife_safari_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_wildlife_safari__seg_premium_4",
+          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
+          "opportunityId": "opp_wildlife_safari__seg_premium",
+          "segmentId": "seg_premium",
+          "step": 4,
+          "sendDate": "2027-01-05",
+          "sendTimeLocal": "07:00",
+          "subject": "Start the year with a safari on the calendar",
+          "preheader": "Priority access to small-group safari departures for Premium members.",
+          "creativeDirection": "Clean new-year hero: sunrise over the plains with a calendar overlay. Single hero offer block, minimal copy.",
+          "cta": {
+            "label": "Claim priority access",
+            "target": "/safari/early-access"
+          },
+          "offerType": "early_access",
+          "rationale": "Resolution week lifts planning intent; pair it with the early-access offer.",
+          "evidenceIds": [
+            "ev_trend_tr_wildlife_safari_yoy",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_wildlife_safari__seg_premium_5",
+          "sequenceId": "seq_opp_wildlife_safari__seg_premium",
+          "opportunityId": "opp_wildlife_safari__seg_premium",
+          "segmentId": "seg_premium",
+          "step": 5,
+          "sendDate": "2027-01-19",
+          "sendTimeLocal": "07:00",
+          "subject": "Small-group safari: your priority window",
+          "preheader": "Secure your place before availability opens to everyone.",
+          "creativeDirection": "Split layout: left a guest-style testimonial placeholder, right a close-up of a leopard in a tree. Clear single CTA.",
+          "cta": {
+            "label": "Reserve a place",
+            "target": "/safari/early-access"
+          },
+          "offerType": "early_access",
+          "rationale": "Final reminder to non-converters, timed after MLK weekend and well inside the cap.",
+          "evidenceIds": [
+            "ev_segment_seg_premium_wildlife_safari_affinity",
+            "ev_engagement_seg_premium_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        }
+      ]
+    },
+    {
+      "id": "seq_opp_snow_sports__seg_premium",
+      "opportunityId": "opp_snow_sports__seg_premium",
+      "segmentId": "seg_premium",
+      "name": "Premium Snow: Alps Early Access and Lodge Packages",
+      "goal": "Convert winter-intent Premium Adventurers through Alps Ski Week early access and snowshoe lodge packages",
+      "cadence": {
+        "emailsPerWeek": 0.4,
+        "spacingDays": 14
+      },
+      "rationale": "The snow seasonality index is 1.55, the highest in the plan, and 'snowshoe lodge package' is a breakout query. The Alps Ski Week early access launch on 2026-11-20 anchors the sequence. Sends are offset from the safari sequence to respect the 2/week cap.",
+      "evidenceIds": [
+        "ev_trend_tr_snowshoe_tours_yoy",
+        "ev_trend_tr_snowshoe_tours_rising",
+        "ev_segment_seg_premium_snow_sports_affinity",
+        "ev_seasonality_snow_sports_idx",
+        "ev_calendar_lnch_alps_ski_early_launch"
+      ],
+      "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_opp_snow_sports__seg_premium_1",
+          "sequenceId": "seq_opp_snow_sports__seg_premium",
+          "opportunityId": "opp_snow_sports__seg_premium",
+          "segmentId": "seg_premium",
+          "step": 1,
+          "sendDate": "2026-11-10",
+          "sendTimeLocal": "07:00",
+          "subject": "The snowshoe lodge escape, explained",
+          "preheader": "Quiet trails by day, a fireside lodge by night.",
+          "creativeDirection": "Hero of a stone lodge glowing at dusk with snowshoers on a ridge. Three-step 'how a lodge package works' graphic.",
+          "cta": {
+            "label": "Explore lodge escapes",
+            "target": "/winter/snowshoe-lodge"
+          },
+          "offerType": "content_story",
+          "rationale": "'Snowshoe lodge package' is a breakout query and the seasonality index is high.",
+          "evidenceIds": [
+            "ev_trend_tr_snowshoe_tours_rising",
+            "ev_seasonality_snow_sports_idx"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_snow_sports__seg_premium_2",
+          "sequenceId": "seq_opp_snow_sports__seg_premium",
+          "opportunityId": "opp_snow_sports__seg_premium",
+          "segmentId": "seg_premium",
+          "step": 2,
+          "sendDate": "2026-11-17",
+          "sendTimeLocal": "07:00",
+          "subject": "Alps Ski Week early access opens Friday",
+          "preheader": "Premium members get in first. Here is what to expect.",
+          "creativeDirection": "Panoramic Alpine ridge at sunrise with a countdown block to 20 Nov. Concise bullet list of the week's highlights, one bold CTA.",
+          "cta": {
+            "label": "Join the early access list",
+            "target": "/winter/alps-ski-week/early-access"
+          },
+          "offerType": "early_access",
+          "rationale": "Heads-up three days ahead of the 2026-11-20 launch; 53.8% segment affinity for snow sports.",
+          "evidenceIds": [
+            "ev_calendar_lnch_alps_ski_early_launch",
+            "ev_segment_seg_premium_snow_sports_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_snow_sports__seg_premium_3",
+          "sequenceId": "seq_opp_snow_sports__seg_premium",
+          "opportunityId": "opp_snow_sports__seg_premium",
+          "segmentId": "seg_premium",
+          "step": 3,
+          "sendDate": "2026-12-01",
+          "sendTimeLocal": "07:00",
+          "subject": "Ski or snowshoe? Build your winter week",
+          "preheader": "Pair mountain days with a lodge stay in one package.",
+          "creativeDirection": "Side-by-side card layout comparing ski and snowshoe days, each with an image and a 'pair with lodge' tag.",
+          "cta": {
+            "label": "Build a winter package",
+            "target": "/winter/packages"
+          },
+          "offerType": "bundle",
+          "rationale": "Peak seasonality (1.55) and the breakout lodge-package query support a bundle framing. No prices are cited.",
+          "evidenceIds": [
+            "ev_trend_tr_snowshoe_tours_rising",
+            "ev_seasonality_snow_sports_idx"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_snow_sports__seg_premium_4",
+          "sequenceId": "seq_opp_snow_sports__seg_premium",
+          "opportunityId": "opp_snow_sports__seg_premium",
+          "segmentId": "seg_premium",
+          "step": 4,
+          "sendDate": "2026-12-15",
+          "sendTimeLocal": "07:00",
+          "subject": "Alps Ski Week: early access is still open",
+          "preheader": "Plan the trip before the holiday rush settles in.",
+          "creativeDirection": "Bright bluebird-day powder shot, a short reminder module and a 'Premium early access' badge.",
+          "cta": {
+            "label": "Secure early access",
+            "target": "/winter/alps-ski-week/early-access"
+          },
+          "offerType": "early_access",
+          "rationale": "Reminder for people who did not act at launch; snow affinity and the launch anchor justify it.",
+          "evidenceIds": [
+            "ev_calendar_lnch_alps_ski_early_launch",
+            "ev_segment_seg_premium_snow_sports_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_snow_sports__seg_premium_5",
+          "sequenceId": "seq_opp_snow_sports__seg_premium",
+          "opportunityId": "opp_snow_sports__seg_premium",
+          "segmentId": "seg_premium",
+          "step": 5,
+          "sendDate": "2027-01-12",
+          "sendTimeLocal": "07:00",
+          "subject": "Mid-winter, mountain-ready: your next snow trip",
+          "preheader": "Snowshoe lodge stays and Alps weeks, curated for you.",
+          "creativeDirection": "Editorial grid of three winter trips with moody dusk photography. Minimal text and one CTA.",
+          "cta": {
+            "label": "See winter trips",
+            "target": "/winter"
+          },
+          "offerType": "content_story",
+          "rationale": "Winter demand stays elevated into January (1.55 index); a softer story email closes the sequence.",
+          "evidenceIds": [
+            "ev_seasonality_snow_sports_idx",
+            "ev_trend_tr_snowshoe_tours_yoy"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        }
+      ]
+    },
+    {
+      "id": "seq_opp_cycling__seg_mindful",
+      "opportunityId": "opp_cycling__seg_mindful",
+      "segmentId": "seg_mindful",
+      "name": "Mindful Cycling: Bikepacking Know-How",
+      "goal": "Educate Mindful Explorers on bikepacking and gravel tours to build consideration ahead of spring",
+      "cadence": {
+        "emailsPerWeek": 0.35,
+        "spacingDays": 14
+      },
+      "rationale": "Bikepacking search is up 54% YoY and 65.4% of the segment shows cycling affinity. Seasonality is low at 0.48, so educational content stories fit better than a hard sell. Sends are Mondays at 08:00.",
+      "evidenceIds": [
+        "ev_trend_tr_bikepacking_yoy",
+        "ev_trend_tr_bikepacking_rising",
+        "ev_segment_seg_mindful_cycling_affinity",
+        "ev_engagement_seg_mindful_clickrate",
+        "ev_seasonality_cycling_idx"
+      ],
+      "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_opp_cycling__seg_mindful_1",
+          "sequenceId": "seq_opp_cycling__seg_mindful",
+          "opportunityId": "opp_cycling__seg_mindful",
+          "segmentId": "seg_mindful",
+          "step": 1,
+          "sendDate": "2026-11-09",
+          "sendTimeLocal": "08:00",
+          "subject": "Bikepacking 101: what to pack and why",
+          "preheader": "A simple checklist for your first multi-day ride.",
+          "creativeDirection": "Flat-lay of a bikepacking kit with numbered callouts. Checklist layout, plain and practical.",
+          "cta": {
+            "label": "Get the checklist",
+            "target": "/guides/bikepacking-101"
+          },
+          "offerType": "content_story",
+          "rationale": "Bikepacking interest is up 54% and the segment is educational in tone.",
+          "evidenceIds": [
+            "ev_trend_tr_bikepacking_yoy",
+            "ev_segment_seg_mindful_cycling_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_cycling__seg_mindful_2",
+          "sequenceId": "seq_opp_cycling__seg_mindful",
+          "opportunityId": "opp_cycling__seg_mindful",
+          "segmentId": "seg_mindful",
+          "step": 2,
+          "sendDate": "2026-11-30",
+          "sendTimeLocal": "08:00",
+          "subject": "How to choose a gravel bike tour",
+          "preheader": "Terrain, daily distance and support: what to compare.",
+          "creativeDirection": "Comparison table graphic with three tour styles, each paired with a terrain photo. Calm, uncluttered, no promo banners.",
+          "cta": {
+            "label": "Compare tour styles",
+            "target": "/guides/gravel-bike-tours"
+          },
+          "offerType": "content_story",
+          "rationale": "'Gravel bike tour' is a breakout query. Sending on Cyber Monday with practical value stands out from promo noise.",
+          "evidenceIds": [
+            "ev_trend_tr_bikepacking_rising",
+            "ev_engagement_seg_mindful_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_cycling__seg_mindful_3",
+          "sequenceId": "seq_opp_cycling__seg_mindful",
+          "opportunityId": "opp_cycling__seg_mindful",
+          "segmentId": "seg_mindful",
+          "step": 3,
+          "sendDate": "2026-12-14",
+          "sendTimeLocal": "08:00",
+          "subject": "Plan your spring ride from the couch",
+          "preheader": "Winter is route-planning season. Here is how to start.",
+          "creativeDirection": "Cozy desk scene with a map and a bike in the background. Four-step planning guide with small icons.",
+          "cta": {
+            "label": "Start planning",
+            "target": "/guides/plan-a-cycling-trip"
+          },
+          "offerType": "content_story",
+          "rationale": "Seasonality is low at 0.48, so frame winter as planning time rather than riding time.",
+          "evidenceIds": [
+            "ev_seasonality_cycling_idx",
+            "ev_segment_seg_mindful_cycling_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_cycling__seg_mindful_4",
+          "sequenceId": "seq_opp_cycling__seg_mindful",
+          "opportunityId": "opp_cycling__seg_mindful",
+          "segmentId": "seg_mindful",
+          "step": 4,
+          "sendDate": "2027-01-04",
+          "sendTimeLocal": "08:00",
+          "subject": "Map your 2027 riding calendar",
+          "preheader": "Three trip formats to help you pick the right one.",
+          "creativeDirection": "Clean calendar graphic with ride-season bands and three trip cards beneath. Bright new-year palette.",
+          "cta": {
+            "label": "See trip formats",
+            "target": "/guides/cycling-trip-formats"
+          },
+          "offerType": "content_story",
+          "rationale": "Resolution week brings a planning mindset; the bikepacking trend supports the topic.",
+          "evidenceIds": [
+            "ev_trend_tr_bikepacking_yoy",
+            "ev_engagement_seg_mindful_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_cycling__seg_mindful_5",
+          "sequenceId": "seq_opp_cycling__seg_mindful",
+          "opportunityId": "opp_cycling__seg_mindful",
+          "segmentId": "seg_mindful",
+          "step": 5,
+          "sendDate": "2027-01-25",
+          "sendTimeLocal": "08:00",
+          "subject": "Gravel or road? Pick the tour that fits",
+          "preheader": "A plain-language guide to terrain, pace and logistics.",
+          "creativeDirection": "Split-screen photo, gravel track on one side and road climb on the other, with a short pros/cons list.",
+          "cta": {
+            "label": "Read the guide",
+            "target": "/guides/gravel-vs-road"
+          },
+          "offerType": "content_story",
+          "rationale": "'Gravel bike tour' is breaking out, so a decision-aid closes the sequence.",
+          "evidenceIds": [
+            "ev_trend_tr_bikepacking_rising",
+            "ev_segment_seg_mindful_cycling_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        }
+      ]
+    },
+    {
+      "id": "seq_opp_camping__seg_family",
+      "opportunityId": "opp_camping__seg_family",
+      "segmentId": "seg_family",
+      "name": "Family Camping: Cozy Winter Bundles",
+      "goal": "Introduce winter and heated-tent camping and drive interest in camping bundles for Family Getaways",
+      "cadence": {
+        "emailsPerWeek": 0.35,
+        "spacingDays": 14
+      },
+      "rationale": "Winter camping search is up 26.5% YoY, 'heated tent camping' is breaking out, and 58.1% of the segment shows camping affinity. Sends use the segment's Sunday 19:00 slot in a playful tone, with no more than one email per week.",
+      "evidenceIds": [
+        "ev_trend_tr_winter_camping_yoy",
+        "ev_trend_tr_winter_camping_rising",
+        "ev_segment_seg_family_camping_affinity",
+        "ev_engagement_seg_family_clickrate",
+        "ev_seasonality_camping_idx"
+      ],
+      "suppressionNote": "3 of 40 segment members (8%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_opp_camping__seg_family_1",
+          "sequenceId": "seq_opp_camping__seg_family",
+          "opportunityId": "opp_camping__seg_family",
+          "segmentId": "seg_family",
+          "step": 1,
+          "sendDate": "2026-11-08",
+          "sendTimeLocal": "19:00",
+          "subject": "Yes, you can camp in winter (and it's cozy)",
+          "preheader": "Heated tents, hot cocoa and starry skies. Here's how it works.",
+          "creativeDirection": "Illustrated, playful header of a glowing tent in the snow with string lights. Three quick 'myth vs reality' tiles.",
+          "cta": {
+            "label": "Meet winter camping",
+            "target": "/stories/winter-camping-basics"
+          },
+          "offerType": "content_story",
+          "rationale": "'Heated tent camping' is breaking out; a fun myth-busting intro matches the playful tone.",
+          "evidenceIds": [
+            "ev_trend_tr_winter_camping_rising",
+            "ev_segment_seg_family_camping_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_camping__seg_family_2",
+          "sequenceId": "seq_opp_camping__seg_family",
+          "opportunityId": "opp_camping__seg_family",
+          "segmentId": "seg_family",
+          "step": 2,
+          "sendDate": "2026-11-29",
+          "sendTimeLocal": "19:00",
+          "subject": "The camp-out bundle, built for the whole crew",
+          "preheader": "Trip plus gear picks in one easy package. Cyber Monday is tomorrow.",
+          "creativeDirection": "Bright flat-lay of tent, lanterns, mugs and a trip card, with a 'bundle' ribbon. Modular grid, big tappable tiles.",
+          "cta": {
+            "label": "Explore camping bundles",
+            "target": "/camping/bundles"
+          },
+          "offerType": "bundle",
+          "rationale": "Black Friday weekend (1.8x demand boost) is a natural slot for a bundle; no discount percentages are claimed.",
+          "evidenceIds": [
+            "ev_trend_tr_winter_camping_yoy",
+            "ev_seasonality_camping_idx"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_camping__seg_family_3",
+          "sequenceId": "seq_opp_camping__seg_family",
+          "opportunityId": "opp_camping__seg_family",
+          "segmentId": "seg_family",
+          "step": 3,
+          "sendDate": "2026-12-13",
+          "sendTimeLocal": "19:00",
+          "subject": "Cozy campsite ideas for holiday break",
+          "preheader": "Heated-tent getaways your crew will actually want to join.",
+          "creativeDirection": "Warm lantern-lit tent interior with a checklist overlay. A 'pick your campsite vibe' card carousel.",
+          "cta": {
+            "label": "Pick a getaway",
+            "target": "/camping/winter-getaways"
+          },
+          "offerType": "bundle",
+          "rationale": "Plan ahead for the school-holiday window with packaged trips; camping seasonality is 1.09.",
+          "evidenceIds": [
+            "ev_seasonality_camping_idx",
+            "ev_segment_seg_family_camping_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_camping__seg_family_4",
+          "sequenceId": "seq_opp_camping__seg_family",
+          "opportunityId": "opp_camping__seg_family",
+          "segmentId": "seg_family",
+          "step": 4,
+          "sendDate": "2027-01-10",
+          "sendTimeLocal": "19:00",
+          "subject": "New year, new campfire stories",
+          "preheader": "Easy winter camping ideas for the months ahead.",
+          "creativeDirection": "Playful hand-drawn campfire illustration with a 'first-timer tips' list. Snappy, scannable.",
+          "cta": {
+            "label": "Get first-timer tips",
+            "target": "/guides/winter-camping-tips"
+          },
+          "offerType": "content_story",
+          "rationale": "A lighter story email after the holidays keeps interest warm. Winter camping search is up 26.5%.",
+          "evidenceIds": [
+            "ev_trend_tr_winter_camping_yoy",
+            "ev_engagement_seg_family_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_camping__seg_family_5",
+          "sequenceId": "seq_opp_camping__seg_family",
+          "opportunityId": "opp_camping__seg_family",
+          "segmentId": "seg_family",
+          "step": 5,
+          "sendDate": "2027-01-24",
+          "sendTimeLocal": "19:00",
+          "subject": "Pack it, pitch it, love it: camping bundles",
+          "preheader": "Choose a trip and gear bundle for your next outdoor weekend.",
+          "creativeDirection": "Bold three-tile bundle comparison with cheerful illustrations and a simple 'what's included' list. One main CTA.",
+          "cta": {
+            "label": "Choose a bundle",
+            "target": "/camping/bundles"
+          },
+          "offerType": "bundle",
+          "rationale": "Closes the sequence with the primary bundle offer; 58.1% segment affinity.",
+          "evidenceIds": [
+            "ev_segment_seg_family_camping_affinity",
+            "ev_trend_tr_winter_camping_rising"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        }
+      ]
+    },
+    {
+      "id": "seq_opp_cycling__seg_deal",
+      "opportunityId": "opp_cycling__seg_deal",
+      "segmentId": "seg_deal",
+      "name": "Deal Seekers Cycling: Value Offers",
+      "goal": "Convert Deal Seekers on cycling tours with clear, no-fluff offers timed to Black Friday and Cyber Monday",
+      "cadence": {
+        "emailsPerWeek": 0.5,
+        "spacingDays": 14
+      },
+      "rationale": "Bikepacking interest is up 54% YoY and 53.8% of Deal Seekers show cycling affinity. The segment responds to discounts (7.9% click rate) and tolerates up to 3 emails per week, but low seasonality (0.48) argues for restraint. No discount percentages are stated because none were provided.",
+      "evidenceIds": [
+        "ev_trend_tr_bikepacking_yoy",
+        "ev_trend_tr_bikepacking_rising",
+        "ev_segment_seg_deal_cycling_affinity",
+        "ev_engagement_seg_deal_clickrate",
+        "ev_seasonality_cycling_idx"
+      ],
+      "suppressionNote": "3 of 30 segment members (10%) excluded for sensitive life events; used for suppression only",
+      "emails": [
+        {
+          "id": "em_seq_opp_cycling__seg_deal_1",
+          "sequenceId": "seq_opp_cycling__seg_deal",
+          "opportunityId": "opp_cycling__seg_deal",
+          "segmentId": "seg_deal",
+          "step": 1,
+          "sendDate": "2026-11-05",
+          "sendTimeLocal": "12:00",
+          "subject": "Cycling tours: what's coming this month",
+          "preheader": "Gravel and bikepacking trips, plus a heads-up on holiday offers.",
+          "creativeDirection": "Simple, text-forward layout with a single gravel-road hero and three trip links. Plain headline, no gimmicks.",
+          "cta": {
+            "label": "See cycling tours",
+            "target": "/cycling/tours"
+          },
+          "offerType": "content_story",
+          "rationale": "A short pre-sale heads-up sets expectations. 'Gravel bike tour' is a breakout query.",
+          "evidenceIds": [
+            "ev_trend_tr_bikepacking_rising",
+            "ev_segment_seg_deal_cycling_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_cycling__seg_deal_2",
+          "sequenceId": "seq_opp_cycling__seg_deal",
+          "opportunityId": "opp_cycling__seg_deal",
+          "segmentId": "seg_deal",
+          "step": 2,
+          "sendDate": "2026-11-27",
+          "sendTimeLocal": "12:00",
+          "subject": "Black Friday: cycling tour offers are live",
+          "preheader": "Gravel and bikepacking trips. Terms inside, no fine-print games.",
+          "creativeDirection": "High-contrast banner with an 'Offer live' label, then a clean three-trip list with 'what's included' lines. Offer terms are set by merchandising and shown plainly.",
+          "cta": {
+            "label": "View the offers",
+            "target": "/cycling/black-friday"
+          },
+          "offerType": "promo_discount",
+          "rationale": "Black Friday has the top demand boost (1.8x) and the segment is deal-driven; the offer's specific terms are left to merchandising.",
+          "evidenceIds": [
+            "ev_engagement_seg_deal_clickrate",
+            "ev_trend_tr_bikepacking_yoy"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_cycling__seg_deal_3",
+          "sequenceId": "seq_opp_cycling__seg_deal",
+          "opportunityId": "opp_cycling__seg_deal",
+          "segmentId": "seg_deal",
+          "step": 3,
+          "sendDate": "2026-11-30",
+          "sendTimeLocal": "12:00",
+          "subject": "Cyber Monday: last day for cycling tour offers",
+          "preheader": "Gravel and bikepacking trips. Offers end tonight.",
+          "creativeDirection": "Minimal reminder with a countdown bar and the same three trips. Short copy, one CTA.",
+          "cta": {
+            "label": "Shop cycling offers",
+            "target": "/cycling/cyber-monday"
+          },
+          "offerType": "promo_discount",
+          "rationale": "Cyber Monday (1.6x boost) follows two days after Black Friday, within the segment's 3/week cap.",
+          "evidenceIds": [
+            "ev_engagement_seg_deal_clickrate",
+            "ev_segment_seg_deal_cycling_affinity"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_cycling__seg_deal_4",
+          "sequenceId": "seq_opp_cycling__seg_deal",
+          "opportunityId": "opp_cycling__seg_deal",
+          "segmentId": "seg_deal",
+          "step": 4,
+          "sendDate": "2026-12-17",
+          "sendTimeLocal": "12:00",
+          "subject": "Gravel tours worth booking for spring",
+          "preheader": "A quick comparison of what you get on each trip.",
+          "creativeDirection": "Compact value table comparing three tours by days, terrain and what's included. No imagery beyond a thin banner.",
+          "cta": {
+            "label": "Compare tours",
+            "target": "/cycling/compare"
+          },
+          "offerType": "content_story",
+          "rationale": "A value-focused comparison suits no-nonsense buyers during the low-seasonality winter period (0.48 index).",
+          "evidenceIds": [
+            "ev_seasonality_cycling_idx",
+            "ev_trend_tr_bikepacking_rising"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_cycling__seg_deal_5",
+          "sequenceId": "seq_opp_cycling__seg_deal",
+          "opportunityId": "opp_cycling__seg_deal",
+          "segmentId": "seg_deal",
+          "step": 5,
+          "sendDate": "2027-01-07",
+          "sendTimeLocal": "12:00",
+          "subject": "New-year cycling trips, straight to the point",
+          "preheader": "Bikepacking and gravel tours to book now for the season ahead.",
+          "creativeDirection": "Clean list of featured trips, each with a one-line value summary and a book button.",
+          "cta": {
+            "label": "Browse trips",
+            "target": "/cycling/tours"
+          },
+          "offerType": "promo_discount",
+          "rationale": "Resolution week (1.5x boost) lifts planning; a deal-oriented list suits the segment.",
+          "evidenceIds": [
+            "ev_trend_tr_bikepacking_yoy",
+            "ev_engagement_seg_deal_clickrate"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        },
+        {
+          "id": "em_seq_opp_cycling__seg_deal_6",
+          "sequenceId": "seq_opp_cycling__seg_deal",
+          "opportunityId": "opp_cycling__seg_deal",
+          "segmentId": "seg_deal",
+          "step": 6,
+          "sendDate": "2027-01-21",
+          "sendTimeLocal": "12:00",
+          "subject": "Cycling tour bundles: ride more, plan once",
+          "preheader": "Combine a tour and gear in one booking.",
+          "creativeDirection": "Two-column 'what's in the bundle' layout with a gravel bike photo and a clear list. A firm CTA.",
+          "cta": {
+            "label": "See tour bundles",
+            "target": "/cycling/bundles"
+          },
+          "offerType": "bundle",
+          "rationale": "A bundle option for late-window conversion; 53.8% affinity and a breakout query.",
+          "evidenceIds": [
+            "ev_segment_seg_deal_cycling_affinity",
+            "ev_trend_tr_bikepacking_rising"
+          ],
+          "status": "proposed",
+          "editedByUser": false,
+          "guardrailFlags": []
+        }
+      ]
+    }
+  ]
+}

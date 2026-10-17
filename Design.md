@@ -1,0 +1,1 @@
+calendar view, shows emails, when you click on one sequence it shows the details of that campaign, and then the rational

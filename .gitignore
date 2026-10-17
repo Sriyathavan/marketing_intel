@@ -1,0 +1,4 @@
+.env*
+api key.md
+node_modules
+.next
