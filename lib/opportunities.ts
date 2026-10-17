@@ -56,7 +56,8 @@ function makeEvidence(
 
 interface Candidate { opp: Opportunity }
 
-export function buildOpportunities(): Opportunity[] {
+/** Every scored segment x interest candidate, ranked by score (the evidence layer). */
+export function buildAllOpportunities(): Opportunity[] {
   const customers = loadCustomers();
   const ctx = loadContext();
   const trends = loadTrends();
@@ -93,10 +94,14 @@ export function buildOpportunities(): Opportunity[] {
   const tm = (o: Opportunity) => o.score.factors.find((f) => f.key === 'trendMomentum')!.score;
   cands.sort((a, b) => b.opp.score.total - a.opp.score.total || tm(b.opp) - tm(a.opp) || a.opp.id.localeCompare(b.opp.id));
 
+  return cands.map((c) => c.opp);
+}
+
+export function buildOpportunities(): Opportunity[] {
   const picked: Opportunity[] = [];
   const bySeg: Partial<Record<SegmentId, number>> = {};
   const byInt: Partial<Record<Interest, number>> = {};
-  for (const { opp } of cands) {
+  for (const opp of buildAllOpportunities()) {
     if (picked.length === 5) break;
     if ((bySeg[opp.segmentId] ?? 0) >= 2 || (byInt[opp.interest] ?? 0) >= 2) continue;
     bySeg[opp.segmentId] = (bySeg[opp.segmentId] ?? 0) + 1;

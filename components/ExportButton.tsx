@@ -1,29 +1,24 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import * as Menu from '@radix-ui/react-dropdown-menu';
+import { ChevronDown, Download } from 'lucide-react';
 import type { CampaignPlan, Opportunity, SegmentProfile } from '../lib/types';
 import { approvedCount } from '../lib/planStore';
+import { Button } from './ui/button';
 
 interface Props { plan?: CampaignPlan; opportunities: Opportunity[]; segments: SegmentProfile[] }
 
 async function render(kind: 'csv' | 'md', p: Props): Promise<string> {
-  const plan = p.plan!;
   const ex = await import('../lib/export');
-  return kind === 'csv' ? ex.toCsv(plan, p.opportunities, p.segments) : ex.toMarkdown(plan, p.opportunities, p.segments);
+  return kind === 'csv' ? ex.toCsv(p.plan!, p.opportunities, p.segments) : ex.toMarkdown(p.plan!, p.opportunities, p.segments);
 }
 
 export default function ExportButton(props: Props) {
-  const [open, setOpen] = useState(false);
   const [err, setErr] = useState('');
-  const ref = useRef<HTMLDivElement>(null);
   const n = approvedCount(props.plan);
-  useEffect(() => {
-    const f = (e: MouseEvent) => { if (!ref.current?.contains(e.target as Node)) setOpen(false); };
-    document.addEventListener('mousedown', f);
-    return () => document.removeEventListener('mousedown', f);
-  }, []);
 
   async function download(kind: 'csv' | 'md') {
-    setOpen(false); setErr('');
+    setErr('');
     try {
       const text = await render(kind, props);
       const blob = new Blob([text], { type: kind === 'csv' ? 'text/csv;charset=utf-8' : 'text/markdown;charset=utf-8' });
@@ -35,19 +30,23 @@ export default function ExportButton(props: Props) {
     } catch { setErr('Export failed'); }
   }
 
+  const item = 'cursor-pointer rounded px-3 py-2 text-sm outline-none data-[highlighted]:bg-muted';
   return (
-    <div className="menu" ref={ref}>
-      <button type="button" className="btn" disabled={n < 1} aria-haspopup="menu" aria-expanded={open}
-        title={n < 1 ? 'Approve at least one email to export' : undefined} onClick={() => setOpen(o => !o)}>
-        Export ({n}) <span aria-hidden>▾</span>
-      </button>
-      {open && (
-        <div className="menu-pop" role="menu">
-          <button role="menuitem" type="button" onClick={() => download('csv')}>CSV (approved only)</button>
-          <button role="menuitem" type="button" onClick={() => download('md')}>Markdown (approved only)</button>
-        </div>
-      )}
-      {err && <span className="err small">{err}</span>}
+    <div className="flex items-center gap-3">
+      {err && <span role="alert" className="text-xs text-bad">{err}</span>}
+      <Menu.Root>
+        <Menu.Trigger asChild>
+          <Button variant="outline" disabled={n < 1} title={n < 1 ? 'Approve at least one email to export' : undefined}>
+            <Download /> Export approved ({n}) <ChevronDown />
+          </Button>
+        </Menu.Trigger>
+        <Menu.Portal>
+          <Menu.Content align="end" sideOffset={6} className="z-50 min-w-48 rounded-md border border-border bg-surface p-1 shadow-lg">
+            <Menu.Item className={item} onSelect={() => download('csv')}>CSV</Menu.Item>
+            <Menu.Item className={item} onSelect={() => download('md')}>Markdown</Menu.Item>
+          </Menu.Content>
+        </Menu.Portal>
+      </Menu.Root>
     </div>
   );
 }

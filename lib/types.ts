@@ -149,6 +149,10 @@ export interface EmailCampaign {
 }
 export interface EmailSequence {
   id: string; opportunityId: string; segmentId: SegmentId; name: string; goal: string;
+  /** First and last send date of the sequence, and the days it runs (inclusive). Derived from emails, not model-written. */
+  startDate: ISODate; endDate: ISODate; durationDays: number;
+  /** Brief IDs (Email strategy Brief.md): audiences A1-A5 and product lines PL1-PL5 this sequence targets. */
+  audienceIds: string[]; productLineIds: string[];
   cadence: { emailsPerWeek: number; spacingDays: number };
   rationale: string;
   evidenceIds: string[]; suppressionNote: string;
@@ -157,10 +161,31 @@ export interface EmailSequence {
 export interface CampaignPlan {
   planStart: ISODate; planEnd: ISODate; generatedAt: string;
   source: 'claude'|'cache'; model: string | null; warnings: string[];
+  /** Planner's 'Assumptions / missing inputs' list, per the brief. */
+  assumptions: string[];
   sequences: EmailSequence[];
 }
 
-// ---------- API ----------
-export interface PlanRequest { opportunityIds: string[]; planStart?: ISODate }
-export interface PlanResponse { plan: CampaignPlan }
-export interface PlanError { error: string; code: 'bad_request'|'claude_failed'|'invalid_output'; }
+// ---------- analyst output (data/insights.json) ----------
+export type InsightLabel = 'observed'|'interpreted';
+export interface Insight {
+  id: string; title: string; summary: string;
+  interest: Interest; segmentIds: SegmentId[]; trendIds: string[];
+  momentum: 'rising'|'steady'|'declining';
+  label: InsightLabel;              // observed = straight from data, interpreted = AI inference
+  evidenceIds: string[];
+}
+export interface InsightsFile {
+  generatedAt: string; model: string;
+  trendSummary: string;             // 2-3 sentence read on global search trends
+  customerSummary: string;          // 2-3 sentence read on our customer data
+  insights: Insight[];              // analyst never sees the brief
+}
+
+// ---------- refresh progress (POST /api/refresh streams one JSON object per line) ----------
+export type RefreshEvent =
+  | { stage: 'data'; status: 'start'|'done'; keywords?: string[] }
+  | { stage: 'analyst'; status: 'start'|'done'; insights?: number }
+  | { stage: 'planner'; status: 'start'|'done'; sequences?: number }
+  | { stage: 'done' }
+  | { stage: 'error'; message: string };

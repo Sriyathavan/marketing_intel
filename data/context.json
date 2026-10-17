@@ -27,5 +27,5 @@
     { "id": "lnch_baja_kayak", "name": "Baja Sea Kayak Expedition", "date": "2027-01-20", "interest": "water_sports", "inventoryConstrained": false }
   ],
   "paydays": "Paydays fall on the 1st and 15th of each month; expect higher booking intent in the days after.",
-  "sendBlackouts": ["2026-12-25", "2027-01-01"]
+  "sendBlackouts": ["2026-11-26", "2026-12-24", "2026-12-25", "2026-12-26"]
 }
